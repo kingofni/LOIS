@@ -1,0 +1,954 @@
+<skuidpage unsavedchangeswarning="yes" showsidebar="true" showheader="false">
+   <models>
+      <model id="Agencies" limit="20" query="true" createrowifnonefound="false" sobject="WKE_Agency__c">
+         <fields>
+            <field id="Activation_Date_MID__c"/>
+            <field id="Activation_Date_UPS__c"/>
+            <field id="Activation_Date_WKE__c"/>
+            <field id="Agency_Contract__c"/>
+            <field id="Agency_Contract__r.Name"/>
+            <field id="Agency_Contract__r.skuid__AttachmentId__c"/>
+            <field id="Agency_Name__c"/>
+            <field id="Charge_Disposition__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="CreatedDate"/>
+            <field id="Deactivation_Date_MID__c"/>
+            <field id="Deactivation_Date_UPS__c"/>
+            <field id="Deactivation_Date_WKE__c"/>
+            <field id="Deactivation_Reason_MID__c"/>
+            <field id="Deactivation_Reason_UPS__c"/>
+            <field id="Deactivation_Reason_WKE__c"/>
+            <field id="MID__c"/>
+            <field id="UPS__c"/>
+            <field id="WKE__c"/>
+            <field id="Name"/>
+            <field id="Id"/>
+            <field id="Restrictions__c"/>
+            <field id="Num_Offenders_Needed__c"/>
+            <field id="Num_Crews_Per_Year__c"/>
+            <field id="City__c"/>
+            <field id="State__c"/>
+            <field id="Zip__c"/>
+            <field id="Address__c"/>
+            <field id="Contact__c"/>
+            <field id="Notes__c"/>
+            <field id="Deactivation_Reason_Comment_MID__c"/>
+            <field id="Deactivation_Reason_Comment_UPS__c"/>
+            <field id="Deactivation_Reason_Comment_WKE__c"/>
+            <field id="Agency_Email__c"/>
+            <field id="Contact_Phone__c"/>
+            <field id="TOW_Animal_Care__c"/>
+            <field id="TOW_Children__c"/>
+            <field id="TOW_Cleaning__c"/>
+            <field id="TOW_Clerical__c"/>
+            <field id="TOW_General_Labor__c"/>
+            <field id="TOE_Grounds_Work__c"/>
+            <field id="TOE_Heavy_Labor__c"/>
+            <field id="TOW_Other__c"/>
+            <field id="DOW_FRI__c"/>
+            <field id="DOW_Mon__c"/>
+            <field id="DOW_SAT__c"/>
+            <field id="DOW_SUN__c"/>
+            <field id="DOW_THU__c"/>
+            <field id="DOW_TUE__c"/>
+            <field id="DOW_WED__c"/>
+            <field id="Hours_Start_Time__c"/>
+            <field id="Hours_Close_Time__c"/>
+            <field id="Bilingual__c"/>
+         </fields>
+         <conditions/>
+         <actions/>
+      </model>
+      <model id="Locations" limit="20" query="true" createrowifnonefound="false" sobject="WKE_Agency_Location__c">
+         <fields>
+            <field id="Contact_Name__c"/>
+            <field id="Phone__c"/>
+            <field id="Location__c"/>
+            <field id="Address__c"/>
+            <field id="City__c"/>
+            <field id="State__c"/>
+            <field id="Zip__c"/>
+            <field id="MapAddress__c"/>
+            <field id="WKE_Agency__c"/>
+            <field id="WKE_Agency__r.Name"/>
+            <field id="Comments__c"/>
+            <field id="Id"/>
+            <field id="WKE_Agency__r.Agency_Name__c"/>
+            <field id="Location_Email__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="WKE_Agency__c" state="filterableoff" inactive="true" name="WKE_Agency__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="AgencyContracts" limit="20" query="false" createrowifnonefound="false" sobject="Agency_Contract__c" doclone="" type="" orderby="CreatedDate desc">
+         <fields>
+            <field id="WKE_Agency__c"/>
+            <field id="WKE_Agency__r.Name"/>
+            <field id="File__c"/>
+            <field id="File__r.Name"/>
+            <field id="File__r.skuid__AttachmentId__c"/>
+            <field id="CreatedDate"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="WKE_Agency__r.Id"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="WKE_Agency__c" state="filterableoff" inactive="true" name="WKE_Agency__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="LocationSchedule" limit="20" query="true" createrowifnonefound="false" sobject="WKE_Location_Schedule__c">
+         <fields>
+            <field id="Schedule_Date__c"/>
+            <field id="Special_Crew_Info__c"/>
+            <field id="WKE_Agency_Location__c"/>
+            <field id="WKE_Agency_Location__r.Name"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="WKE_Agency_Location__c" state="filterableoff" inactive="true" name="WKE_Agency_Location__c"/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModel" model="DateRangeModel" behavior="standard"/>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="AllLocationSchedules" limit="" query="true" createrowifnonefound="false" sobject="WKE_Location_Schedule__c" doclone="no" type="" orderby="Schedule_Date__c">
+         <fields>
+            <field id="Schedule_Date__c"/>
+            <field id="Special_Crew_Info__c"/>
+            <field id="WKE_Agency_Location__c"/>
+            <field id="WKE_Agency_Location__r.Name"/>
+            <field id="WKE_Agency_Location__r.Location__c"/>
+            <field id="WKE_Agency_Location__r.MapAddress__c"/>
+            <field id="WKE_Agency_Location__r.Phone__c"/>
+            <field id="WKE_Agency_Location__r.Contact_Name__c"/>
+            <field id="WKE_Agency_Location__r.WKE_Agency__c"/>
+            <field id="WKE_Agency_Location__r.WKE_Agency__r.Name"/>
+            <field id="WKE_Agency_Location__r.WKE_Agency__r.Agency_Name__c"/>
+            <field id="WKE_Agency_Location__r.WKE_Agency__r.Contact__c"/>
+            <field id="WKE_Agency_Location__r.WKE_Agency__r.MID__c"/>
+            <field id="WKE_Agency_Location__r.WKE_Agency__r.UPS__c"/>
+            <field id="WKE_Agency_Location__r.WKE_Agency__r.WKE__c"/>
+            <field id="DateTime_For_Calendar__c"/>
+            <field id="WKE_Agency_Location__r.Comments__c"/>
+         </fields>
+         <conditions logic=""/>
+         <actions/>
+      </model>
+      <model id="LocationScheduleCal" limit="" query="false" createrowifnonefound="false" sobject="WKE_Location_Schedule__c" doclone="" type="">
+         <fields>
+            <field id="Schedule_Date__c"/>
+            <field id="Special_Crew_Info__c"/>
+            <field id="WKE_Agency_Location__c"/>
+            <field id="WKE_Agency_Location__r.Name"/>
+            <field id="WKE_Agency_Location__r.Comments__c"/>
+            <field id="WKE_Agency_Location__r.Location__c"/>
+            <field id="DateTime_For_Calendar__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="WKE_Agency_Location__c" state="filterableoff" inactive="true" name="WKE_Agency_Location__c"/>
+         </conditions>
+         <actions/>
+      </model>
+   </models>
+   <components>
+      <pagetitle model="Agencies">
+         <actions>
+            <action type="multi" label="View Full Schedule Calendar" icon="sk-icon-calendar">
+               <actions>
+                  <action type="showPopup">
+                     <popup title="WKEMID - Agency Calendar" width="95%">
+                        <components>
+                           <skoocal rememberdate="false" rememberview="false" rangemodel="">
+                              <sources>
+                                 <eventsource name="Agency" createable="false" deleteable="false" updateable="false" eventclickhandler="custompopup" showdefaultbuttons="true" model="AllLocationSchedules" namefield="WKE_Agency_Location__r.WKE_Agency__r.Agency_Name__c" groupfield="WKE_Agency_Location__r.WKE_Agency__c" startfield="Schedule_Date__c" endfield="Schedule_Date__c">
+                                    <eventtemplate>{{WKE_Agency_Location__r.Location__c}}</eventtemplate>
+                                    <onclickpopup title="{{WKE_Agency_Location__r.WKE_Agency__r.Agency_Name__c}} - {{WKE_Agency_Location__r.Location__c}}" width="90%" showdefaultbuttons="true">
+                                       <components>
+                                          <pagetitle model="AllLocationSchedules">
+                                             <actions>
+                                                <action type="redirect" label="Generate Map" window="blank" url="https://www.google.com/maps/dir/2307 Midpoint Drive Fort Collins CO 80525/{{WKE_Agency_Location__r.MapAddress__c}}" icon="ui-silk-map"/>
+                                             </actions>
+                                             <conditions>
+                                                <condition type="contextrow" field="Id" mergefield="Id" autocreated="true"/>
+                                             </conditions>
+                                          </pagetitle>
+                                          <basicfieldeditor showheader="true" showsavecancel="false" model="AllLocationSchedules" buttonposition="" mode="edit" layout="above">
+                                             <columns>
+                                                <column width="100%">
+                                                   <sections>
+                                                      <section title="Scheduled Crew Information" collapsible="no">
+                                                         <fields>
+                                                            <field id="WKE_Agency_Location__r.WKE_Agency__r.Agency_Name__c" valuehalign="" type=""/>
+                                                            <field id="WKE_Agency_Location__r.Location__c" valuehalign="" type=""/>
+                                                            <field id="WKE_Agency_Location__r.Contact_Name__c" valuehalign="" type=""/>
+                                                            <field id="WKE_Agency_Location__r.Phone__c" valuehalign="" type=""/>
+                                                            <columns>
+                                                               <column width="33.3%">
+                                                                  <sections>
+                                                                     <section title="New Section" collapsible="no" showheader="false">
+                                                                        <fields>
+                                                                           <field id="WKE_Agency_Location__r.WKE_Agency__r.WKE__c" valuehalign="" type=""/>
+                                                                        </fields>
+                                                                     </section>
+                                                                  </sections>
+                                                               </column>
+                                                               <column width="33.3%">
+                                                                  <sections>
+                                                                     <section title="New Section" collapsible="no" showheader="false">
+                                                                        <fields>
+                                                                           <field id="WKE_Agency_Location__r.WKE_Agency__r.MID__c" valuehalign="" type=""/>
+                                                                        </fields>
+                                                                     </section>
+                                                                  </sections>
+                                                               </column>
+                                                               <column width="33.3%">
+                                                                  <sections>
+                                                                     <section title="New Section" collapsible="no" showheader="false">
+                                                                        <fields>
+                                                                           <field id="WKE_Agency_Location__r.WKE_Agency__r.UPS__c" valuehalign="" type=""/>
+                                                                        </fields>
+                                                                     </section>
+                                                                  </sections>
+                                                               </column>
+                                                            </columns>
+                                                         </fields>
+                                                      </section>
+                                                      <section title="Comments" collapsible="no">
+                                                         <fields>
+                                                            <field id="WKE_Agency_Location__r.Comments__c" valuehalign="" type="">
+                                                               <label> Crew Comments</label>
+                                                            </field>
+                                                            <field id="Special_Crew_Info__c" valuehalign="" type=""/>
+                                                         </fields>
+                                                      </section>
+                                                   </sections>
+                                                </column>
+                                             </columns>
+                                          </basicfieldeditor>
+                                       </components>
+                                    </onclickpopup>
+                                 </eventsource>
+                              </sources>
+                              <views>
+                                 <eventview type="month"/>
+                              </views>
+                              <renderconditions logictype="and"/>
+                           </skoocal>
+                        </components>
+                     </popup>
+                  </action>
+               </actions>
+               <renderconditions logictype="and"/>
+            </action>
+         </actions>
+         <maintitle>WKE-MID Agency Manager</maintitle>
+      </pagetitle>
+      <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="true" model="Agencies" buttonposition="" mode="read">
+         <fields>
+            <field id="Agency_Name__c"/>
+            <field id="WKE__c"/>
+            <field id="MID__c"/>
+            <field id="UPS__c"/>
+            <field id="Contact_Phone__c" valuehalign="" type=""/>
+            <field id="Agency_Email__c" valuehalign="" type=""/>
+         </fields>
+         <rowactions>
+            <action type="edit"/>
+            <action type="delete"/>
+            <action type="drawer" label="Agency Details" icon="sk-icon-go-to-full-detail-page">
+               <drawer title="Drawer Area" width="90%" closehandle="true">
+                  <components>
+                     <basicfieldeditor showheader="true" showsavecancel="true" model="Agencies" buttonposition="" mode="edit" layout="above">
+                        <columns>
+                           <column width="50%">
+                              <sections>
+                                 <section title=" " collapsible="no">
+                                    <fields>
+                                       <field id="Agency_Name__c" valuehalign="" type=""/>
+                                       <field id="Contact__c" valuehalign="" type=""/>
+                                       <field id="Contact_Phone__c" valuehalign="" type=""/>
+                                       <field id="Agency_Email__c" valuehalign="" type=""/>
+                                       <field id="Address__c" valuehalign="" type="">
+                                          <label>Billing Address</label>
+                                       </field>
+                                       <columns>
+                                          <column width="33.3%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="City__c" valuehalign="" type="">
+                                                         <label> City</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="33.3%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="State__c" valuehalign="" type="">
+                                                         <label> State</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="33.3%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="Zip__c" decimalplaces="0" valuehalign="" type="">
+                                                         <label> Zip</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                       </columns>
+                                       <field id="Bilingual__c" valuehalign="" type=""/>
+                                       <field id="Restrictions__c" valuehalign="" type=""/>
+                                    </fields>
+                                 </section>
+                                 <section title="Days of the Week" collapsible="no">
+                                    <fields>
+                                       <columns>
+                                          <column width="14.2%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="DOW_Mon__c" valuehalign="" type="">
+                                                         <label>M</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="14.2%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="DOW_TUE__c" valuehalign="" type="">
+                                                         <label>T</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="14.2%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="DOW_WED__c" valuehalign="" type="">
+                                                         <label>W</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="14.2%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="DOW_THU__c" valuehalign="" type="">
+                                                         <label>R</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="14.2%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="DOW_FRI__c" valuehalign="" type="">
+                                                         <label>F</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="14.2%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="DOW_SAT__c" valuehalign="" type="">
+                                                         <label>S</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="14.2%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="DOW_SUN__c" valuehalign="" type="">
+                                                         <label>Su</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                       </columns>
+                                    </fields>
+                                 </section>
+                                 <section title="Hours of Operation" collapsible="no">
+                                    <fields>
+                                       <columns>
+                                          <column width="50%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="Hours_Start_Time__c" valuehalign="" type="">
+                                                         <label>Starting Time</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="50%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="Hours_Close_Time__c" valuehalign="" type="">
+                                                         <label>Closing Time</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                       </columns>
+                                    </fields>
+                                 </section>
+                              </sections>
+                           </column>
+                           <column width="50%">
+                              <sections>
+                                 <section title=" " collapsible="no">
+                                    <fields>
+                                       <field id="Num_Offenders_Needed__c"/>
+                                       <field id="Num_Crews_Per_Year__c"/>
+                                       <field id="Charge_Disposition__c"/>
+                                       <field id="Notes__c" valuehalign="" type="">
+                                          <label> Notes</label>
+                                       </field>
+                                    </fields>
+                                 </section>
+                                 <section title="Type of Work" collapsible="no">
+                                    <fields>
+                                       <columns>
+                                          <column width="50%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="TOW_Clerical__c" valuehalign="" type="">
+                                                         <label>Clerical</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="50%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="TOW_General_Labor__c" valuehalign="" type="">
+                                                         <label>General Labor</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                       </columns>
+                                       <columns>
+                                          <column width="50%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="TOW_Cleaning__c" valuehalign="" type="">
+                                                         <label>Cleaning</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="50%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="TOW_Animal_Care__c" valuehalign="" type="">
+                                                         <label>Animal Care</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                       </columns>
+                                       <columns>
+                                          <column width="50%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="TOE_Heavy_Labor__c" valuehalign="" type="">
+                                                         <label>Heavy Labor</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="50%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="TOE_Grounds_Work__c" valuehalign="" type="">
+                                                         <label>Grounds Work</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                       </columns>
+                                       <columns>
+                                          <column width="50%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="TOW_Children__c" valuehalign="" type="">
+                                                         <label>Children</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="50%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="TOW_Other__c" valuehalign="" type="">
+                                                         <label>Other</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                       </columns>
+                                    </fields>
+                                 </section>
+                              </sections>
+                           </column>
+                        </columns>
+                     </basicfieldeditor>
+                     <pagetitle model="AgencyContracts">
+                        <subtitle>Contracts</subtitle>
+                        <actions/>
+                     </pagetitle>
+                     <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" createrecords="true" model="AgencyContracts" buttonposition="" mode="edit" instantfilters="true" emptysearchbehavior="query">
+                        <fields>
+                           <field id="File__c" valuehalign="" type=""/>
+                           <field id="CreatedDate" valuehalign="" type=""/>
+                           <field id="CreatedById"/>
+                        </fields>
+                        <rowactions>
+                           <action type="multi" icon="ui-silk-folder-delete" label="Delete Contract">
+                              <actions>
+                                 <action type="markRowsForDeletion" model="Agencies"/>
+                              </actions>
+                              <renderconditions logictype="and">
+                                 <rendercondition type="blank" operator="=" fieldmodel="AgencyContracts" sourcetype="fieldvalue" field="File__c" value="null" enclosevalueinquotes="false"/>
+                              </renderconditions>
+                           </action>
+                        </rowactions>
+                        <massactions usefirstitemasdefault="true"/>
+                        <views>
+                           <view type="standard"/>
+                        </views>
+                        <conditions>
+                           <condition type="contextrow" field="WKE_Agency__c" mergefield="Id"/>
+                        </conditions>
+                        <searchfields/>
+                     </skootable>
+                     <basicfieldeditor showheader="true" showsavecancel="false" model="Agencies" buttonposition="" mode="edit" layout="above">
+                        <columns>
+                           <column width="100%">
+                              <sections>
+                                 <section title="Programs" collapsible="no">
+                                    <fields>
+                                       <columns>
+                                          <column width="15%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field type="COMBO" valuehalign="" editmodebehavior="autopopup">
+                                                         <label/>
+                                                         <template/>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="28%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field type="COMBO" valuehalign="" editmodebehavior="autopopup">
+                                                         <template>Activation Date</template>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="28%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field type="COMBO" valuehalign="" editmodebehavior="autopopup">
+                                                         <template>Deactivation Date</template>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="29%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field type="COMBO" valuehalign="" editmodebehavior="autopopup">
+                                                         <template>Deactivation Reason</template>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                       </columns>
+                                       <columns>
+                                          <column width="15%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field type="COMBO" valuehalign="" editmodebehavior="autopopup">
+                                                         <template>WKE</template>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="28%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="Activation_Date_WKE__c" valuehalign="" type="">
+                                                         <label/>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="28%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="Deactivation_Date_WKE__c" valuehalign="" type="">
+                                                         <label/>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="29%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="Deactivation_Reason_WKE__c" valuehalign="" type="">
+                                                         <label/>
+                                                         <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                            <rendercondition type="blank" operator="!=" fieldmodel="Agencies" sourcetype="fieldvalue" field="Deactivation_Date_WKE__c" value="null" enclosevalueinquotes="false"/>
+                                                         </renderconditions>
+                                                      </field>
+                                                      <field id="Deactivation_Reason_Comment_WKE__c" valuehalign="" type="">
+                                                         <label/>
+                                                         <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Agencies" sourcetype="fieldvalue" field="Deactivation_Reason_WKE__c" value="Other"/>
+                                                         </renderconditions>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                       </columns>
+                                       <columns>
+                                          <column width="15%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field type="COMBO" valuehalign="" editmodebehavior="autopopup">
+                                                         <template>MID</template>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="28%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="Activation_Date_MID__c" valuehalign="" type="">
+                                                         <label/>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="28%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="Deactivation_Date_MID__c" valuehalign="" type="">
+                                                         <label/>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="29%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="Deactivation_Reason_MID__c" valuehalign="" type="">
+                                                         <label/>
+                                                         <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                            <rendercondition type="blank" operator="!=" fieldmodel="Agencies" sourcetype="fieldvalue" field="Deactivation_Date_MID__c" value="null" enclosevalueinquotes="false"/>
+                                                         </renderconditions>
+                                                      </field>
+                                                      <field id="Deactivation_Reason_Comment_MID__c" valuehalign="" type="">
+                                                         <label/>
+                                                         <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Agencies" sourcetype="fieldvalue" field="Deactivation_Reason_MID__c" value="Other"/>
+                                                         </renderconditions>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                       </columns>
+                                       <columns>
+                                          <column width="15%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field type="COMBO" valuehalign="" editmodebehavior="autopopup">
+                                                         <template>UPS</template>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="28%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="Activation_Date_UPS__c" valuehalign="" type="">
+                                                         <label/>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="28%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="Deactivation_Date_UPS__c" valuehalign="" type="">
+                                                         <label/>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                          <column width="29%">
+                                             <sections>
+                                                <section title="New Section" collapsible="no" showheader="false">
+                                                   <fields>
+                                                      <field id="Deactivation_Reason_UPS__c" valuehalign="" type="">
+                                                         <label/>
+                                                         <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                            <rendercondition type="blank" operator="!=" fieldmodel="Agencies" sourcetype="fieldvalue" field="Deactivation_Date_UPS__c" value="null" enclosevalueinquotes="false"/>
+                                                         </renderconditions>
+                                                      </field>
+                                                      <field id="Deactivation_Reason_Comment_UPS__c" valuehalign="" type="">
+                                                         <label/>
+                                                         <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Agencies" sourcetype="fieldvalue" field="Deactivation_Reason_UPS__c" value="Other"/>
+                                                         </renderconditions>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                       </columns>
+                                    </fields>
+                                 </section>
+                              </sections>
+                           </column>
+                        </columns>
+                        <conditions>
+                           <condition type="contextrow" field="Id" mergefield="Id"/>
+                        </conditions>
+                     </basicfieldeditor>
+                     <pagetitle model="Agencies">
+                        <subtitle>Agency Locations / Contacts</subtitle>
+                        <actions/>
+                     </pagetitle>
+                     <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="true" model="Locations" buttonposition="" mode="read">
+                        <fields>
+                           <field id="Location__c"/>
+                           <field id="Contact_Name__c" valuehalign="" type=""/>
+                           <field id="Phone__c" valuehalign="" type=""/>
+                           <field id="Location_Email__c" valuehalign="" type="">
+                              <label>E-Mail</label>
+                           </field>
+                        </fields>
+                        <rowactions>
+                           <action type="edit"/>
+                           <action type="delete"/>
+                           <action type="redirect" label="Directions" icon="ui-silk-map" window="blank" url="https://www.google.com/maps/dir/2307 Midpoint Drive Fort Collins CO 80525/{{MapAddress__c}}"/>
+                           <action type="drawer" label="Location Details" icon="sk-icon-go-to-full-detail-page">
+                              <drawer title="Drawer Area" width="90%" closehandle="true">
+                                 <components>
+                                    <basicfieldeditor showheader="true" showsavecancel="true" model="Locations" buttonposition="" mode="read" layout="">
+                                       <columns>
+                                          <column width="100%">
+                                             <sections>
+                                                <section title="Location Details" collapsible="no">
+                                                   <fields>
+                                                      <field id="Address__c"/>
+                                                      <field id="City__c"/>
+                                                      <field id="State__c"/>
+                                                      <field id="Zip__c"/>
+                                                      <field id="Location_Email__c" valuehalign="" type=""/>
+                                                      <field id="Comments__c" valuehalign="" type="">
+                                                         <label>Crew Comments</label>
+                                                      </field>
+                                                   </fields>
+                                                </section>
+                                             </sections>
+                                          </column>
+                                       </columns>
+                                       <conditions>
+                                          <condition type="contextrow" field="Id" mergefield="Id"/>
+                                       </conditions>
+                                    </basicfieldeditor>
+                                 </components>
+                                 <beforeload/>
+                              </drawer>
+                           </action>
+                           <action type="multi" label="View Schedule" icon="ui-silk-calendar-view-day">
+                              <actions>
+                                 <action type="cancel">
+                                    <models>
+                                       <model>LocationScheduleCal</model>
+                                    </models>
+                                 </action>
+                                 <action type="emptyModelData">
+                                    <models>
+                                       <model>LocationScheduleCal</model>
+                                    </models>
+                                 </action>
+                                 <action type="custom" model="LocationScheduleCal" condition="WKE_Agency_Location__c" snippet="clearConditions"/>
+                                 <action type="requeryModel" model="LocationScheduleCal" behavior="standard"/>
+                                 <action type="setCondition" model="LocationScheduleCal" condition="WKE_Agency_Location__c" value="{{Id}}"/>
+                                 <action type="showPopup">
+                                    <popup width="80%" title="{{WKE_Agency__r.Agency_Name__c}} - {{Location__c}} - Contact: ({{Contact_Name__c}} - {{Phone__c}})">
+                                       <components>
+                                          <pagetitle model="LocationScheduleCal">
+                                             <actions>
+                                                <action type="multi" label="Close Window">
+                                                   <actions>
+                                                      <action type="closeTopmostPopup"/>
+                                                   </actions>
+                                                </action>
+                                             </actions>
+                                             <renderconditions logictype="and"/>
+                                          </pagetitle>
+                                          <skoocal rememberdate="false" rememberview="false" rangemodel="">
+                                             <sources>
+                                                <eventsource name="Location Events" createable="true" deleteable="true" updateable="true" eventclickhandler="autopopup" showdefaultbuttons="true" model="LocationScheduleCal" namefield="WKE_Agency_Location__r.Location__c" startfield="Schedule_Date__c" endfield="Schedule_Date__c">
+                                                   <eventtemplate>{{WKE_Agency_Location__r.Comments__c}} : {{Special_Crew_Info__c}}</eventtemplate>
+                                                </eventsource>
+                                             </sources>
+                                             <views>
+                                                <eventview type="month"/>
+                                             </views>
+                                             <renderconditions logictype="and"/>
+                                          </skoocal>
+                                       </components>
+                                    </popup>
+                                 </action>
+                              </actions>
+                              <renderconditions logictype="and"/>
+                           </action>
+                        </rowactions>
+                        <massactions usefirstitemasdefault="true"/>
+                        <views>
+                           <view type="standard"/>
+                        </views>
+                        <conditions>
+                           <condition type="contextrow" field="WKE_Agency__c" mergefield="Id"/>
+                        </conditions>
+                     </skootable>
+                  </components>
+                  <beforeload>
+                     <action type="setCondition" model="Locations" condition="WKE_Agency__c" value="Id"/>
+                     <action type="requeryModel" model="Locations" behavior="loadmore"/>
+                     <action type="setCondition" model="AgencyContracts" condition="WKE_Agency__c" value="{{Id}}"/>
+                     <action type="requeryModel" model="AgencyContracts" behavior="loadmore"/>
+                  </beforeload>
+               </drawer>
+               <renderconditions logictype="and"/>
+            </action>
+         </rowactions>
+         <massactions usefirstitemasdefault="true"/>
+         <views>
+            <view type="standard"/>
+         </views>
+      </skootable>
+   </components>
+   <resources>
+      <labels/>
+      <javascript>
+         <jsitem location="inlinesnippet" name="clearConditions" cachelocation="false">var params = arguments[0];
+var $ = skuid.$;
+var myModel = skuid.model.getModel('LocationScheduleCal');
+
+/*
+The calendar control adds a condition each time a month is viewed, the 
+only issue with this type of action is when we have an additional condition
+on the model (in this case a Row Action with a Row ID).  The combination
+of the conditions cause future calendar openings to return no records.
+*/
+
+
+$.each(myModel.conditions,function(i,condition){
+
+   if (condition.name) myModel.deactivateCondition(condition);
+
+});</jsitem>
+      </javascript>
+      <css>
+         <cssitem location="inline" name="calUpdates" cachelocation="false">td.nx-cal-month
+{
+    height: 30px;
+    
+}</cssitem>
+      </css>
+   </resources>
+</skuidpage>

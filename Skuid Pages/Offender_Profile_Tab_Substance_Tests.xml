@@ -1,0 +1,2617 @@
+<skuidpage unsavedchangeswarning="yes" showsidebar="true" showheader="true">
+   <models>
+      <!-- DRC Model -->
+      <model id="SubstanceOffender" limit="1" query="true" createrowifnonefound="false" sobject="LOIS_Offender__c" doclone="" type="">
+         <fields>
+            <field id="Id"/>
+            <field id="Name"/>
+            <field id="Full_Name__c"/>
+         </fields>
+         <conditions>
+            <condition type="param" value="offenderid" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="SubstanceTest" limit="20" query="true" createrowifnonefound="false" sobject="SubstanceTests__c" doclone="" type="" orderby="TestDate__c desc, CreatedDate desc">
+         <fields>
+            <field id="Agency__c"/>
+            <field id="BASubResult_PositiveCount__c"/>
+            <field id="BASubResult_RecCount__c"/>
+            <field id="Confirmation_Test_Count__c"/>
+            <field id="Confirmation_Test_Ordered__c"/>
+            <field id="Confirmation_Test_Ordered_By__c"/>
+            <field id="Confirmation_Test_Received__c"/>
+            <field id="Confirmation_Test_Ordered_On__c"/>
+            <field id="CreatedDate"/>
+            <field id="Dilute__c"/>
+            <field id="Program__c"/>
+            <field id="Id"/>
+            <field id="ResultDate__c"/>
+            <field id="ResultNotes__c"/>
+            <field id="Status__c"/>
+            <field id="SubstanceRecordCount__c"/>
+            <field id="SubstanceTest__c"/>
+            <field id="Name"/>
+            <field id="Test_Result__c"/>
+            <field id="TestDate__c"/>
+            <field id="coc__c"/>
+            <field id="dilutecount__c"/>
+            <field id="positivecount__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="DRC_Agency__c"/>
+            <field id="DRC_Agency__r.Name"/>
+            <field id="Agency_Display__c"/>
+            <field id="BA_Initial_TestResult__c"/>
+            <field id="TestResultColor__c"/>
+            <field id="DRC_Test_PerformedBy__c"/>
+            <field id="DRC_Test_PerformedBy__r.Name"/>
+            <field id="CoCEnternal__c"/>
+         </fields>
+         <conditions>
+            <condition type="modelmerge" value="" field="Offender_Search__c" operator="=" novaluebehavior="deactivate" model="SubstanceOffender" enclosevalueinquotes="true" mergefield="Id"/>
+            <condition type="param" value="program" field="Program__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="SubstanceResult" limit="" query="false" createrowifnonefound="false" sobject="SubstanceResult__c" doclone="" type="" orderby="CreatedDate desc">
+         <fields>
+            <field id="Notes__c"/>
+            <field id="Id"/>
+            <field id="Substance_Result__c"/>
+            <field id="SubstanceId__c"/>
+            <field id="Name"/>
+            <field id="SubstanceTest__c"/>
+            <field id="SubstanceTest__r.Name"/>
+            <field id="SubstanceType__c"/>
+            <field id="Value__c"/>
+            <field id="Substance__c"/>
+            <field id="IsDiluteExisted__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="SubstanceTest__c" state="filterableoff" inactive="true" name="SubstanceTest__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="SubstanceResultBA" limit="" query="false" createrowifnonefound="false" sobject="BA_Substabce_Result__c" doclone="" type="">
+         <fields>
+            <field id="BA_Notes__c"/>
+            <field id="BA_Substabce__c"/>
+            <field id="BA_Substabce_Result__c"/>
+            <field id="BA_Substance_Type__c"/>
+            <field id="BA_Value__c"/>
+            <field id="BA_SubstanceTest__c"/>
+            <field id="BA_SubstanceTest__r.Name"/>
+            <field id="BA_SubstanceTest__r.TestDate__c"/>
+            <field id="BA_Model__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="BA_SubstanceTest__c" state="filterableoff" inactive="true" name="BA_SubstanceTest__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="All_SubstanceTest" limit="" query="true" createrowifnonefound="false" sobject="SubstanceTests__c" doclone="" type="" orderby="TestDate__c desc, CreatedDate desc">
+         <fields>
+            <field id="Agency__c"/>
+            <field id="BASubResult_PositiveCount__c"/>
+            <field id="BASubResult_RecCount__c"/>
+            <field id="Confirmation_Test_Count__c"/>
+            <field id="Confirmation_Test_Ordered__c"/>
+            <field id="Confirmation_Test_Ordered_By__c"/>
+            <field id="Confirmation_Test_Received__c"/>
+            <field id="Confirmation_Test_Ordered_On__c"/>
+            <field id="CreatedDate"/>
+            <field id="Dilute__c"/>
+            <field id="Program__c"/>
+            <field id="Id"/>
+            <field id="ResultDate__c"/>
+            <field id="ResultNotes__c"/>
+            <field id="Status__c"/>
+            <field id="SubstanceRecordCount__c"/>
+            <field id="SubstanceTest__c"/>
+            <field id="Name"/>
+            <field id="Test_Result__c"/>
+            <field id="TestDate__c"/>
+            <field id="coc__c"/>
+            <field id="dilutecount__c"/>
+            <field id="positivecount__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="DRC_Agency__c"/>
+            <field id="DRC_Agency__r.Name"/>
+            <field id="Agency_Display__c"/>
+            <field id="BA_Initial_TestResult__c"/>
+            <field id="TestResultColor__c"/>
+            <field id="TestDateForCal__c"/>
+            <field id="DRC_Test_PerformedBy__c"/>
+            <field id="DRC_Test_PerformedBy__r.Name"/>
+            <field id="CoCEnternal__c"/>
+         </fields>
+         <conditions>
+            <condition type="modelmerge" value="" field="Offender_Search__c" operator="=" novaluebehavior="deactivate" model="SubstanceOffender" enclosevalueinquotes="true" mergefield="Id"/>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="SubstanceTest__c" state="filterableoff" inactive="true" name="SubstanceTest"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="All_SubstanceTestCalendar" limit="" query="true" createrowifnonefound="false" sobject="SubstanceTests__c" doclone="" type="" orderby="TestDate__c desc, CreatedDate desc">
+         <fields>
+            <field id="Agency__c"/>
+            <field id="BASubResult_PositiveCount__c"/>
+            <field id="BASubResult_RecCount__c"/>
+            <field id="Confirmation_Test_Count__c"/>
+            <field id="Confirmation_Test_Ordered__c"/>
+            <field id="Confirmation_Test_Ordered_By__c"/>
+            <field id="Confirmation_Test_Received__c"/>
+            <field id="Confirmation_Test_Ordered_On__c"/>
+            <field id="CreatedDate"/>
+            <field id="Dilute__c"/>
+            <field id="Program__c"/>
+            <field id="Id"/>
+            <field id="ResultDate__c"/>
+            <field id="ResultNotes__c"/>
+            <field id="Status__c"/>
+            <field id="SubstanceRecordCount__c"/>
+            <field id="SubstanceTest__c"/>
+            <field id="Name"/>
+            <field id="Test_Result__c"/>
+            <field id="TestDate__c"/>
+            <field id="coc__c"/>
+            <field id="dilutecount__c"/>
+            <field id="positivecount__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="DRC_Agency__c"/>
+            <field id="DRC_Agency__r.Name"/>
+            <field id="Agency_Display__c"/>
+            <field id="BA_Initial_TestResult__c"/>
+            <field id="TestResultColor__c"/>
+            <field id="TestDateForCal__c"/>
+            <field id="DRC_Test_PerformedBy__c"/>
+            <field id="DRC_Test_PerformedBy__r.Name"/>
+         </fields>
+         <conditions>
+            <condition type="modelmerge" value="" field="Offender_Search__c" operator="=" novaluebehavior="deactivate" model="SubstanceOffender" enclosevalueinquotes="true" mergefield="Id"/>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="SubstanceTest__c" state="filterableoff" inactive="true" name="SubstanceTest"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="All_SubstanceResult" limit="" query="false" createrowifnonefound="false" sobject="SubstanceResult__c" doclone="" type="" orderby="CreatedDate desc">
+         <fields>
+            <field id="Notes__c"/>
+            <field id="Id"/>
+            <field id="Substance_Result__c"/>
+            <field id="SubstanceId__c"/>
+            <field id="Name"/>
+            <field id="SubstanceTest__c"/>
+            <field id="SubstanceTest__r.Name"/>
+            <field id="SubstanceType__c"/>
+            <field id="Value__c"/>
+            <field id="Substance__c"/>
+            <field id="IsDiluteExisted__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="SubstanceTest__c" state="filterableoff" inactive="true" name="SubstanceTest__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="All_SubstanceResultBA" limit="" query="false" createrowifnonefound="false" sobject="BA_Substabce_Result__c" doclone="" type="">
+         <fields>
+            <field id="BA_Notes__c"/>
+            <field id="BA_Substabce__c"/>
+            <field id="BA_Substabce_Result__c"/>
+            <field id="BA_Substance_Type__c"/>
+            <field id="BA_Value__c"/>
+            <field id="BA_SubstanceTest__c"/>
+            <field id="BA_SubstanceTest__r.Name"/>
+            <field id="BA_SubstanceTest__r.TestDate__c"/>
+            <field id="BA_Model__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="BA_SubstanceTest__c" state="filterableoff" inactive="true" name="BA_SubstanceTest__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="BATest" limit="" query="true" createrowifnonefound="false" sobject="SubstanceTests__c" doclone="" type="" orderby="TestDate__c desc, CreatedDate desc">
+         <fields>
+            <field id="Agency__c"/>
+            <field id="BASubResult_RecCount__c"/>
+            <field id="Confirmation_Test_Count__c"/>
+            <field id="Confirmation_Test_Ordered__c"/>
+            <field id="Confirmation_Test_Ordered_By__c"/>
+            <field id="Confirmation_Test_Received__c"/>
+            <field id="Dilute__c"/>
+            <field id="Program__c"/>
+            <field id="ResultDate__c"/>
+            <field id="ResultNotes__c"/>
+            <field id="ResultStaffID__c"/>
+            <field id="Status__c"/>
+            <field id="SubstanceTest__c"/>
+            <field id="Name"/>
+            <field id="SubstanceTestId__c"/>
+            <field id="Test_Result__c"/>
+            <field id="TestDate__c"/>
+            <field id="TestStaffID__c"/>
+            <field id="dilutecount__c"/>
+            <field id="positivecount__c"/>
+            <field id="CreatedDate"/>
+            <field id="coc__c"/>
+            <field id="TestPerformedby__c"/>
+            <field id="Confirmation_Test_Ordered_On__c"/>
+            <field id="Id"/>
+            <field id="BASubResult_PositiveCount__c"/>
+            <field id="IsDeleted"/>
+            <field id="SubstanceRecordCount__c"/>
+            <field id="Offender_Search__c"/>
+            <field id="Offender_Search__r.Name"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="BA_Initial_TestResult__c"/>
+            <field id="DRC_Test_PerformedBy__c"/>
+            <field id="DRC_Test_PerformedBy__r.Name"/>
+            <field id="DRC_Agency__c"/>
+            <field id="DRC_Agency__r.Name"/>
+            <field id="Agency_Display__c"/>
+         </fields>
+         <conditions>
+            <condition type="modelmerge" value="" field="Offender_Search__c" operator="=" mergefield="Id" novaluebehavior="deactivate" state="" inactive="false" model="SubstanceOffender" enclosevalueinquotes="true"/>
+            <condition type="param" value="program" field="Program__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="fieldvalue" value="BA" enclosevalueinquotes="true" field="SubstanceTest__c"/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModels" behavior="standard">
+                     <models>
+                        <model>SubstanceTest</model>
+                        <model>All_SubstanceTest</model>
+                     </models>
+                  </action>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="BATestNew" limit="1" query="false" createrowifnonefound="false" sobject="SubstanceTests__c" doclone="" type="">
+         <fields>
+            <field id="Agency__c"/>
+            <field id="BASubResult_PositiveCount__c"/>
+            <field id="BASubResult_RecCount__c"/>
+            <field id="Confirmation_Test_Count__c"/>
+            <field id="Confirmation_Test_Ordered__c"/>
+            <field id="Confirmation_Test_Ordered_On__c"/>
+            <field id="Confirmation_Test_Ordered_By__c"/>
+            <field id="CreatedDate"/>
+            <field id="IsDeleted"/>
+            <field id="Dilute__c"/>
+            <field id="Program__c"/>
+            <field id="Id"/>
+            <field id="ResultDate__c"/>
+            <field id="ResultNotes__c"/>
+            <field id="ResultStaffID__c"/>
+            <field id="Status__c"/>
+            <field id="SubstanceRecordCount__c"/>
+            <field id="SubstanceTest__c"/>
+            <field id="Name"/>
+            <field id="SubstanceTestId__c"/>
+            <field id="TestDate__c"/>
+            <field id="Test_Result__c"/>
+            <field id="Confirmation_Test_Received__c"/>
+            <field id="TestPerformedby__c"/>
+            <field id="TestStaffID__c"/>
+            <field id="coc__c"/>
+            <field id="dilutecount__c"/>
+            <field id="positivecount__c"/>
+            <field id="Offender_Search__c"/>
+            <field id="Offender_Search__r.Name"/>
+            <field id="DRC_Agency__c"/>
+            <field id="DRC_Agency__r.Name"/>
+            <field id="DRC_Test_PerformedBy__c"/>
+            <field id="DRC_Test_PerformedBy__r.Name"/>
+         </fields>
+         <conditions>
+            <condition type="modelmerge" value="" field="Offender_Search__c" operator="=" model="SubstanceOffender" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+            <condition type="param" value="program" field="Program__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="fieldvalue" value="BA" enclosevalueinquotes="true" field="SubstanceTest__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="BAResult" limit="" query="false" createrowifnonefound="false" sobject="BA_Substabce_Result__c" doclone="" type="">
+         <fields>
+            <field id="BA_Notes__c"/>
+            <field id="BA_Substabce__c"/>
+            <field id="BA_Substabce_Result__c"/>
+            <field id="Name"/>
+            <field id="BA_Substance_Type__c"/>
+            <field id="BA_Value__c"/>
+            <field id="BA_Model__c"/>
+            <field id="IsDeleted"/>
+            <field id="Id"/>
+            <field id="BA_SubstanceTest__c"/>
+            <field id="BA_SubstanceTest__r.Name"/>
+            <field id="BA_IsDiluteExisted__c"/>
+            <field id="CreatedDate"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="BA_SubstanceTest__c" state="filterableoff" inactive="true" name="BA_SubstanceTest__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="BAResultNew" limit="1" query="false" createrowifnonefound="false" sobject="BA_Substabce_Result__c" doclone="" type="">
+         <fields>
+            <field id="BA_Notes__c"/>
+            <field id="BA_Substabce__c"/>
+            <field id="BA_Substabce_Result__c"/>
+            <field id="Name"/>
+            <field id="BA_Substance_Type__c"/>
+            <field id="BA_Value__c"/>
+            <field id="BA_IsDiluteExisted__c"/>
+            <field id="BA_Model__c"/>
+            <field id="CreatedDate"/>
+            <field id="IsDeleted"/>
+            <field id="Id"/>
+            <field id="BA_SubstanceTest__c"/>
+            <field id="BA_SubstanceTest__r.Name"/>
+            <field id="BA_SubstanceTest__r.Id"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="BA_SubstanceTest__c" state="filterableoff" inactive="true" name="BA_SubstanceTest__c"/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModels" model="SubstanceOffender" behavior="standard">
+                     <models>
+                        <model>SubstanceTest</model>
+                        <model>BATest</model>
+                     </models>
+                  </action>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="UATest" limit="20" query="true" createrowifnonefound="false" sobject="SubstanceTests__c" doclone="" type="" orderby="TestDate__c desc, CreatedDate desc">
+         <fields>
+            <field id="Agency__c"/>
+            <field id="Confirmation_Test_Count__c"/>
+            <field id="Confirmation_Test_Ordered__c"/>
+            <field id="Confirmation_Test_Ordered_By__c"/>
+            <field id="BASubResult_RecCount__c"/>
+            <field id="Confirmation_Test_Ordered_On__c"/>
+            <field id="Confirmation_Test_Received__c"/>
+            <field id="CreatedDate"/>
+            <field id="IsDeleted"/>
+            <field id="Dilute__c"/>
+            <field id="LastModifiedDate"/>
+            <field id="LastActivityDate"/>
+            <field id="Program__c"/>
+            <field id="ResultDate__c"/>
+            <field id="ResultNotes__c"/>
+            <field id="Status__c"/>
+            <field id="SubstanceTest__c"/>
+            <field id="SubstanceRecordCount__c"/>
+            <field id="Name"/>
+            <field id="SubstanceTestId__c"/>
+            <field id="SystemModstamp"/>
+            <field id="Test_Result__c"/>
+            <field id="TestDate__c"/>
+            <field id="coc__c"/>
+            <field id="dilutecount__c"/>
+            <field id="positivecount__c"/>
+            <field id="TestStaffID__c"/>
+            <field id="Offender_Search__c"/>
+            <field id="Offender_Search__r.Name"/>
+            <field id="BASubResult_PositiveCount__c"/>
+            <field id="Id"/>
+            <field id="ResultStaffID__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="DRC_Agency__c"/>
+            <field id="DRC_Agency__r.Name"/>
+            <field id="DRC_Test_PerformedBy__c"/>
+            <field id="DRC_Test_PerformedBy__r.Name"/>
+            <field id="Agency_Display__c"/>
+            <field id="CoCEnternal__c"/>
+         </fields>
+         <conditions>
+            <condition type="modelmerge" value="" field="Offender_Search__c" operator="=" novaluebehavior="deactivate" state="" model="SubstanceOffender" enclosevalueinquotes="true" mergefield="Id"/>
+            <condition type="param" value="program" field="Program__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="fieldvalue" value="UA" enclosevalueinquotes="true" field="SubstanceTest__c"/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModels" behavior="standard">
+                     <models>
+                        <model>SubstanceTest</model>
+                     </models>
+                  </action>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="UATestNew" limit="1" query="false" createrowifnonefound="false" sobject="SubstanceTests__c" doclone="" type="">
+         <fields>
+            <field id="Agency__c"/>
+            <field id="BASubResult_RecCount__c"/>
+            <field id="Confirmation_Test_Count__c"/>
+            <field id="Confirmation_Test_Ordered__c"/>
+            <field id="Confirmation_Test_Ordered_By__c"/>
+            <field id="Confirmation_Test_Ordered_On__c"/>
+            <field id="Confirmation_Test_Received__c"/>
+            <field id="CreatedDate"/>
+            <field id="IsDeleted"/>
+            <field id="Dilute__c"/>
+            <field id="Program__c"/>
+            <field id="Id"/>
+            <field id="ResultNotes__c"/>
+            <field id="ResultDate__c"/>
+            <field id="ResultStaffID__c"/>
+            <field id="Status__c"/>
+            <field id="SubstanceRecordCount__c"/>
+            <field id="SubstanceTest__c"/>
+            <field id="Name"/>
+            <field id="SubstanceTestId__c"/>
+            <field id="SystemModstamp"/>
+            <field id="Test_Result__c"/>
+            <field id="TestDate__c"/>
+            <field id="coc__c"/>
+            <field id="dilutecount__c"/>
+            <field id="positivecount__c"/>
+            <field id="TestStaffID__c"/>
+            <field id="TestPerformedby__c"/>
+            <field id="Offender_Search__c"/>
+            <field id="Offender_Search__r.Name"/>
+            <field id="BASubResult_PositiveCount__c"/>
+            <field id="DRC_Agency__c"/>
+            <field id="DRC_Agency__r.Name"/>
+            <field id="DRC_Test_PerformedBy__c"/>
+            <field id="DRC_Test_PerformedBy__r.Name"/>
+            <field id="CoCEnternal__c"/>
+         </fields>
+         <conditions>
+            <condition type="modelmerge" value="" field="Offender_Search__c" operator="=" model="SubstanceOffender" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+            <condition type="param" value="program" field="Program__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="fieldvalue" value="UA" enclosevalueinquotes="true" field="SubstanceTest__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="UAResult" limit="" query="true" createrowifnonefound="false" sobject="SubstanceResult__c" doclone="" type="">
+         <fields>
+            <field id="CreatedDate"/>
+            <field id="IsDeleted"/>
+            <field id="IsDiluteExisted__c"/>
+            <field id="Notes__c"/>
+            <field id="Id"/>
+            <field id="Substance__c"/>
+            <field id="Substance_Result__c"/>
+            <field id="SubstanceId__c"/>
+            <field id="Name"/>
+            <field id="SubstanceType__c"/>
+            <field id="Value__c"/>
+            <field id="SubstanceTest__c"/>
+            <field id="SubstanceTest__r.Name"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="SubstanceTest__c" state="filterableoff" inactive="true" name="SubstanceTest__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="UAResultNew" limit="1" query="false" createrowifnonefound="false" sobject="SubstanceResult__c" doclone="" type="">
+         <fields>
+            <field id="CreatedDate"/>
+            <field id="IsDeleted"/>
+            <field id="IsDiluteExisted__c"/>
+            <field id="Notes__c"/>
+            <field id="Id"/>
+            <field id="Substance__c"/>
+            <field id="Substance_Result__c"/>
+            <field id="SubstanceId__c"/>
+            <field id="Name"/>
+            <field id="SubstanceType__c"/>
+            <field id="Value__c"/>
+            <field id="SubstanceTest__c"/>
+            <field id="SubstanceTest__r.Name"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="SubstanceTest__c" state="filterableoff" inactive="true" name="SubstanceTest__c"/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModels" behavior="standard">
+                     <models>
+                        <model>SubstanceTest</model>
+                        <model>UATest</model>
+                     </models>
+                  </action>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="OtherTest" limit="20" query="true" createrowifnonefound="false" sobject="SubstanceTests__c" doclone="" type="" orderby="TestDate__c desc, CreatedDate desc">
+         <fields>
+            <field id="Agency__c"/>
+            <field id="BASubResult_PositiveCount__c"/>
+            <field id="BASubResult_RecCount__c"/>
+            <field id="Confirmation_Test_Count__c"/>
+            <field id="Confirmation_Test_Ordered__c"/>
+            <field id="Confirmation_Test_Ordered_By__c"/>
+            <field id="Confirmation_Test_Ordered_On__c"/>
+            <field id="Confirmation_Test_Received__c"/>
+            <field id="CreatedDate"/>
+            <field id="IsDeleted"/>
+            <field id="Dilute__c"/>
+            <field id="Program__c"/>
+            <field id="ResultDate__c"/>
+            <field id="ResultNotes__c"/>
+            <field id="Status__c"/>
+            <field id="SubstanceRecordCount__c"/>
+            <field id="SubstanceTest__c"/>
+            <field id="Name"/>
+            <field id="SubstanceTestId__c"/>
+            <field id="Test_Result__c"/>
+            <field id="TestDate__c"/>
+            <field id="TestStaffID__c"/>
+            <field id="coc__c"/>
+            <field id="dilutecount__c"/>
+            <field id="positivecount__c"/>
+            <field id="TestPerformedby__c"/>
+            <field id="Id"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="DRC_Test_PerformedBy__c"/>
+            <field id="DRC_Test_PerformedBy__r.Name"/>
+            <field id="CoCEnternal__c"/>
+         </fields>
+         <conditions>
+            <condition type="modelmerge" value="" field="Offender_Search__c" operator="=" novaluebehavior="deactivate" state="" inactive="false" model="SubstanceOffender" enclosevalueinquotes="true" mergefield="Id"/>
+            <condition type="param" value="program" field="Program__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="multiple" value="" field="SubstanceTest__c" operator="in" enclosevalueinquotes="true" state="" inactive="false">
+               <values>
+                  <value>Quick Test</value>
+                  <value>Hair Test</value>
+                  <value>Oral Swab</value>
+               </values>
+            </condition>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModels" behavior="standard">
+                     <models>
+                        <model>SubstanceTest</model>
+                        <model>OtherTest</model>
+                     </models>
+                  </action>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="OtherResult" limit="" query="true" createrowifnonefound="false" sobject="SubstanceResult__c" doclone="" type="">
+         <fields>
+            <field id="CreatedDate"/>
+            <field id="IsDeleted"/>
+            <field id="IsDiluteExisted__c"/>
+            <field id="Notes__c"/>
+            <field id="Id"/>
+            <field id="Substance__c"/>
+            <field id="Substance_Result__c"/>
+            <field id="SubstanceId__c"/>
+            <field id="Name"/>
+            <field id="SubstanceType__c"/>
+            <field id="Value__c"/>
+            <field id="SubstanceTest__r.coc__c"/>
+            <field id="SubstanceTest__r.Agency__c"/>
+            <field id="SubstanceTest__r.Confirmation_Test_Ordered_On__c"/>
+            <field id="SubstanceTest__r.Confirmation_Test_Ordered_By__c"/>
+            <field id="SubstanceTest__c"/>
+            <field id="SubstanceTest__r.Name"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="SubstanceTest__c" state="filterableoff" inactive="true" name="SubstanceTest__c" operator="="/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModels" behavior="standard">
+                     <models>
+                        <model>SubstanceTest</model>
+                        <model>OtherTest</model>
+                     </models>
+                  </action>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <!-- ASD Model -->
+      <!-- CC Model -->
+      <!-- DRC Model -->
+      <!-- All Program Model -->
+      <model id="CalendarDateRange" limit="" query="true" createrowifnonefound="false" sobject="SubstanceTests__c" doclone="" type="aggregate">
+         <fields>
+            <field id="TestDateForCal__c" name="maxTestDateForCalc" function="MAX"/>
+            <field id="TestDateForCal__c" name="minTestDateForCalc" function="MIN"/>
+         </fields>
+         <conditions>
+            <condition type="modelmerge" value="" field="Offender_Search__c" operator="=" model="SubstanceOffender" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+         </conditions>
+         <actions/>
+         <groupby method="simple"/>
+      </model>
+      <model id="CurrentUserSubstanceTest" limit="1" query="true" createrowifnonefound="false" sobject="User" doclone="" type="">
+         <fields>
+            <field id="Id"/>
+         </fields>
+         <conditions>
+            <condition type="userinfo" value="" field="Id" operator="=" enclosevalueinquotes="true" userinfotype="userid"/>
+         </conditions>
+         <actions/>
+      </model>
+   </models>
+   <components>
+      <pagetitle model="SubstanceOffender">
+         <actions>
+            <action type="redirect" label="Help" window="blank" url="https://sites.google.com/a/co.larimer.co.us/lois-help/" icon="sk-icon-help"/>
+         </actions>
+      </pagetitle>
+      <tabset rememberlastusertab="true" defertabrendering="true" renderas="">
+         <tabs>
+            <tab name="{{$Param.program}} Program">
+               <components>
+                  <pagetitle model="SubstanceTest">
+                     <actions>
+                        <action type="multi" label="View Calendar Of Tests" icon="sk-icon-calendar">
+                           <actions>
+                              <action type="showPopup">
+                                 <popup title="" width="90%">
+                                    <components>
+                                       <pagetitle model="SubstanceOffender">
+                                          <actions>
+                                             <action type="multi" label="Print Month" icon="ui-silk-printer">
+                                                <actions>
+                                                   <action type="custom" snippet="PrintCal"/>
+                                                </actions>
+                                             </action>
+                                             <action type="multi" label="Close" icon="ui-silk-cancel">
+                                                <actions>
+                                                   <action type="closeTopmostPopup"/>
+                                                   <action type="requeryModels" behavior="standard">
+                                                      <models>
+                                                         <model>SubstanceTest</model>
+                                                         <model>All_SubstanceTest</model>
+                                                         <model>BATest</model>
+                                                         <model>UATest</model>
+                                                         <model>OtherTest</model>
+                                                      </models>
+                                                   </action>
+                                                </actions>
+                                             </action>
+                                          </actions>
+                                          <subtitle>{{Full_Name__c}} Substance Test Calendar</subtitle>
+                                       </pagetitle>
+                                       <skoocal rememberdate="false" rememberview="false" cssclass="CalTests" uniqueid="" rangemodel="CalendarDateRange" rangestartfield="minTestDateForCalc" rangeendfield="maxTestDateForCalc">
+                                          <sources>
+                                             <eventsource name="Tests" createable="false" deleteable="false" updateable="false" eventclickhandler="autopopup" showdefaultbuttons="true" model="All_SubstanceTestCalendar" color="{{TestResultColor__c}}" namefield="Id" startfield="TestDateForCal__c" endfield="TestDateForCal__c">
+                                                <eventtemplate>{{Program__c}} - {{SubstanceTest__c}} : {{Test_Result__c}}</eventtemplate>
+                                             </eventsource>
+                                          </sources>
+                                          <views>
+                                             <eventview type="month"/>
+                                          </views>
+                                          <renderconditions logictype="and"/>
+                                       </skoocal>
+                                       <basicfieldeditor showheader="true" showsavecancel="false" model="SubstanceOffender" buttonposition="" mode="readonly" layout="above">
+                                          <columns>
+                                             <column width="33.3%">
+                                                <sections>
+                                                   <section title="Section A" collapsible="no" showheader="false">
+                                                      <fields>
+                                                         <field type="COMBO" valuehalign="" editmodebehavior="autopopup">
+                                                            <template>&lt;div style="background-color:#81F79F" align="center"&gt;Negative Test&lt;/div&gt;</template>
+                                                         </field>
+                                                      </fields>
+                                                   </section>
+                                                </sections>
+                                             </column>
+                                             <column width="33.3%">
+                                                <sections>
+                                                   <section title="Section B" collapsible="no" showheader="false">
+                                                      <fields>
+                                                         <field type="COMBO" valuehalign="" editmodebehavior="autopopup">
+                                                            <template>&lt;div style="background-color:#F2F5A9" align="center"&gt;Missed Test&lt;/div&gt;</template>
+                                                         </field>
+                                                      </fields>
+                                                   </section>
+                                                </sections>
+                                             </column>
+                                             <column width="33.3%">
+                                                <sections>
+                                                   <section title="" collapsible="no" showheader="false">
+                                                      <fields>
+                                                         <field type="COMBO" valuehalign="" editmodebehavior="autopopup">
+                                                            <template>&lt;div style="background-color:#F5A9A9" align="center"&gt;Positive Test&lt;/div&gt;</template>
+                                                         </field>
+                                                      </fields>
+                                                   </section>
+                                                </sections>
+                                             </column>
+                                          </columns>
+                                       </basicfieldeditor>
+                                    </components>
+                                 </popup>
+                              </action>
+                           </actions>
+                        </action>
+                     </actions>
+                     <maintitle>{{$Model.CurrentUserSubstanceTest.0.Id}}</maintitle>
+                  </pagetitle>
+                  <tabset rememberlastusertab="true" defertabrendering="true" renderas="">
+                     <tabs>
+                        <tab name="BA">
+                           <components>
+                              <pagetitle model="BATest">
+                                 <actions>
+                                    <action type="multi" label="Add Quick BA" snippet="AddQuickBA">
+                                       <actions>
+                                          <action type="cancel">
+                                             <models>
+                                                <model>BATestNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="cancel">
+                                             <models>
+                                                <model>BAResultNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="emptyModelData">
+                                             <models>
+                                                <model>BATestNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="emptyModelData">
+                                             <models>
+                                                <model>BAResultNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="createRow" model="BATestNew" appendorprepend="prepend" defaultmodefornewitems="edit">
+                                             <defaults>
+                                                <default type="fieldvalue" field="SubstanceTest__c" enclosevalueinquotes="true" value="BA"/>
+                                                <default type="fieldvalue" field="Status__c" value="Completed" operator="=" enclosevalueinquotes="true"/>
+                                                <default type="fieldvalue" field="Offender_Search__c" enclosevalueinquotes="true" value="{{$Model.SubstanceOffender.data.0.Id}}"/>
+                                                <default type="fieldvalue" field="TestDate__c" enclosevalueinquotes="true" value="TODAY"/>
+                                                <default type="fieldvalue" field="DRC_Test_PerformedBy__c" enclosevalueinquotes="true" value="{{$Model.CurrentUserSubstanceTest.data.0.Id}}"/>
+                                             </defaults>
+                                          </action>
+                                          <action type="save">
+                                             <models>
+                                                <model>BATestNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="setCondition" model="BAResultNew" condition="BA_SubstanceTest__c" value="{{$Model.BATestNew.data.0.Id}}"/>
+                                          <action type="createRow" model="BAResultNew" appendorprepend="prepend" defaultmodefornewitems="edit">
+                                             <defaults>
+                                                <default type="fieldvalue" field="BA_Substabce__c" enclosevalueinquotes="true" value="Alcohol Level"/>
+                                             </defaults>
+                                          </action>
+                                          <action type="showPopup">
+                                             <popup title="Add Quick BA" width="90%">
+                                                <components>
+                                                   <pagetitle model="BAResultNew">
+                                                      <subtitle>BA Substance Result</subtitle>
+                                                      <actions>
+                                                         <action type="multi" label="Save &amp; Close">
+                                                            <actions>
+                                                               <action type="save" rollbackonanyerror="true">
+                                                                  <models>
+                                                                     <model>BAResultNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="save" rollbackonanyerror="true">
+                                                                  <models>
+                                                                     <model>BATestNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="requeryModel" model="BATest" behavior="standard">
+                                                                  <models>
+                                                                     <model>BASubstanceTestNew</model>
+                                                                     <model>BASubstanceResultNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="requeryModel" model="BAResult" behavior="standard"/>
+                                                               <action type="closeTopmostPopup"/>
+                                                            </actions>
+                                                         </action>
+                                                         <action type="multi" label="Cancel Changes">
+                                                            <actions>
+                                                               <action type="markRowsForDeletion" model="BATestNew"/>
+                                                               <action type="save">
+                                                                  <models>
+                                                                     <model>BATestNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="cancel">
+                                                                  <models>
+                                                                     <model>BAResultNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="requeryModel" model="BATest" behavior="standard"/>
+                                                               <action type="closeTopmostPopup"/>
+                                                            </actions>
+                                                         </action>
+                                                      </actions>
+                                                   </pagetitle>
+                                                   <basicfieldeditor showheader="true" showsavecancel="false" model="BAResultNew" buttonposition="" mode="edit" layout="">
+                                                      <columns>
+                                                         <column width="100%">
+                                                            <sections>
+                                                               <section title="" collapsible="no" showheader="false">
+                                                                  <fields>
+                                                                     <field id="BA_Value__c" decimalplaces="" valuehalign="" type="">
+                                                                        <label>Alcohol Value</label>
+                                                                     </field>
+                                                                     <field id="BA_Model__c" valuehalign="" type="">
+                                                                        <label>BA Model</label>
+                                                                     </field>
+                                                                     <field id="BA_Substabce_Result__c" valuehalign="" type="">
+                                                                        <label>BA Substance Result</label>
+                                                                     </field>
+                                                                  </fields>
+                                                               </section>
+                                                            </sections>
+                                                         </column>
+                                                      </columns>
+                                                      <conditions/>
+                                                      <renderconditions logictype="and"/>
+                                                   </basicfieldeditor>
+                                                   <basicfieldeditor showheader="true" showsavecancel="false" model="BATestNew" buttonposition="" mode="edit" layout="">
+                                                      <columns>
+                                                         <column width="100%">
+                                                            <sections>
+                                                               <section title="New Section" collapsible="no" showheader="false">
+                                                                  <fields>
+                                                                     <field id="TestDate__c" valuehalign="" type="">
+                                                                        <label>Test Submitted Date</label>
+                                                                     </field>
+                                                                     <field id="Program__c" valuehalign="" type="" snippet="Default Program DRC" required="true"/>
+                                                                     <field id="Agency__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                                           <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="BATestNew" sourcetype="fieldvalue" sourceparam="program" value="DRC" sourceproperty="hasRows" field="Program__c"/>
+                                                                        </renderconditions>
+                                                                        <label>{{$Param.program}} Agency</label>
+                                                                     </field>
+                                                                     <field id="DRC_Agency__c" valuehalign="" type="REFPICK">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                                           <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="BATestNew" sourcetype="fieldvalue" sourceparam="program" value="DRC" field="Program__c"/>
+                                                                        </renderconditions>
+                                                                     </field>
+                                                                     <field id="DRC_Test_PerformedBy__c" valuehalign="" type="REFPICK" optionsource="" displaytemplate="{{Name}}" searchtemplate="{{Name}}">
+                                                                        <label>Test Monitored By</label>
+                                                                        <searchfields/>
+                                                                        <filters>
+                                                                           <filter type="fieldvalue" operator="=" enclosevalueinquotes="false" field="IsActive" value="true"/>
+                                                                           <filter type="fieldvalue" operator="!=" enclosevalueinquotes="true" field="Name" value="LOIS_Reporter"/>
+                                                                        </filters>
+                                                                     </field>
+                                                                  </fields>
+                                                               </section>
+                                                            </sections>
+                                                         </column>
+                                                      </columns>
+                                                      <conditions/>
+                                                   </basicfieldeditor>
+                                                </components>
+                                             </popup>
+                                          </action>
+                                       </actions>
+                                       <popup title="New Popup" width="90%">
+                                          <components/>
+                                       </popup>
+                                       <renderconditions logictype="and"/>
+                                    </action>
+                                    <action type="multi" label="Add Missed BA">
+                                       <actions>
+                                          <action type="createRow" model="BATest" appendorprepend="prepend" defaultmodefornewitems="edit">
+                                             <defaults>
+                                                <default type="fieldvalue" field="Status__c" enclosevalueinquotes="true" value="Missed"/>
+                                             </defaults>
+                                          </action>
+                                          <action type="showPopup">
+                                             <popup title="Add Missed BA" width="90%">
+                                                <components>
+                                                   <pagetitle model="SubstanceOffender">
+                                                      <actions>
+                                                         <action type="multi" label="Save and Close">
+                                                            <actions>
+                                                               <action type="save">
+                                                                  <models>
+                                                                     <model>BATest</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="closeTopmostPopup"/>
+                                                               <action type="requeryModel" model="BATest" behavior="standard"/>
+                                                            </actions>
+                                                         </action>
+                                                         <action type="multi" label="Cancel">
+                                                            <actions>
+                                                               <action type="cancel">
+                                                                  <models>
+                                                                     <model>BATest</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="closeTopmostPopup"/>
+                                                            </actions>
+                                                         </action>
+                                                      </actions>
+                                                   </pagetitle>
+                                                   <basicfieldeditor showheader="true" showsavecancel="false" model="BATest" buttonposition="" mode="edit" layout="">
+                                                      <columns>
+                                                         <column width="100%">
+                                                            <sections>
+                                                               <section title="" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="TestDate__c" valuehalign="" type="">
+                                                                        <label>Test Submitted Date</label>
+                                                                     </field>
+                                                                     <field id="Agency__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                                           <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="BATest" sourcetype="param" sourceparam="program" value="DRC"/>
+                                                                        </renderconditions>
+                                                                        <label>{{$Param.program}} Agency</label>
+                                                                     </field>
+                                                                     <field id="DRC_Agency__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                                           <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="BATest" sourcetype="param" sourceparam="program" value="DRC"/>
+                                                                        </renderconditions>
+                                                                     </field>
+                                                                  </fields>
+                                                               </section>
+                                                            </sections>
+                                                         </column>
+                                                      </columns>
+                                                   </basicfieldeditor>
+                                                </components>
+                                             </popup>
+                                          </action>
+                                       </actions>
+                                       <renderconditions logictype="and"/>
+                                    </action>
+                                 </actions>
+                                 <maintitle>BA</maintitle>
+                              </pagetitle>
+                              <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="false" model="BATest" buttonposition="" mode="read">
+                                 <fields>
+                                    <field id="SubstanceTest__c" valuehalign="" type="" readonly="true">
+                                       <label>Type</label>
+                                    </field>
+                                    <field id="TestDate__c" valuehalign="" type="">
+                                       <label>Test Submitted Date</label>
+                                    </field>
+                                    <field id="Status__c" valuehalign="" type=""/>
+                                    <field id="Test_Result__c" valuehalign="" type="">
+                                       <label>Result</label>
+                                    </field>
+                                    <field id="BA_Initial_TestResult__c" decimalplaces="3" valuehalign="" type="">
+                                       <label>BA Value</label>
+                                    </field>
+                                    <field id="Agency_Display__c" valuehalign="" type="">
+                                       <label>{{$Param.program}} Agency</label>
+                                    </field>
+                                    <field id="CreatedDate" valuehalign="" type="">
+                                       <label>Created Date</label>
+                                    </field>
+                                    <field id="CreatedById" valuehalign="" type="">
+                                       <label>Staff</label>
+                                    </field>
+                                 </fields>
+                                 <rowactions>
+                                    <action type="edit"/>
+                                    <action type="delete"/>
+                                    <action type="multi" label="Add Confirmation Test" icon="sk-icon-case">
+                                       <actions>
+                                          <action type="cancel">
+                                             <models>
+                                                <model>BAResultNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="emptyModelData">
+                                             <models>
+                                                <model>BAResultNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="createRow" model="BAResultNew" appendorprepend="prepend" defaultmodefornewitems="edit">
+                                             <defaults>
+                                                <default type="fieldvalue" field="BA_Substance_Type__c" enclosevalueinquotes="true" value="Alcohol Level"/>
+                                                <default type="fieldvalue" field="BA_SubstanceTest__c" enclosevalueinquotes="true" value="{{Id}}"/>
+                                             </defaults>
+                                          </action>
+                                          <action type="showPopup">
+                                             <popup title="BA Confirmation Test" width="90%">
+                                                <components>
+                                                   <pagetitle model="BATest">
+                                                      <actions>
+                                                         <action type="multi" label="Save and Close">
+                                                            <actions>
+                                                               <action type="save">
+                                                                  <models>
+                                                                     <model>BAResultNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="requeryModels" model="SubstanceOffender" behavior="standard">
+                                                                  <models>
+                                                                     <model>BATest</model>
+                                                                     <model>BAResult</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="closeTopmostPopup"/>
+                                                            </actions>
+                                                         </action>
+                                                         <action type="multi" label="Cancel">
+                                                            <actions>
+                                                               <action type="cancel">
+                                                                  <models>
+                                                                     <model>BAResultNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="closeTopmostPopup"/>
+                                                            </actions>
+                                                         </action>
+                                                      </actions>
+                                                   </pagetitle>
+                                                   <basicfieldeditor showheader="true" showsavecancel="false" model="BAResultNew" buttonposition="" mode="edit" layout="">
+                                                      <columns>
+                                                         <column width="100%">
+                                                            <sections>
+                                                               <section title="Section A" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="BA_Value__c" decimalplaces="" valuehalign="" type=""/>
+                                                                     <field id="BA_Substabce_Result__c" valuehalign="" type="">
+                                                                        <label>Result</label>
+                                                                     </field>
+                                                                     <field id="BA_Model__c"/>
+                                                                  </fields>
+                                                               </section>
+                                                            </sections>
+                                                         </column>
+                                                      </columns>
+                                                      <conditions/>
+                                                   </basicfieldeditor>
+                                                </components>
+                                             </popup>
+                                          </action>
+                                       </actions>
+                                    </action>
+                                    <action type="drawer" label="Show Substance Results" icon="ui-silk-arrow-down" openicon="ui-silk-arrow-up">
+                                       <drawer title="Drawer Area" width="90%" closehandle="true">
+                                          <components>
+                                             <basicfieldeditor showheader="true" showsavecancel="false" model="BATest" buttonposition="" mode="edit" layout="">
+                                                <columns>
+                                                   <column width="100%">
+                                                      <sections>
+                                                         <section title="" collapsible="no">
+                                                            <fields>
+                                                               <field id="ResultNotes__c" valuehalign="" type="">
+                                                                  <label>Notes</label>
+                                                               </field>
+                                                               <field id="DRC_Test_PerformedBy__c" valuehalign="" type="REFPICK" optionsource="" displaytemplate="{{Name}}" searchtemplate="{{Name}}">
+                                                                  <label>Test Monitored By</label>
+                                                                  <searchfields/>
+                                                                  <filters>
+                                                                     <filter type="fieldvalue" operator="=" enclosevalueinquotes="false" field="IsActive" value="true"/>
+                                                                     <filter type="fieldvalue" operator="!=" enclosevalueinquotes="true" value="LOIS_Reporter" field="Name"/>
+                                                                  </filters>
+                                                               </field>
+                                                            </fields>
+                                                         </section>
+                                                      </sections>
+                                                   </column>
+                                                </columns>
+                                                <conditions>
+                                                   <condition type="contextrow" field="Id" mergefield="Id"/>
+                                                </conditions>
+                                             </basicfieldeditor>
+                                             <pagetitle model="BAResult">
+                                                <actions/>
+                                                <maintitle>Confirmation Tests</maintitle>
+                                                <renderconditions logictype="and">
+                                                   <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SubstanceTest" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="SubstanceTest__c" value="BA"/>
+                                                </renderconditions>
+                                                <conditions/>
+                                             </pagetitle>
+                                             <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="true" model="BAResult" buttonposition="" mode="read">
+                                                <fields>
+                                                   <field id="BA_Model__c" valuehalign="" type="">
+                                                      <label>BA Model</label>
+                                                   </field>
+                                                   <field id="BA_Substabce_Result__c" valuehalign="" type="">
+                                                      <label>Substance Result</label>
+                                                   </field>
+                                                   <field id="BA_Value__c" valuehalign="" type="">
+                                                      <label>Value</label>
+                                                   </field>
+                                                   <field id="CreatedDate"/>
+                                                   <field id="CreatedById" valuehalign="" type="">
+                                                      <label>Staff</label>
+                                                   </field>
+                                                </fields>
+                                                <rowactions>
+                                                   <action type="edit"/>
+                                                   <action type="delete"/>
+                                                </rowactions>
+                                                <massactions usefirstitemasdefault="true"/>
+                                                <views>
+                                                   <view type="standard"/>
+                                                </views>
+                                                <renderconditions logictype="and"/>
+                                                <conditions>
+                                                   <condition type="contextrow" field="BA_SubstanceTest__c" mergefield="Id"/>
+                                                </conditions>
+                                                <searchfields/>
+                                             </skootable>
+                                          </components>
+                                          <beforeload>
+                                             <action type="setCondition" model="BAResult" condition="BA_SubstanceTest__c" value="{{Id}}"/>
+                                             <action type="requeryModel" model="BAResult" behavior="loadmore"/>
+                                          </beforeload>
+                                       </drawer>
+                                       <renderconditions logictype="and"/>
+                                    </action>
+                                 </rowactions>
+                                 <massactions usefirstitemasdefault="true"/>
+                                 <views>
+                                    <view type="standard"/>
+                                 </views>
+                                 <actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true"/>
+                                 <searchfields/>
+                                 <renderconditions logictype="and"/>
+                              </skootable>
+                           </components>
+                        </tab>
+                        <tab name="UA" loadlazypanels="true">
+                           <components>
+                              <pagetitle model="UATest">
+                                 <maintitle>UA</maintitle>
+                                 <actions>
+                                    <action type="multi" label="Add UA Test">
+                                       <actions>
+                                          <action type="cancel">
+                                             <models>
+                                                <model>UATestNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="cancel">
+                                             <models>
+                                                <model>UAResultNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="emptyModelData">
+                                             <models>
+                                                <model>UATestNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="emptyModelData">
+                                             <models>
+                                                <model>UAResultNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="createRow" model="UATestNew" appendorprepend="prepend" defaultmodefornewitems="edit">
+                                             <defaults>
+                                                <default type="fieldvalue" field="SubstanceTest__c" enclosevalueinquotes="true" value="UA"/>
+                                                <default type="fieldvalue" field="Status__c" enclosevalueinquotes="true" value="Completed"/>
+                                                <default type="fieldvalue" field="Offender_Search__c" enclosevalueinquotes="true" value="{{$Model.SubstanceOffender.data.0.Id}}"/>
+                                                <default type="fieldvalue" field="TestDate__c" enclosevalueinquotes="true" value="TODAY"/>
+                                                <default type="fieldvalue" field="Program__c" enclosevalueinquotes="true" value="{{$Param.program}}"/>
+                                                <default type="fieldvalue" field="DRC_Test_PerformedBy__c" enclosevalueinquotes="true" value="{{$Model.CurrentUserSubstanceTest.data.0.Id}}"/>
+                                             </defaults>
+                                          </action>
+                                          <action type="save">
+                                             <models>
+                                                <model>UATestNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="setCondition" model="UAResultNew" condition="SubstanceTest__c" value="{{$Model.UATestNew.data.0.Id}}"/>
+                                          <action type="showPopup">
+                                             <popup title="Add UA Test" width="90%">
+                                                <components>
+                                                   <pagetitle model="UAResultNew">
+                                                      <actions>
+                                                         <action type="multi" label="Save Changes">
+                                                            <actions>
+                                                               <action type="save" rollbackonanyerror="true">
+                                                                  <models>
+                                                                     <model>UATestNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="save" rollbackonanyerror="true">
+                                                                  <models>
+                                                                     <model>UAResultNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="requeryModel" model="UATest" behavior="standard"/>
+                                                               <action type="requeryModel" model="UAResult" behavior="standard"/>
+                                                               <action type="closeTopmostPopup"/>
+                                                            </actions>
+                                                            <renderconditions logictype="and"/>
+                                                         </action>
+                                                         <action type="multi" label="Cancel Changes">
+                                                            <actions>
+                                                               <action type="markRowsForDeletion" model="UATestNew"/>
+                                                               <action type="save">
+                                                                  <models>
+                                                                     <model>UATestNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="cancel">
+                                                                  <models>
+                                                                     <model>UAResultNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="requeryModel" model="UATest" behavior="standard"/>
+                                                               <action type="closeTopmostPopup"/>
+                                                            </actions>
+                                                         </action>
+                                                      </actions>
+                                                      <subtitle>UA Result</subtitle>
+                                                      <conditions/>
+                                                   </pagetitle>
+                                                   <basicfieldeditor showheader="true" showsavecancel="false" model="UATestNew" buttonposition="" mode="edit" layout="">
+                                                      <columns>
+                                                         <column width="100%">
+                                                            <sections>
+                                                               <section title="" collapsible="no" showheader="false">
+                                                                  <fields>
+                                                                     <field id="TestDate__c" valuehalign="" type="">
+                                                                        <label>Test Submitted Date</label>
+                                                                     </field>
+                                                                     <field id="Program__c" valuehalign="" type="" snippet="Default Program DRC" required="true"/>
+                                                                     <field id="Agency__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                                           <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="UATestNew" sourcetype="fieldvalue" field="Program__c" value="DRC"/>
+                                                                        </renderconditions>
+                                                                     </field>
+                                                                     <field id="DRC_Agency__c" valuehalign="" type="REFPICK">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                                           <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="UATestNew" sourcetype="fieldvalue" field="Program__c" value="DRC"/>
+                                                                        </renderconditions>
+                                                                     </field>
+                                                                     <field id="DRC_Test_PerformedBy__c" valuehalign="" type="REFPICK" optionsource="" displaytemplate="{{Name}}" searchtemplate="{{Name}}">
+                                                                        <label>Test Monitored By</label>
+                                                                        <searchfields/>
+                                                                        <filters>
+                                                                           <filter type="fieldvalue" operator="=" enclosevalueinquotes="false" field="IsActive" value="true"/>
+                                                                           <filter type="fieldvalue" operator="!=" enclosevalueinquotes="true" field="Name" value="LOIS_Reporter"/>
+                                                                        </filters>
+                                                                     </field>
+                                                                     <field id="coc__c" valuehalign="" type="">
+                                                                        <label>COC #</label>
+                                                                     </field>
+                                                                     <field id="CoCEnternal__c" valuehalign="" type="">
+                                                                        <label>External COC #</label>
+                                                                     </field>
+                                                                     <field id="ResultNotes__c" valuehalign="" type="">
+                                                                        <label>Notes</label>
+                                                                     </field>
+                                                                  </fields>
+                                                               </section>
+                                                            </sections>
+                                                         </column>
+                                                      </columns>
+                                                      <conditions/>
+                                                   </basicfieldeditor>
+                                                </components>
+                                             </popup>
+                                          </action>
+                                       </actions>
+                                    </action>
+                                    <action type="multi" label="Add Missed UA Test">
+                                       <actions>
+                                          <action type="cancel">
+                                             <models>
+                                                <model>UATestNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="cancel">
+                                             <models>
+                                                <model>UAResultNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="emptyModelData">
+                                             <models>
+                                                <model>UATestNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="emptyModelData">
+                                             <models>
+                                                <model>UAResultNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="createRow" model="UATestNew" appendorprepend="prepend" defaultmodefornewitems="edit">
+                                             <defaults>
+                                                <default type="fieldvalue" field="SubstanceTest__c" enclosevalueinquotes="true" value="UA"/>
+                                                <default type="fieldvalue" field="Status__c" enclosevalueinquotes="true" value="Missed"/>
+                                                <default type="fieldvalue" field="Offender_Search__c" enclosevalueinquotes="true" value="{{$Model.SubstanceOffender.data.0.Id}}"/>
+                                                <default type="fieldvalue" field="TestDate__c" enclosevalueinquotes="true" value="TODAY"/>
+                                                <default type="fieldvalue" field="Program__c" enclosevalueinquotes="true" value="{{$Param.program}}"/>
+                                             </defaults>
+                                          </action>
+                                          <action type="save">
+                                             <models>
+                                                <model>UATestNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="setCondition" model="UAResultNew" condition="SubstanceTest__c" value="{{$Model.UATestNew.data.0.Id}}"/>
+                                          <action type="showPopup">
+                                             <popup title="Add Missed UA Test" width="90%">
+                                                <components>
+                                                   <pagetitle model="UAResultNew">
+                                                      <actions>
+                                                         <action type="multi" label="Save Changes">
+                                                            <actions>
+                                                               <action type="save" rollbackonanyerror="true">
+                                                                  <models>
+                                                                     <model>UATestNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="save" rollbackonanyerror="true">
+                                                                  <models>
+                                                                     <model>UAResultNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="requeryModel" model="UATest" behavior="standard"/>
+                                                               <action type="requeryModel" model="UAResult" behavior="standard"/>
+                                                               <action type="closeTopmostPopup"/>
+                                                            </actions>
+                                                            <renderconditions logictype="and"/>
+                                                         </action>
+                                                         <action type="multi" label="Cancel Changes">
+                                                            <actions>
+                                                               <action type="markRowsForDeletion" model="UATestNew"/>
+                                                               <action type="save">
+                                                                  <models>
+                                                                     <model>UATestNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="cancel">
+                                                                  <models>
+                                                                     <model>UAResultNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="requeryModel" model="UATest" behavior="standard"/>
+                                                               <action type="closeTopmostPopup"/>
+                                                            </actions>
+                                                         </action>
+                                                      </actions>
+                                                      <subtitle>UA Result</subtitle>
+                                                      <conditions/>
+                                                   </pagetitle>
+                                                   <basicfieldeditor showheader="true" showsavecancel="false" model="UATestNew" buttonposition="" mode="edit" layout="">
+                                                      <columns>
+                                                         <column width="100%">
+                                                            <sections>
+                                                               <section title="" collapsible="no" showheader="false">
+                                                                  <fields>
+                                                                     <field id="TestDate__c" valuehalign="" type="">
+                                                                        <label>Test Submitted Date</label>
+                                                                     </field>
+                                                                     <field id="Program__c" valuehalign="" type="" snippet="Default Program DRC" required="true"/>
+                                                                     <field id="Agency__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                                           <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="UATestNew" sourcetype="fieldvalue" field="Program__c" value="DRC"/>
+                                                                        </renderconditions>
+                                                                     </field>
+                                                                     <field id="DRC_Agency__c" valuehalign="" type="REFPICK">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                                           <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="UATestNew" sourcetype="fieldvalue" field="Program__c" value="DRC"/>
+                                                                        </renderconditions>
+                                                                     </field>
+                                                                  </fields>
+                                                               </section>
+                                                            </sections>
+                                                         </column>
+                                                      </columns>
+                                                      <conditions/>
+                                                   </basicfieldeditor>
+                                                </components>
+                                             </popup>
+                                          </action>
+                                       </actions>
+                                    </action>
+                                    <action type="multi" label="Add Quick Negative UA">
+                                       <actions>
+                                          <action type="cancel">
+                                             <models>
+                                                <model>UATestNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="cancel">
+                                             <models>
+                                                <model>UAResultNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="emptyModelData">
+                                             <models>
+                                                <model>UATestNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="emptyModelData">
+                                             <models>
+                                                <model>UAResultNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="createRow" model="UATestNew" appendorprepend="prepend" defaultmodefornewitems="edit">
+                                             <defaults>
+                                                <default type="fieldvalue" field="SubstanceTest__c" enclosevalueinquotes="true" value="UA"/>
+                                                <default type="fieldvalue" field="Status__c" enclosevalueinquotes="true" value="Completed"/>
+                                                <default type="fieldvalue" field="Offender_Search__c" enclosevalueinquotes="true" value="{{$Model.SubstanceOffender.data.0.Id}}"/>
+                                                <default type="fieldvalue" field="TestDate__c" enclosevalueinquotes="true" value="TODAY"/>
+                                                <default type="fieldvalue" field="Program__c" enclosevalueinquotes="true" value="{{$Param.program}}"/>
+                                             </defaults>
+                                          </action>
+                                          <action type="save">
+                                             <models>
+                                                <model>UATestNew</model>
+                                             </models>
+                                          </action>
+                                          <action type="setCondition" model="UAResultNew" condition="SubstanceTest__c" value="{{$Model.UATestNew.data.0.Id}}"/>
+                                          <action type="createRow" model="UAResultNew" appendorprepend="prepend" defaultmodefornewitems="edit">
+                                             <defaults>
+                                                <default type="fieldvalue" field="CreatedDate" enclosevalueinquotes="true" value="TODAY"/>
+                                             </defaults>
+                                          </action>
+                                          <action type="showPopup">
+                                             <popup title="Add Quick Negative UA" width="90%">
+                                                <components>
+                                                   <pagetitle model="UAResultNew">
+                                                      <actions>
+                                                         <action type="multi" label="Save Changes">
+                                                            <actions>
+                                                               <action type="save" rollbackonanyerror="true">
+                                                                  <models>
+                                                                     <model>UATestNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="save" rollbackonanyerror="true">
+                                                                  <models>
+                                                                     <model>UAResultNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="requeryModel" model="UATest" behavior="standard"/>
+                                                               <action type="requeryModel" model="UAResult" behavior="standard"/>
+                                                               <action type="closeTopmostPopup"/>
+                                                            </actions>
+                                                            <renderconditions logictype="and"/>
+                                                         </action>
+                                                         <action type="multi" label="Cancel Changes">
+                                                            <actions>
+                                                               <action type="markRowsForDeletion" model="UATestNew"/>
+                                                               <action type="save">
+                                                                  <models>
+                                                                     <model>UATestNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="cancel">
+                                                                  <models>
+                                                                     <model>UAResultNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="requeryModel" model="UATest" behavior="standard"/>
+                                                               <action type="closeTopmostPopup"/>
+                                                            </actions>
+                                                         </action>
+                                                      </actions>
+                                                      <subtitle>UA Result</subtitle>
+                                                      <conditions/>
+                                                   </pagetitle>
+                                                   <basicfieldeditor showheader="true" showsavecancel="false" model="UAResultNew" buttonposition="" mode="edit" layout="">
+                                                      <columns>
+                                                         <column width="100%">
+                                                            <sections>
+                                                               <section title="" collapsible="no" showheader="false">
+                                                                  <fields>
+                                                                     <field id="Substance_Result__c" valuehalign="" type="CUSTOM" snippet="Default BA Result Negative" cssclass="" required="true" addnoneoption="false">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="SubstanceType__c" valuehalign="" type="CUSTOM" required="true" snippet="Default Screening Test">
+                                                                        <label>Test details</label>
+                                                                     </field>
+                                                                  </fields>
+                                                               </section>
+                                                            </sections>
+                                                         </column>
+                                                      </columns>
+                                                      <conditions/>
+                                                   </basicfieldeditor>
+                                                   <basicfieldeditor showheader="true" showsavecancel="false" model="UATestNew" buttonposition="" mode="edit" layout="">
+                                                      <columns>
+                                                         <column width="100%">
+                                                            <sections>
+                                                               <section title="" collapsible="no" showheader="false">
+                                                                  <fields>
+                                                                     <field id="TestDate__c" valuehalign="" type="">
+                                                                        <label>Test Submitted Date</label>
+                                                                     </field>
+                                                                     <field id="Program__c" valuehalign="" type="" snippet="Default Program DRC" required="true"/>
+                                                                     <field id="Agency__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                                           <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="UATestNew" sourcetype="fieldvalue" field="Program__c" value="DRC"/>
+                                                                        </renderconditions>
+                                                                     </field>
+                                                                     <field id="DRC_Agency__c" valuehalign="" type="REFPICK">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                                           <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="UATestNew" sourcetype="fieldvalue" field="Program__c" value="DRC"/>
+                                                                        </renderconditions>
+                                                                     </field>
+                                                                     <field id="DRC_Test_PerformedBy__c" valuehalign="" type="REFPICK" optionsource="" displaytemplate="{{Name}}" searchtemplate="{{Name}}">
+                                                                        <label>Test Monitored By</label>
+                                                                        <searchfields/>
+                                                                        <filters>
+                                                                           <filter type="fieldvalue" operator="=" enclosevalueinquotes="false" field="IsActive" value="true"/>
+                                                                           <filter type="fieldvalue" operator="!=" enclosevalueinquotes="true" field="Name" value="LOIS_Reporter"/>
+                                                                        </filters>
+                                                                     </field>
+                                                                  </fields>
+                                                               </section>
+                                                            </sections>
+                                                         </column>
+                                                      </columns>
+                                                      <conditions/>
+                                                   </basicfieldeditor>
+                                                </components>
+                                             </popup>
+                                          </action>
+                                       </actions>
+                                    </action>
+                                 </actions>
+                              </pagetitle>
+                              <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="false" model="UATest" buttonposition="" mode="read">
+                                 <fields>
+                                    <field id="SubstanceTest__c" valuehalign="" type="">
+                                       <label>Type</label>
+                                    </field>
+                                    <field id="TestDate__c" valuehalign="" type="">
+                                       <label>Test Submitted Date</label>
+                                    </field>
+                                    <field id="Status__c" valuehalign="" type=""/>
+                                    <field id="Test_Result__c" valuehalign="" type="">
+                                       <label>Result</label>
+                                    </field>
+                                    <field id="Dilute__c" type="" valuehalign=""/>
+                                    <field id="Confirmation_Test_Ordered__c" type="" valuehalign=""/>
+                                    <field id="Confirmation_Test_Received__c" type="" valuehalign=""/>
+                                    <field id="Agency_Display__c" valuehalign="" type="">
+                                       <label>{{$Param.program}} Agency</label>
+                                    </field>
+                                    <field id="CreatedDate" valuehalign="" type="">
+                                       <label>Created Date Time</label>
+                                    </field>
+                                    <field id="CreatedById" valuehalign="" type="">
+                                       <label>Staff</label>
+                                    </field>
+                                 </fields>
+                                 <rowactions>
+                                    <action type="edit"/>
+                                    <action type="delete"/>
+                                    <action type="multi" label="Add Result" icon="sk-icon-case">
+                                       <actions>
+                                          <action type="setCondition" model="UAResult" condition="SubstanceTest__c" value="{{Id}}"/>
+                                          <action type="requeryModel" model="UAResult" behavior="loadmore"/>
+                                          <action type="showPopup">
+                                             <popup title="Add UA Substance Result" width="90%">
+                                                <components>
+                                                   <pagetitle model="UATest">
+                                                      <actions>
+                                                         <action type="multi" label="Save and Close" icon="sk-icon-save">
+                                                            <actions>
+                                                               <action type="save">
+                                                                  <models>
+                                                                     <model>UAResult</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="requeryModels" model="SubstanceOffender" behavior="standard">
+                                                                  <models>
+                                                                     <model>SubstanceTest</model>
+                                                                     <model>SubstanceResult</model>
+                                                                     <model>All_SubstanceTest</model>
+                                                                     <model>All_SubstanceResult</model>
+                                                                     <model>UATest</model>
+                                                                     <model>UAResult</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="closeTopmostPopup"/>
+                                                            </actions>
+                                                         </action>
+                                                         <action type="multi" label="Cancel" icon="sk-icon-cancel">
+                                                            <actions>
+                                                               <action type="cancel">
+                                                                  <models>
+                                                                     <model>UAResultNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="emptyModelData">
+                                                                  <models>
+                                                                     <model>UAResultNew</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="closeTopmostPopup"/>
+                                                            </actions>
+                                                         </action>
+                                                      </actions>
+                                                      <maintitle>Substance Results</maintitle>
+                                                   </pagetitle>
+                                                   <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="true" model="UAResult" buttonposition="" mode="read" instantfilters="false">
+                                                      <fields>
+                                                         <field id="Substance__c"/>
+                                                         <field id="Substance_Result__c"/>
+                                                         <field id="SubstanceType__c"/>
+                                                         <field id="Value__c"/>
+                                                         <field id="Notes__c"/>
+                                                      </fields>
+                                                      <rowactions>
+                                                         <action type="edit"/>
+                                                         <action type="delete"/>
+                                                      </rowactions>
+                                                      <massactions usefirstitemasdefault="true"/>
+                                                      <views>
+                                                         <view type="standard"/>
+                                                      </views>
+                                                      <conditions>
+                                                         <condition type="contextrow" field="SubstanceTest__c" mergefield="Id"/>
+                                                      </conditions>
+                                                      <searchfields/>
+                                                      <renderconditions logictype="and"/>
+                                                   </skootable>
+                                                </components>
+                                             </popup>
+                                          </action>
+                                       </actions>
+                                    </action>
+                                    <action type="drawer" label="Show UA Details" icon="ui-silk-arrow-down" openicon="ui-silk-arrow-up">
+                                       <drawer title="Drawer Area" width="90%" closehandle="true">
+                                          <components>
+                                             <basicfieldeditor showheader="true" showsavecancel="false" model="UATest" buttonposition="" mode="edit" layout="">
+                                                <columns>
+                                                   <column width="50%">
+                                                      <sections>
+                                                         <section title="" collapsible="no" showheader="false">
+                                                            <fields>
+                                                               <field id="Agency__c" valuehalign="" type="">
+                                                                  <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                                     <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="UATest" sourcetype="fieldvalue" field="Program__c" value="DRC"/>
+                                                                  </renderconditions>
+                                                               </field>
+                                                               <field id="DRC_Agency__c" valuehalign="" type="REFPICK" optionsource="">
+                                                                  <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                                     <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="UATest" sourcetype="fieldvalue" field="Program__c" value="DRC"/>
+                                                                  </renderconditions>
+                                                                  <searchfields/>
+                                                               </field>
+                                                               <field id="DRC_Test_PerformedBy__c" valuehalign="" type="REFPICK" optionsource="" displaytemplate="{{Name}}" searchtemplate="{{Name}}">
+                                                                  <label>Test Monitored By</label>
+                                                                  <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                  <searchfields/>
+                                                                  <filters>
+                                                                     <filter type="fieldvalue" operator="=" enclosevalueinquotes="false" field="IsActive" value="true"/>
+                                                                     <filter type="fieldvalue" operator="!=" enclosevalueinquotes="true" field="Name" value="LOIS_Reporter"/>
+                                                                  </filters>
+                                                               </field>
+                                                               <field id="coc__c" valuehalign="" type="">
+                                                                  <label>COC #</label>
+                                                               </field>
+                                                               <field id="CoCEnternal__c" valuehalign="" type="">
+                                                                  <label>External COC#</label>
+                                                               </field>
+                                                            </fields>
+                                                         </section>
+                                                      </sections>
+                                                   </column>
+                                                   <column width="50%">
+                                                      <sections>
+                                                         <section title="" collapsible="no" showheader="false">
+                                                            <fields>
+                                                               <field id="ResultNotes__c">
+                                                                  <label>Notes</label>
+                                                               </field>
+                                                               <field id="Confirmation_Test_Ordered_By__c" cssclass="" valuehalign="" type="">
+                                                                  <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="UATest" sourcetype="fieldvalue" field="Confirmation_Test_Ordered_By__c" value="null" enclosevalueinquotes="false"/>
+                                                                  </renderconditions>
+                                                               </field>
+                                                               <field id="Confirmation_Test_Ordered_On__c" valuehalign="" type="" cssclass="" readonly="true">
+                                                                  <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="UATest" sourcetype="fieldvalue" field="Confirmation_Test_Ordered_On__c" value="null" enclosevalueinquotes="false"/>
+                                                                  </renderconditions>
+                                                               </field>
+                                                            </fields>
+                                                         </section>
+                                                      </sections>
+                                                   </column>
+                                                </columns>
+                                             </basicfieldeditor>
+                                             <pagetitle model="UAResult">
+                                                <actions/>
+                                                <maintitle>UA Substances</maintitle>
+                                             </pagetitle>
+                                             <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="true" model="UAResult" buttonposition="" mode="read">
+                                                <fields>
+                                                   <field id="Substance__c"/>
+                                                   <field id="Substance_Result__c" valuehalign="" type=""/>
+                                                   <field id="Notes__c" valuehalign="" type=""/>
+                                                   <field id="SubstanceType__c" valuehalign="" type="" snippet="">
+                                                      <label>Test Details</label>
+                                                   </field>
+                                                   <field id="Value__c"/>
+                                                </fields>
+                                                <rowactions>
+                                                   <action type="edit"/>
+                                                   <action type="delete"/>
+                                                </rowactions>
+                                                <massactions usefirstitemasdefault="true"/>
+                                                <views>
+                                                   <view type="standard"/>
+                                                </views>
+                                                <conditions>
+                                                   <condition type="contextrow" field="SubstanceTest__c" mergefield="Id"/>
+                                                </conditions>
+                                             </skootable>
+                                          </components>
+                                          <beforeload>
+                                             <action type="setCondition" model="UAResult" condition="SubstanceTest__c" value="{{Id}}"/>
+                                             <action type="requeryModel" model="UAResult" behavior="loadmore"/>
+                                          </beforeload>
+                                       </drawer>
+                                    </action>
+                                 </rowactions>
+                                 <massactions usefirstitemasdefault="true"/>
+                                 <views>
+                                    <view type="standard"/>
+                                 </views>
+                                 <searchfields/>
+                                 <renderconditions logictype="and"/>
+                              </skootable>
+                           </components>
+                        </tab>
+                        <tab name="Other" loadlazypanels="true">
+                           <components>
+                              <pagetitle model="OtherTest">
+                                 <actions>
+                                    <action type="multi" label="Add New Other Test" icon="sk-icon-add">
+                                       <actions>
+                                          <action type="createRow" model="OtherTest" appendorprepend="prepend" defaultmodefornewitems="edit">
+                                             <defaults>
+                                                <default type="fieldvalue" field="DRC_Test_PerformedBy__c" enclosevalueinquotes="true" value="{{$Model.CurrentUserSubstanceTest.data.0.Id}}"/>
+                                             </defaults>
+                                          </action>
+                                          <action type="showPopup">
+                                             <popup title="Add New Other Test" width="90%">
+                                                <components>
+                                                   <pagetitle model="OtherTest">
+                                                      <actions>
+                                                         <action type="multi" label="Save and Close" icon="sk-icon-save">
+                                                            <actions>
+                                                               <action type="save">
+                                                                  <models>
+                                                                     <model>OtherTest</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="requeryModels" behavior="standard">
+                                                                  <models>
+                                                                     <model>SubstanceTest</model>
+                                                                     <model>All_SubstanceTest</model>
+                                                                     <model>OtherTest</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="closeTopmostPopup"/>
+                                                            </actions>
+                                                         </action>
+                                                         <action type="multi" label="Cancel" icon="sk-icon-cancel">
+                                                            <actions>
+                                                               <action type="cancel">
+                                                                  <models>
+                                                                     <model>OtherTest</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="closeTopmostPopup"/>
+                                                            </actions>
+                                                         </action>
+                                                      </actions>
+                                                   </pagetitle>
+                                                   <basicfieldeditor showheader="true" showsavecancel="false" model="OtherTest" buttonposition="" mode="edit" layout="">
+                                                      <columns>
+                                                         <column width="100%">
+                                                            <sections>
+                                                               <section title="Section A" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="TestDate__c" valuehalign="" type="">
+                                                                        <label>Test Submitted Date</label>
+                                                                     </field>
+                                                                     <field id="SubstanceTest__c" valuehalign="" type="CUSTOM" snippet="Remove_BA_UA">
+                                                                        <label>Test Type</label>
+                                                                     </field>
+                                                                     <field id="Status__c" valuehalign="" type=""/>
+                                                                     <field id="DRC_Test_PerformedBy__c" valuehalign="" type="REFPICK" optionsource="" displaytemplate="{{Name}}" searchtemplate="{{Name}}">
+                                                                        <label>Test Monitored By</label>
+                                                                        <filters>
+                                                                           <filter type="fieldvalue" operator="=" enclosevalueinquotes="false" field="IsActive" value="true"/>
+                                                                           <filter type="fieldvalue" operator="!=" enclosevalueinquotes="true" field="Name" value="LOIS_Reporter"/>
+                                                                        </filters>
+                                                                        <searchfields/>
+                                                                     </field>
+                                                                     <field id="coc__c" valuehalign="" type="">
+                                                                        <label>COC #</label>
+                                                                     </field>
+                                                                     <field id="CoCEnternal__c" valuehalign="" type="">
+                                                                        <label>External COC #</label>
+                                                                     </field>
+                                                                     <field id="ResultNotes__c" valuehalign="" type="">
+                                                                        <label>Notes</label>
+                                                                     </field>
+                                                                  </fields>
+                                                               </section>
+                                                            </sections>
+                                                         </column>
+                                                      </columns>
+                                                   </basicfieldeditor>
+                                                </components>
+                                             </popup>
+                                          </action>
+                                       </actions>
+                                    </action>
+                                 </actions>
+                                 <maintitle>Other</maintitle>
+                              </pagetitle>
+                              <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="false" model="OtherTest" buttonposition="" mode="read">
+                                 <fields>
+                                    <field id="SubstanceTest__c" valuehalign="" type="CUSTOM" snippet="Remove_BA_UA">
+                                       <label>Test Type</label>
+                                    </field>
+                                    <field id="TestDate__c" valuehalign="" type="">
+                                       <label>Test Submitted Date</label>
+                                    </field>
+                                    <field id="Status__c" valuehalign="" type=""/>
+                                    <field id="Test_Result__c" valuehalign="" type="">
+                                       <label>Result</label>
+                                    </field>
+                                    <field id="ResultNotes__c" valuehalign="" type="">
+                                       <label>Notes</label>
+                                    </field>
+                                    <field id="CreatedDate" valuehalign="" type="">
+                                       <label>Created Date Time</label>
+                                    </field>
+                                    <field id="CreatedById" valuehalign="" type="">
+                                       <label>Staff</label>
+                                    </field>
+                                 </fields>
+                                 <rowactions>
+                                    <action type="edit"/>
+                                    <action type="delete"/>
+                                    <action type="drawer" label="Show Details" icon="ui-silk-arrow-down" openicon="sk-icon-escalate">
+                                       <drawer title="Drawer Area" width="90%" closehandle="true">
+                                          <components>
+                                             <pagetitle model="OtherResult">
+                                                <actions/>
+                                                <maintitle>Other Tests</maintitle>
+                                             </pagetitle>
+                                             <basicfieldeditor showheader="true" showsavecancel="true" model="OtherTest" buttonposition="" mode="edit" layout="">
+                                                <columns>
+                                                   <column width="100%">
+                                                      <sections>
+                                                         <section title="" collapsible="no">
+                                                            <fields>
+                                                               <field id="Notes__c" valuehalign="" type="">
+                                                                  <label>Notes</label>
+                                                                  <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                               </field>
+                                                               <field id="coc__c" valuehalign="" type="">
+                                                                  <label>COC #</label>
+                                                               </field>
+                                                               <field id="CoCEnternal__c" valuehalign="" type="">
+                                                                  <label>External COC #</label>
+                                                               </field>
+                                                               <field id="DRC_Test_PerformedBy__c" valuehalign="" type="REFPICK" optionsource="" displaytemplate="{{Name}}" searchtemplate="{{Name}}">
+                                                                  <label>Test Monitored By</label>
+                                                                  <filters>
+                                                                     <filter type="fieldvalue" operator="=" enclosevalueinquotes="false" field="IsActive" value="true"/>
+                                                                     <filter type="fieldvalue" operator="!=" enclosevalueinquotes="true" field="Name" value="LOIS_Reporter"/>
+                                                                  </filters>
+                                                                  <searchfields/>
+                                                               </field>
+                                                            </fields>
+                                                         </section>
+                                                      </sections>
+                                                   </column>
+                                                </columns>
+                                             </basicfieldeditor>
+                                             <pagetitle model="OtherResult">
+                                                <actions/>
+                                                <maintitle>Individual Substances</maintitle>
+                                             </pagetitle>
+                                             <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="true" model="OtherResult" buttonposition="" mode="read">
+                                                <fields>
+                                                   <field id="Substance__c"/>
+                                                   <field id="Substance_Result__c" valuehalign="" type="" snippet=""/>
+                                                   <field id="Notes__c"/>
+                                                   <field id="SubstanceType__c" valuehalign="" type="">
+                                                      <label>Test Details</label>
+                                                   </field>
+                                                   <field id="Value__c"/>
+                                                </fields>
+                                                <rowactions>
+                                                   <action type="edit"/>
+                                                   <action type="delete"/>
+                                                </rowactions>
+                                                <massactions usefirstitemasdefault="true">
+                                                   <action type="massupdate"/>
+                                                   <action type="massdelete"/>
+                                                </massactions>
+                                                <views>
+                                                   <view type="standard"/>
+                                                </views>
+                                                <conditions>
+                                                   <condition type="contextrow" field="SubstanceTest__c" mergefield="Id"/>
+                                                </conditions>
+                                             </skootable>
+                                          </components>
+                                          <beforeload>
+                                             <action type="setCondition" model="OtherResult" condition="SubstanceTest__c" value="{{Id}}"/>
+                                             <action type="requeryModel" model="OtherResult" behavior="loadmore"/>
+                                          </beforeload>
+                                       </drawer>
+                                    </action>
+                                 </rowactions>
+                                 <massactions usefirstitemasdefault="true"/>
+                                 <views>
+                                    <view type="standard"/>
+                                 </views>
+                                 <actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true"/>
+                                 <renderconditions logictype="and"/>
+                                 <searchfields/>
+                              </skootable>
+                           </components>
+                        </tab>
+                        <tab name="ALL {{$Param.program}} Tests" loadlazypanels="true">
+                           <components>
+                              <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="false" model="SubstanceTest" buttonposition="" mode="readonly">
+                                 <fields>
+                                    <field id="SubstanceTest__c" valuehalign="" type="">
+                                       <label>Test Type</label>
+                                    </field>
+                                    <field id="TestDate__c" valuehalign="" type="">
+                                       <label>Test Submitted Date</label>
+                                    </field>
+                                    <field id="Status__c" valuehalign="" type=""/>
+                                    <field id="Test_Result__c" valuehalign="" type="">
+                                       <label>Result</label>
+                                    </field>
+                                    <field id="BA_Initial_TestResult__c" decimalplaces="3" valuehalign="" type="">
+                                       <label>BA Value</label>
+                                    </field>
+                                    <field id="Dilute__c" type="" valuehalign=""/>
+                                    <field id="Confirmation_Test_Ordered_By__c" valuehalign="" type=""/>
+                                    <field id="Confirmation_Test_Received__c" type="" valuehalign=""/>
+                                    <field id="Agency_Display__c" valuehalign="" type="">
+                                       <label>{{$Param.program}} Agency</label>
+                                    </field>
+                                    <field id="CreatedDate" valuehalign="" type="">
+                                       <label>Created Date Time</label>
+                                    </field>
+                                    <field id="CreatedById" valuehalign="" type="">
+                                       <label>Staff</label>
+                                    </field>
+                                 </fields>
+                                 <rowactions>
+                                    <action type="drawer" label="Show Details" icon="ui-silk-arrow-down" openicon="ui-silk-arrow-up">
+                                       <drawer title="Drawer Area" width="90%" closehandle="true">
+                                          <components>
+                                             <basicfieldeditor showheader="true" showsavecancel="false" model="SubstanceTest" buttonposition="" mode="readonly" layout="">
+                                                <columns>
+                                                   <column width="100%">
+                                                      <sections>
+                                                         <section title="Section A" collapsible="no" showheader="false">
+                                                            <fields>
+                                                               <field id="coc__c" valuehalign="" type="">
+                                                                  <label>COC #</label>
+                                                               </field>
+                                                               <field id="CoCEnternal__c" valuehalign="" type="">
+                                                                  <label>External COC #</label>
+                                                               </field>
+                                                               <field id="ResultNotes__c">
+                                                                  <label>Notes</label>
+                                                               </field>
+                                                               <field id="DRC_Test_PerformedBy__c" valuehalign="" type="">
+                                                                  <label>Test Monitored By</label>
+                                                               </field>
+                                                            </fields>
+                                                         </section>
+                                                      </sections>
+                                                   </column>
+                                                </columns>
+                                                <conditions>
+                                                   <condition type="contextrow" field="Id" mergefield="Id"/>
+                                                </conditions>
+                                             </basicfieldeditor>
+                                             <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="false" model="SubstanceResult" buttonposition="" mode="readonly">
+                                                <fields>
+                                                   <field id="Substance__c"/>
+                                                   <field id="Substance_Result__c" valuehalign="" type=""/>
+                                                   <field id="Notes__c" valuehalign="" type=""/>
+                                                   <field id="SubstanceType__c" valuehalign="" type="">
+                                                      <label>Test Details</label>
+                                                   </field>
+                                                   <field id="Value__c"/>
+                                                </fields>
+                                                <rowactions/>
+                                                <massactions usefirstitemasdefault="true"/>
+                                                <views>
+                                                   <view type="standard"/>
+                                                </views>
+                                                <conditions>
+                                                   <condition type="contextrow" field="SubstanceTest__c" mergefield="Id"/>
+                                                </conditions>
+                                                <renderconditions logictype="and">
+                                                   <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="SubstanceTest" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="SubstanceTest__c" value="BA"/>
+                                                </renderconditions>
+                                             </skootable>
+                                             <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="false" model="SubstanceResultBA" buttonposition="" mode="readonly">
+                                                <fields>
+                                                   <field id="BA_Model__c" valuehalign="" type="">
+                                                      <label>BA Model</label>
+                                                   </field>
+                                                   <field id="BA_Substabce__c"/>
+                                                   <field id="BA_Substabce_Result__c" valuehalign="" type="">
+                                                      <label>Substance Result</label>
+                                                   </field>
+                                                   <field id="BA_Notes__c" valuehalign="" type="">
+                                                      <label>Notes</label>
+                                                   </field>
+                                                   <field id="BA_Substance_Type__c" valuehalign="" type="">
+                                                      <label>Test Details</label>
+                                                   </field>
+                                                   <field id="BA_Value__c" decimalplaces="" valuehalign="" type="">
+                                                      <label>Value</label>
+                                                   </field>
+                                                </fields>
+                                                <rowactions/>
+                                                <massactions usefirstitemasdefault="true"/>
+                                                <views>
+                                                   <view type="standard"/>
+                                                </views>
+                                                <renderconditions logictype="and">
+                                                   <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SubstanceTest" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="SubstanceTest__c" value="BA"/>
+                                                </renderconditions>
+                                             </skootable>
+                                          </components>
+                                          <beforeload>
+                                             <action type="setCondition" model="SubstanceResult" condition="SubstanceTest__c" value="{{Id}}"/>
+                                             <action type="requeryModel" model="SubstanceResult" behavior="loadmore"/>
+                                             <action type="setCondition" model="SubstanceResultBA" condition="BA_SubstanceTest__c" value="{{Id}}"/>
+                                             <action type="requeryModel" model="SubstanceResultBA" behavior="loadmore"/>
+                                          </beforeload>
+                                       </drawer>
+                                    </action>
+                                 </rowactions>
+                                 <massactions usefirstitemasdefault="true"/>
+                                 <views>
+                                    <view type="standard"/>
+                                 </views>
+                                 <searchfields/>
+                              </skootable>
+                           </components>
+                        </tab>
+                        <tab name="CJSD Tests" loadlazypanels="true">
+                           <components>
+                              <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="25" createrecords="false" model="All_SubstanceTest" buttonposition="" mode="readonly" emptysearchbehavior="query">
+                                 <fields>
+                                    <field id="SubstanceTest__c" valuehalign="" type="">
+                                       <label>Test Type</label>
+                                    </field>
+                                    <field id="TestDate__c" valuehalign="" type="">
+                                       <label>Test Submitted Date</label>
+                                    </field>
+                                    <field id="Status__c" valuehalign="" type=""/>
+                                    <field id="Test_Result__c" valuehalign="" type="">
+                                       <label>Result</label>
+                                    </field>
+                                    <field id="BA_Initial_TestResult__c" decimalplaces="3" valuehalign="" type="">
+                                       <label>BA Value</label>
+                                    </field>
+                                    <field id="Dilute__c" type="" valuehalign=""/>
+                                    <field id="Agency_Display__c" valuehalign="" type="">
+                                       <label>{{$Param.program}} Agency</label>
+                                    </field>
+                                    <field id="Program__c" valuehalign="" type=""/>
+                                    <field id="Confirmation_Test_Ordered_By__c" valuehalign="" type=""/>
+                                    <field id="Confirmation_Test_Received__c" type="" valuehalign=""/>
+                                    <field id="CreatedDate" valuehalign="" type="">
+                                       <label>Created Date Time</label>
+                                    </field>
+                                    <field id="CreatedById" valuehalign="" type="">
+                                       <label>Staff</label>
+                                    </field>
+                                 </fields>
+                                 <rowactions>
+                                    <action type="drawer" label="Show Details" icon="ui-silk-arrow-down" openicon="ui-silk-arrow-up">
+                                       <drawer title="Drawer Area" width="90%" closehandle="true">
+                                          <components>
+                                             <basicfieldeditor showheader="true" showsavecancel="false" model="All_SubstanceTest" buttonposition="" mode="readonly" layout="">
+                                                <columns>
+                                                   <column width="100%">
+                                                      <sections>
+                                                         <section title="Section A" collapsible="no" showheader="false">
+                                                            <fields>
+                                                               <field id="coc__c" valuehalign="" type="">
+                                                                  <label>COC #</label>
+                                                               </field>
+                                                               <field id="CoCEnternal__c" valuehalign="" type="">
+                                                                  <label>External COC#</label>
+                                                               </field>
+                                                               <field id="ResultNotes__c">
+                                                                  <label>Notes</label>
+                                                               </field>
+                                                               <field id="DRC_Test_PerformedBy__c" valuehalign="" type="">
+                                                                  <label>Test Monitored By</label>
+                                                               </field>
+                                                            </fields>
+                                                         </section>
+                                                      </sections>
+                                                   </column>
+                                                </columns>
+                                                <conditions>
+                                                   <condition type="contextrow" field="Id" mergefield="Id"/>
+                                                </conditions>
+                                             </basicfieldeditor>
+                                             <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="false" model="All_SubstanceResult" buttonposition="" mode="readonly">
+                                                <fields>
+                                                   <field id="Substance__c"/>
+                                                   <field id="Substance_Result__c" valuehalign="" type=""/>
+                                                   <field id="Notes__c" valuehalign="" type=""/>
+                                                   <field id="SubstanceType__c" valuehalign="" type="">
+                                                      <label>Test Details</label>
+                                                   </field>
+                                                   <field id="Value__c"/>
+                                                </fields>
+                                                <rowactions/>
+                                                <massactions usefirstitemasdefault="true"/>
+                                                <views>
+                                                   <view type="standard"/>
+                                                </views>
+                                                <conditions>
+                                                   <condition type="contextrow" field="SubstanceTest__c" mergefield="Id"/>
+                                                </conditions>
+                                                <renderconditions logictype="and">
+                                                   <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="SubstanceTest" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="SubstanceTest__c" value="BA"/>
+                                                </renderconditions>
+                                             </skootable>
+                                             <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="false" model="All_SubstanceResultBA" buttonposition="" mode="readonly">
+                                                <fields>
+                                                   <field id="BA_Model__c" valuehalign="" type="">
+                                                      <label>BA Model</label>
+                                                   </field>
+                                                   <field id="BA_Substabce__c"/>
+                                                   <field id="BA_Substabce_Result__c" valuehalign="" type="">
+                                                      <label>Substance Result</label>
+                                                   </field>
+                                                   <field id="BA_Notes__c" valuehalign="" type="">
+                                                      <label>Notes</label>
+                                                   </field>
+                                                   <field id="BA_Substance_Type__c" valuehalign="" type="">
+                                                      <label>Test Details</label>
+                                                   </field>
+                                                   <field id="BA_Value__c" decimalplaces="" valuehalign="" type="">
+                                                      <label>Value</label>
+                                                   </field>
+                                                </fields>
+                                                <rowactions/>
+                                                <massactions usefirstitemasdefault="true"/>
+                                                <views>
+                                                   <view type="standard"/>
+                                                </views>
+                                                <renderconditions logictype="and">
+                                                   <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SubstanceTest" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="SubstanceTest__c" value="BA"/>
+                                                </renderconditions>
+                                             </skootable>
+                                          </components>
+                                          <beforeload>
+                                             <action type="setCondition" model="All_SubstanceResult" condition="SubstanceTest__c" value="{{Id}}"/>
+                                             <action type="requeryModel" model="All_SubstanceResult" behavior="loadmore"/>
+                                             <action type="setCondition" model="All_SubstanceResultBA" condition="BA_SubstanceTest__c" value="{{Id}}"/>
+                                             <action type="requeryModel" model="All_SubstanceResultBA" behavior="loadmore"/>
+                                          </beforeload>
+                                       </drawer>
+                                    </action>
+                                 </rowactions>
+                                 <massactions usefirstitemasdefault="true"/>
+                                 <views>
+                                    <view type="standard"/>
+                                 </views>
+                                 <filters>
+                                    <filter type="select" filteroffoptionlabel="All Programs" createfilteroffoption="true" affectcookies="false" autocompthreshold="25" conditionsource="auto" labelmode="manual" conditionfield="Program__c" label="Program"/>
+                                    <filter type="select" filteroffoptionlabel="All Tests" createfilteroffoption="true" affectcookies="false" autocompthreshold="25" conditionsource="manual" conditionfield="SubstanceTest__c" labelmode="manual" condition="SubstanceTest" label="Test Type">
+                                       <sources>
+                                          <source type="manual" effectsbehavior="justdefault" model="SubstanceOffender">
+                                             <options>
+                                                <option label="BA" type="simple" value="BA"/>
+                                                <option label="UA" type="simple" value="UA"/>
+                                                <option label="Hair Test" type="simple" value="Hair Test"/>
+                                                <option label="Oral Swab" type="simple" value="Oral Swab"/>
+                                                <option label="Quick Test" type="simple" value="Quick Test"/>
+                                             </options>
+                                          </source>
+                                       </sources>
+                                    </filter>
+                                 </filters>
+                                 <searchfields/>
+                              </skootable>
+                           </components>
+                        </tab>
+                     </tabs>
+                  </tabset>
+               </components>
+            </tab>
+         </tabs>
+      </tabset>
+   </components>
+   <resources>
+      <labels/>
+      <javascript>
+         <jsitem location="inline" name="DateDefaults" cachelocation="false" url="">(function(skuid){
+
+
+
+	var $ = skuid.$;
+
+
+
+	// Global datepicker settings override for this page
+
+
+	$.datepicker.setDefaults({
+
+
+	  changeMonth: true,
+
+
+	  changeYear: true,
+
+
+	  yearRange: "-85:-0"
+
+
+	});
+
+
+
+})(skuid);
+</jsitem>
+         <jsitem location="inlinesnippet" name="Remove_BA_UA" cachelocation="false" url="">var field = arguments[0];
+value = skuid.utils.decodeHTML(arguments[1]);
+$ = skuid.$;
+
+console.log("Rendering Substance Test - OTHER Tab");
+
+var picklistEntries = field.metadata.picklistEntries;
+
+picklistEntries.pop();
+picklistEntries.pop();
+picklistEntries.pop();
+picklistEntries.pop();
+picklistEntries.pop();
+
+picklistEntries.push(
+{ value: 'Hair Test', label: 'Hair Test', defaultValue: false, active: true  },
+{ value: 'Oral Swab', label: 'Oral Swab', defaultValue: false, active: true  },
+{ value: 'Quick Test', label: 'Quick Test', defaultValue: false, active: true }
+);
+
+skuid.ui.fieldRenderers[field.metadata.displaytype][field.mode](field,value);
+
+</jsitem>
+         <jsitem location="inlinesnippet" name="Default BA Result Negative" cachelocation="false" url="">var field = arguments[0];
+value = skuid.utils.decodeHTML(arguments[1]);
+$ = skuid.$;
+
+var picklistEntries = field.metadata.picklistEntries;
+
+//alert('Negative:'+ picklistEntries.length);
+
+for(var value in picklistEntries)
+{
+    picklistEntries.pop(0);
+    picklistEntries.pop(0);
+}
+
+//alert('Negative after Delete:'+ picklistEntries.length);
+
+
+picklistEntries.push(
+{ value: 'Negative', label: 'Negative', defaultValue: 'Negative', active: true  },
+{ value: 'Positive', label: 'Positive', active: true  },
+{ value: '--None--', label: 'None', active: true  }
+);
+
+
+var customSelect = skuid.ui.renderers.PICKLIST.edit({
+    required : false,
+    defaultValue : 'Negative'
+})
+
+
+skuid.ui.fieldRenderers[field.metadata.displaytype][field.mode](field,value);
+</jsitem>
+         <jsitem location="inlinesnippet" name="Default Screening Test" cachelocation="false">var field = arguments[0];
+value = skuid.utils.decodeHTML(arguments[1]);
+$ = skuid.$;
+
+var picklistEntries = field.metadata.picklistEntries;
+
+//alert('Screening:' + picklistEntries.length);
+
+for(var value in picklistEntries)
+{
+    picklistEntries.pop(0);
+    picklistEntries.pop(0);
+}
+
+//alert('Screening After Delete:' + picklistEntries.length);
+
+picklistEntries.push(
+{ value: 'Screening Test', label: 'Screening Test', defaultValue: 'Screening Test', active: true  },
+{ value: 'Specimen Validity Test', label: 'Specimen Validity Test', active: true  },
+{ value: 'Confirmation Test', label: 'Confirmation Test', active: true  },
+{ value: 'Collection Issues', label: 'Collection Issues', active: true  },
+{ value: '--None--', label: 'None', active: true  }
+);
+
+
+var customSelect = skuid.ui.renderers.PICKLIST.edit({
+    required : false,
+    defaultValue : 'Screening Test'
+})
+
+
+skuid.ui.fieldRenderers[field.metadata.displaytype][field.mode](field,value);
+
+</jsitem>
+         <jsitem location="inlinesnippet" name="PrintCal" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+//PRINTAREA JQuery 2.4.0
+
+(function($) {
+    var counter = 0;
+    var modes = { iframe : "iframe", popup : "popup" };
+    var standards = { strict : "strict", loose : "loose", html5 : "html5" };
+    var defaults = { mode       : modes.iframe,
+                     standard   : standards.html5,
+                     popHt      : 500,
+                     popWd      : 400,
+                     popX       : 200,
+                     popY       : 200,
+                     popTitle   : '',
+                     popClose   : false,
+                     extraCss   : '',
+                     extraHead  : '',
+                     retainAttr : ["id","class","style"] };
+
+    var settings = {};//global settings
+
+    $.fn.printArea = function( options )
+    {
+        $.extend( settings, defaults, options );
+
+        counter++;
+        var idPrefix = "printArea_";
+        $( "[id^=" + idPrefix + "]" ).remove();
+
+        settings.id = idPrefix + counter;
+
+        var $printSource = $(this);
+
+        var PrintAreaWindow = PrintArea.getPrintWindow();
+
+        PrintArea.write( PrintAreaWindow.doc, $printSource );
+
+        setTimeout( function () { PrintArea.print( PrintAreaWindow ); }, 1000 );
+    };
+
+    var PrintArea = {
+        print : function( PAWindow ) {
+            var paWindow = PAWindow.win;
+
+            $(PAWindow.doc).ready(function(){
+                paWindow.focus();
+                paWindow.print();
+
+                if ( settings.mode == modes.popup &amp;&amp; settings.popClose )
+                    setTimeout(function() { paWindow.close(); }, 2000);
+            });
+        },
+        write : function ( PADocument, $ele ) {
+            PADocument.open();
+            PADocument.write( PrintArea.docType() + "&lt;html&gt;" + PrintArea.getHead() + PrintArea.getBody( $ele ) + "&lt;/html&gt;" );
+            PADocument.close();
+        },
+        docType : function() {
+            if ( settings.mode == modes.iframe ) return "";
+
+            if ( settings.standard == standards.html5 ) return "&lt;!DOCTYPE html&gt;";
+
+            var transitional = settings.standard == standards.loose ? " Transitional" : "";
+            var dtd = settings.standard == standards.loose ? "loose" : "strict";
+
+            return '&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01' + transitional + '//EN" "http://www.w3.org/TR/html4/' + dtd +  '.dtd"&gt;';
+        },
+        getHead : function() {
+            var extraHead = "";
+            var links = "";
+
+            if ( settings.extraHead ) settings.extraHead.replace( /([^,]+)/g, function(m){ extraHead += m });
+
+            $(document).find("link")
+                .filter(function(){ // Requirement: &lt;link&gt; element MUST have rel="stylesheet" to be considered in print document
+                        var relAttr = $(this).attr("rel");
+                        return ($.type(relAttr) === 'undefined') == false &amp;&amp; relAttr.toLowerCase() == 'stylesheet';
+                    })
+                .filter(function(){ // Include if media is undefined, empty, print or all
+                        var mediaAttr = $(this).attr("media");
+                        return $.type(mediaAttr) === 'undefined' || mediaAttr == "" || mediaAttr.toLowerCase() == 'print' || mediaAttr.toLowerCase() == 'all'
+                    })
+                .each(function(){
+                        links += '&lt;link type="text/css" rel="stylesheet" href="' + $(this).attr("href") + '" &gt;';
+                    });
+            if ( settings.extraCss ) settings.extraCss.replace( /([^,\s]+)/g, function(m){ links += '&lt;link type="text/css" rel="stylesheet" href="' + m + '"&gt;' });
+
+            return "&lt;head&gt;&lt;title&gt;" + settings.popTitle + "&lt;/title&gt;" + extraHead + links + "&lt;/head&gt;";
+        },
+        getBody : function ( elements ) {
+            var htm = "";
+            var attrs = settings.retainAttr;
+            elements.each(function() {
+                var ele = PrintArea.getFormData( $(this) );
+
+                var attributes = ""
+                for ( var x = 0; x &lt; attrs.length; x++ )
+                {
+                    var eleAttr = $(ele).attr( attrs[x] );
+                    if ( eleAttr ) attributes += (attributes.length &gt; 0 ? " ":"") + attrs[x] + "='" + eleAttr + "'";
+                }
+
+                htm += '&lt;div ' + attributes + '&gt;' + $(ele).html() + '&lt;/div&gt;';
+            });
+
+            return "&lt;body&gt;" + htm + "&lt;/body&gt;";
+        },
+        getFormData : function ( ele ) {
+            var copy = ele.clone();
+            var copiedInputs = $("input,select,textarea", copy);
+            $("input,select,textarea", ele).each(function( i ){
+                var typeInput = $(this).attr("type");
+                if ($.type(typeInput) === 'undefined') typeInput = $(this).is("select") ? "select" : $(this).is("textarea") ? "textarea" : "";
+                var copiedInput = copiedInputs.eq( i );
+
+                if ( typeInput == "radio" || typeInput == "checkbox" ) copiedInput.attr( "checked", $(this).is(":checked") );
+                else if ( typeInput == "text" ) copiedInput.attr( "value", $(this).val() );
+                else if ( typeInput == "select" )
+                    $(this).find( "option" ).each( function( i ) {
+                        if ( $(this).is(":selected") ) $("option", copiedInput).eq( i ).attr( "selected", true );
+                    });
+                else if ( typeInput == "textarea" ) copiedInput.text( $(this).val() );
+            });
+            return copy;
+        },
+        getPrintWindow : function () {
+            switch ( settings.mode )
+            {
+                case modes.iframe :
+                    var f = new PrintArea.Iframe();
+                    return { win : f.contentWindow || f, doc : f.doc };
+                case modes.popup :
+                    var p = new PrintArea.Popup();
+                    return { win : p, doc : p.doc };
+            }
+        },
+        Iframe : function () {
+            var frameId = settings.id;
+            var iframeStyle = 'border:0;position:absolute;width:0px;height:0px;right:0px;top:0px;';
+            var iframe;
+
+            try
+            {
+                iframe = document.createElement('iframe');
+                document.body.appendChild(iframe);
+                $(iframe).attr({ style: iframeStyle, id: frameId, src: "#" + new Date().getTime() });
+                iframe.doc = null;
+                iframe.doc = iframe.contentDocument ? iframe.contentDocument : ( iframe.contentWindow ? iframe.contentWindow.document : iframe.document);
+            }
+            catch( e ) { throw e + ". iframes may not be supported in this browser."; }
+
+            if ( iframe.doc == null ) throw "Cannot find document.";
+
+            return iframe;
+        },
+        Popup : function () {
+            var windowAttr = "location=yes,statusbar=no,directories=no,menubar=no,titlebar=no,toolbar=no,dependent=no";
+            windowAttr += ",width=" + settings.popWd + ",height=" + settings.popHt;
+            windowAttr += ",resizable=yes,screenX=" + settings.popX + ",screenY=" + settings.popY + ",personalbar=no,scrollbars=yes";
+
+            var newWin = window.open( "", "_blank",  windowAttr );
+
+            newWin.doc = newWin.document;
+
+            return newWin;
+        }
+    };
+})(jQuery);
+
+
+//Send my pop-up window to the PrintArea method
+
+$('.ui-dialog-content').last().printArea();
+
+</jsitem>
+         <jsitem location="inlinesnippet" name="SwitchModeForPrintingCal" cachelocation="false">// Set the selector for which components to toggle. For example, to toggle// specific named components, set the selector to:
+//   #ComponentUniqueID1, #AnotherComponent, #AThirdComponent
+// Or, to toggle all field editors and tables, use this selector:
+//   .nx-basicfieldeditor:visible, .nx-skootable
+var ComponentSelector   = '.nx-basicfieldeditor:visible, .nx-skootable';
+var $ = skuid.$;
+
+// determine what mode was are moving into
+var button = arguments[0].button;
+var startEdit = false;
+var isEditButton = false;
+
+// Iterate over the selected components and switch them to the new mode, then
+// force a re-render.
+var componentElems = $( ComponentSelector );
+$.each( componentElems, function( index, componentElem ){
+    console.log('Processing component');
+    console.log(componentElem);
+    var component = $( componentElem ).data( 'component' );
+    console.log(component);
+    
+    // Currently, this snippet only supports toggling tables and field editors
+    // However, it would be relatively easy to add other types of components
+    // as appropriate by adding a "case" statement below:
+    switch ( component.getType() ){
+        case 'skootable':
+        case 'basicfieldeditor':
+            var componentObject = $( componentElem ).data( 'object' );
+            console.log(componentObject);
+            
+            if(componentObject.list.mode == 'edit')
+            componentObject.mode = componentObject.list.mode = 'readonly'
+            else
+            componentObject.mode = componentObject.list.mode = 'edit';
+            
+            componentObject.list.render({doNotCache:true});
+            break;
+    }
+});</jsitem>
+      </javascript>
+      <css>
+         <cssitem location="inline" name="CalendarUpdates" cachelocation="false">td.nx-cal-month
+{
+    height: 40px;
+    
+}</cssitem>
+      </css>
+   </resources>
+</skuidpage>

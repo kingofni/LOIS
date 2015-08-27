@@ -1,0 +1,1179 @@
+<skuidpage unsavedchangeswarning="yes" showsidebar="false" showheader="true" tabtooverride="LOIS_Offender__c">
+   <models>
+      <model id="NotesPretrial" limit="20" query="true" createrowifnonefound="false" sobject="Case_Note__c" doclone="" type="" orderby="Case_Note_Date__c desc">
+         <fields>
+            <field id="Alert__c"/>
+            <field id="Case_Note_Date__c"/>
+            <field id="Comments__c"/>
+            <field id="Note_Type__c"/>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Program__c"/>
+            <field id="Secured_Case_Note__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="CreatedDate"/>
+            <field id="CaseNoteHistory__c"/>
+            <field id="SecuredNoteHistory__c"/>
+            <field id="Id"/>
+            <field id="NoteTypeChanges__c"/>
+            <field id="Reason_for_Edit__c"/>
+            <field id="LastModifiedDate"/>
+            <field id="Is_Case_Note_Sealed__c"/>
+            <field id="Staff_To_Display__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="false" field="Is_Secured_Note__c" operator="=" enclosevalueinquotes="false"/>
+            <condition type="fieldvalue" value="Error In Creating Note" enclosevalueinquotes="true" field="Note_Type__c" operator="!="/>
+            <condition type="param" value="program" field="Program__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Note_Type__c" state="filterableoff" inactive="true" name="Note_Type__c" operator="includes"/>
+            <condition type="param" value="offenderid" field="Offender__c" operator="=" enclosevalueinquotes="true" novaluebehavior="" state="" inactive="false"/>
+            <condition type="fieldvalue" field="Case_Note_Date__c" operator="gte" inactive="true" enclosevalueinquotes="false" name="__autofilter__start__Case_Note_Date__c" state="filterableoff" value=""/>
+            <condition type="fieldvalue" field="Case_Note_Date__c" operator="lte" inactive="true" enclosevalueinquotes="false" name="__autofilter__end__Case_Note_Date__c" state="filterableoff" value=""/>
+            <condition type="fieldvalue" field="Program__c" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Program__c" state="filterableoff" value=""/>
+            <condition type="fieldvalue" value="false" enclosevalueinquotes="false" field="Is_Case_Note_Sealed__c" state="filterableoff" inactive="true" operator="=" name="Is_Case_Note_Sealed__c"/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModel" behavior="standard" model="NotesPretrial">
+                     <models>
+                        <model>NotesPretrial</model>
+                        <model>NotesAll</model>
+                     </models>
+                  </action>
+                  <action type="requeryModel" model="NotesAll" behavior="loadmore"/>
+                  <action type="requeryModel" model="NotesTreatment" behavior="loadmore"/>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="NotesAll" limit="20" query="true" createrowifnonefound="false" sobject="Case_Note__c" doclone="" type="" orderby="Case_Note_Date__c desc">
+         <fields>
+            <field id="Alert__c"/>
+            <field id="Case_Note_Date__c"/>
+            <field id="Comments__c"/>
+            <field id="Note_Type__c"/>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Program__c"/>
+            <field id="Secured_Case_Note__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="CreatedDate"/>
+            <field id="CaseNoteHistory__c"/>
+            <field id="SecuredNoteHistory__c"/>
+            <field id="Id"/>
+            <field id="NoteTypeChanges__c"/>
+            <field id="LastModifiedDate"/>
+            <field id="Is_Case_Note_Sealed__c"/>
+            <field id="Reason_for_Edit__c"/>
+            <field id="Staff_To_Display__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Note_Type__c" state="filterableoff" inactive="true" name="Note_Type__c" operator="includes"/>
+            <condition type="fieldvalue" value="Error In Creating Note" enclosevalueinquotes="true" field="Note_Type__c" operator="!="/>
+            <condition type="param" value="offenderid" field="Offender__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="fieldvalue" field="Program__c" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Program__c" state="filterableoff" value=""/>
+            <condition type="fieldvalue" field="Case_Note_Date__c" operator="gte" inactive="true" enclosevalueinquotes="false" name="__autofilter__start__Case_Note_Date__c" state="filterableoff" value=""/>
+            <condition type="fieldvalue" field="Case_Note_Date__c" operator="lte" inactive="true" enclosevalueinquotes="false" name="__autofilter__end__Case_Note_Date__c" state="filterableoff" value=""/>
+            <condition type="fieldvalue" value="false" enclosevalueinquotes="false" field="Is_Case_Note_Sealed__c" state="filterableoff" inactive="true" name="Is_Case_Note_Sealed__c"/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModel" model="NotesPretrial" behavior="standard"/>
+                  <action type="requeryModel" model="NotesAll" behavior="standard"/>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="NotesTreatment" limit="20" query="true" createrowifnonefound="false" sobject="Case_Note__c" doclone="" type="" orderby="Case_Note_Date__c desc">
+         <fields>
+            <field id="Alert__c"/>
+            <field id="Case_Note_Date__c"/>
+            <field id="Comments__c"/>
+            <field id="Note_Type__c"/>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Program__c"/>
+            <field id="Secured_Case_Note__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="CreatedDate"/>
+            <field id="CaseNoteHistory__c"/>
+            <field id="SecuredNoteHistory__c"/>
+            <field id="Id"/>
+            <field id="NoteTypeChanges__c"/>
+            <field id="Is_Secured_Note__c"/>
+            <field id="Reason_for_Edit__c"/>
+            <field id="Is_Case_Note_Sealed__c"/>
+            <field id="LastModifiedDate"/>
+            <field id="Staff_To_Display__c"/>
+         </fields>
+         <conditions>
+            <condition type="param" value="program" field="Program__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Note_Type__c" state="filterableoff" inactive="true" name="Note_Type__c" operator="includes"/>
+            <condition type="fieldvalue" value="Error In Creating Note" enclosevalueinquotes="true" field="Note_Type__c" operator="!="/>
+            <condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="Is_Secured_Note__c"/>
+            <condition type="param" value="offenderid" field="Offender__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="fieldvalue" field="Program__c" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Program__c" state="filterableoff" value=""/>
+            <condition type="fieldvalue" field="Case_Note_Date__c" operator="gte" inactive="true" enclosevalueinquotes="false" name="__autofilter__start__Case_Note_Date__c" state="filterableoff" value=""/>
+            <condition type="fieldvalue" field="Case_Note_Date__c" operator="lte" inactive="true" enclosevalueinquotes="false" name="__autofilter__end__Case_Note_Date__c" state="filterableoff" value=""/>
+            <condition type="fieldvalue" value="false" enclosevalueinquotes="false" field="Is_Case_Note_Sealed__c" state="filterableoff" inactive="true" name="Is_Case_Note_Sealed__c"/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModel" behavior="standard" model="NotesPretrial">
+                     <models>
+                        <model>NotesPretrial</model>
+                        <model>NotesAll</model>
+                     </models>
+                  </action>
+                  <action type="requeryModel" model="NotesAll" behavior="loadmore"/>
+                  <action type="requeryModel" model="NotesTreatment" behavior="loadmore"/>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="SealedNotesPretrial" limit="20" query="true" createrowifnonefound="false" sobject="Case_Note__c" doclone="" type="" orderby="Case_Note_Date__c desc">
+         <fields>
+            <field id="Alert__c"/>
+            <field id="Case_Note_Date__c"/>
+            <field id="Comments__c"/>
+            <field id="Note_Type__c"/>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Program__c"/>
+            <field id="Secured_Case_Note__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="CreatedDate"/>
+            <field id="CaseNoteHistory__c"/>
+            <field id="SecuredNoteHistory__c"/>
+            <field id="Id"/>
+            <field id="NoteTypeChanges__c"/>
+            <field id="Reason_for_Edit__c"/>
+            <field id="LastModifiedDate"/>
+            <field id="Is_Case_Note_Sealed__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="false" field="Is_Secured_Note__c" operator="=" enclosevalueinquotes="false"/>
+            <condition type="fieldvalue" value="Error In Creating Note" enclosevalueinquotes="true" field="Note_Type__c" operator="!="/>
+            <condition type="param" value="program" field="Program__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Note_Type__c" state="filterableoff" inactive="true" name="Note_Type__c" operator="includes"/>
+            <condition type="param" value="offenderid" field="Offender__c" operator="=" enclosevalueinquotes="true" novaluebehavior="" state="" inactive="false"/>
+            <condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="Is_Case_Note_Sealed__c"/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModel" behavior="standard" model="NotesPretrial">
+                     <models>
+                        <model>NotesPretrial</model>
+                        <model>NotesAll</model>
+                     </models>
+                  </action>
+                  <action type="requeryModel" model="NotesAll" behavior="loadmore"/>
+                  <action type="requeryModel" model="NotesTreatment" behavior="loadmore"/>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="SealedNotesAll" limit="20" query="true" createrowifnonefound="false" sobject="Case_Note__c" doclone="" type="" orderby="Case_Note_Date__c desc">
+         <fields>
+            <field id="Alert__c"/>
+            <field id="Case_Note_Date__c"/>
+            <field id="Comments__c"/>
+            <field id="Note_Type__c"/>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Program__c"/>
+            <field id="Secured_Case_Note__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="CreatedDate"/>
+            <field id="CaseNoteHistory__c"/>
+            <field id="SecuredNoteHistory__c"/>
+            <field id="Id"/>
+            <field id="NoteTypeChanges__c"/>
+            <field id="LastModifiedDate"/>
+            <field id="Is_Case_Note_Sealed__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Note_Type__c" state="filterableoff" inactive="true" name="Note_Type__c" operator="includes"/>
+            <condition type="fieldvalue" value="Error In Creating Note" enclosevalueinquotes="true" field="Note_Type__c" operator="!="/>
+            <condition type="param" value="offenderid" field="Offender__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="fieldvalue" field="Program__c" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Program__c" state="filterableoff" value=""/>
+            <condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="Is_Case_Note_Sealed__c"/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModel" model="NotesPretrial" behavior="standard"/>
+                  <action type="requeryModel" model="NotesAll" behavior="standard"/>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="SealedNotesTreatment" limit="20" query="true" createrowifnonefound="false" sobject="Case_Note__c" doclone="" type="" orderby="Case_Note_Date__c desc">
+         <fields>
+            <field id="Alert__c"/>
+            <field id="Case_Note_Date__c"/>
+            <field id="Comments__c"/>
+            <field id="Note_Type__c"/>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Program__c"/>
+            <field id="Secured_Case_Note__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="CreatedDate"/>
+            <field id="CaseNoteHistory__c"/>
+            <field id="SecuredNoteHistory__c"/>
+            <field id="Id"/>
+            <field id="NoteTypeChanges__c"/>
+            <field id="Is_Secured_Note__c"/>
+            <field id="Reason_for_Edit__c"/>
+            <field id="Is_Case_Note_Sealed__c"/>
+         </fields>
+         <conditions>
+            <condition type="param" value="program" field="Program__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Note_Type__c" state="filterableoff" inactive="true" name="Note_Type__c" operator="includes"/>
+            <condition type="fieldvalue" value="Error In Creating Note" enclosevalueinquotes="true" field="Note_Type__c" operator="!="/>
+            <condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="Is_Secured_Note__c"/>
+            <condition type="param" value="offenderid" field="Offender__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="Is_Case_Note_Sealed__c"/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModel" behavior="standard" model="NotesPretrial">
+                     <models>
+                        <model>NotesPretrial</model>
+                        <model>NotesAll</model>
+                     </models>
+                  </action>
+                  <action type="requeryModel" model="NotesAll" behavior="loadmore"/>
+                  <action type="requeryModel" model="NotesTreatment" behavior="loadmore"/>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="NewNotesPretrial" limit="1" query="false" createrowifnonefound="false" sobject="Case_Note__c" doclone="" type="" orderby="Case_Note_Date__c desc">
+         <fields>
+            <field id="Alert__c"/>
+            <field id="Case_Note_Date__c"/>
+            <field id="Comments__c"/>
+            <field id="Note_Type__c"/>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Program__c"/>
+            <field id="Secured_Case_Note__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="CreatedDate"/>
+            <field id="CaseNoteHistory__c"/>
+            <field id="SecuredNoteHistory__c"/>
+            <field id="Id"/>
+            <field id="NoteTypeChanges__c"/>
+            <field id="Reason_for_Edit__c"/>
+            <field id="LastModifiedDate"/>
+            <field id="Is_Case_Note_Sealed__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="false" field="Is_Secured_Note__c" operator="=" enclosevalueinquotes="false"/>
+            <condition type="fieldvalue" value="Error In Creating Note" enclosevalueinquotes="true" field="Note_Type__c" operator="!="/>
+            <condition type="param" value="program" field="Program__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Note_Type__c" state="filterableoff" inactive="true" name="Note_Type__c" operator="includes"/>
+            <condition type="param" value="offenderid" field="Offender__c" operator="=" enclosevalueinquotes="true" novaluebehavior="" state="" inactive="false"/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModel" behavior="standard" model="NotesPretrial">
+                     <models>
+                        <model>NotesPretrial</model>
+                        <model>NotesAll</model>
+                     </models>
+                  </action>
+                  <action type="requeryModel" model="NotesAll" behavior="loadmore"/>
+                  <action type="requeryModel" model="NotesTreatment" behavior="loadmore"/>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="NewNotesAll" limit="1" query="false" createrowifnonefound="false" sobject="Case_Note__c" doclone="" type="" orderby="Case_Note_Date__c desc">
+         <fields>
+            <field id="Alert__c"/>
+            <field id="Case_Note_Date__c"/>
+            <field id="Comments__c"/>
+            <field id="Note_Type__c"/>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Program__c"/>
+            <field id="Secured_Case_Note__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="CreatedDate"/>
+            <field id="CaseNoteHistory__c"/>
+            <field id="SecuredNoteHistory__c"/>
+            <field id="Id"/>
+            <field id="NoteTypeChanges__c"/>
+            <field id="LastModifiedDate"/>
+            <field id="Is_Case_Note_Sealed__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Note_Type__c" state="filterableoff" inactive="true" name="Note_Type__c" operator="includes"/>
+            <condition type="fieldvalue" value="Error In Creating Note" enclosevalueinquotes="true" field="Note_Type__c" operator="!="/>
+            <condition type="param" value="offenderid" field="Offender__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="fieldvalue" field="Program__c" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Program__c" state="filterableoff" value=""/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModel" model="NotesPretrial" behavior="standard"/>
+                  <action type="requeryModel" model="NotesAll" behavior="standard"/>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="NewNotesTreatment" limit="1" query="false" createrowifnonefound="false" sobject="Case_Note__c" doclone="" type="" orderby="Case_Note_Date__c desc">
+         <fields>
+            <field id="Alert__c"/>
+            <field id="Case_Note_Date__c"/>
+            <field id="Comments__c"/>
+            <field id="Note_Type__c"/>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Program__c"/>
+            <field id="Secured_Case_Note__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="CreatedDate"/>
+            <field id="CaseNoteHistory__c"/>
+            <field id="SecuredNoteHistory__c"/>
+            <field id="Id"/>
+            <field id="NoteTypeChanges__c"/>
+            <field id="Is_Secured_Note__c"/>
+            <field id="Reason_for_Edit__c"/>
+            <field id="Is_Case_Note_Sealed__c"/>
+         </fields>
+         <conditions>
+            <condition type="param" value="program" field="Program__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Note_Type__c" state="filterableoff" inactive="true" name="Note_Type__c" operator="includes"/>
+            <condition type="fieldvalue" value="Error In Creating Note" enclosevalueinquotes="true" field="Note_Type__c" operator="!="/>
+            <condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="Is_Secured_Note__c"/>
+            <condition type="param" value="offenderid" field="Offender__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModel" behavior="standard" model="NotesPretrial">
+                     <models>
+                        <model>NotesPretrial</model>
+                        <model>NotesAll</model>
+                     </models>
+                  </action>
+                  <action type="requeryModel" model="NotesAll" behavior="loadmore"/>
+                  <action type="requeryModel" model="NotesTreatment" behavior="loadmore"/>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+   </models>
+   <components>
+      <pagetitle model="NotesPretrial">
+         <actions>
+            <action type="redirect" label="Help" window="blank" url="https://sites.google.com/a/co.larimer.co.us/lois-help/" icon="sk-icon-help"/>
+         </actions>
+      </pagetitle>
+      <tabset rememberlastusertab="false" defertabrendering="true" renderas="" uniqueid="CaseNoteTabs" cssclass="CaseNoteTabs">
+         <tabs>
+            <tab name="{{$Param.program}} Case Notes">
+               <components>
+                  <pagetitle model="NotesPretrial">
+                     <actions/>
+                  </pagetitle>
+                  <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="false" showexportbuttons="true" pagesize="10" createrecords="false" model="NotesPretrial" buttonposition="" mode="readonly">
+                     <fields>
+                        <field id="Alert__c" type="CUSTOM" valuehalign="" columnwidth="10%" snippet="AlertRenderer"/>
+                        <field id="Case_Note_Date__c" valuehalign="" type="CUSTOM" allowordering="true" snippet="HighlightRow" columnwidth="15%">
+                           <label>Date</label>
+                        </field>
+                        <field id="Note_Type__c" valuehalign="" type="" readonly="false" required="false" columnwidth="20%">
+                           <label>Type</label>
+                        </field>
+                        <field id="Comments__c" valuehalign="" type="" columnwidth="40%" snippet="" maxdisplaycharacters="100">
+                           <label>Case Note</label>
+                        </field>
+                        <field id="Staff_To_Display__c" valuehalign="" type="">
+                           <label>Created By</label>
+                        </field>
+                     </fields>
+                     <rowactions>
+                        <action type="popup" icon="sk-icon-edit" label="Edit Case Note">
+                           <drawer title="Drawer Area" width="800" closehandle="true">
+                              <components/>
+                           </drawer>
+                           <renderconditions logictype="or">
+                              <rendercondition type="userinfo" operator="=" fieldmodel="NotesPretrial" sourcetype="fieldvalue" field="CreatedById" value="" enclosevalueinquotes="true" userinfotype="userid"/>
+                              <rendercondition type="multiple" operator="in" fieldmodel="NotesPretrial" sourcetype="userinfo" sourceuserinfotype="profileid" value="" enclosevalueinquotes="true">
+                                 <values>
+                                    <value>00et0000000U7w6AAC</value>
+                                    <value>00et0000000LqcmAAC</value>
+                                 </values>
+                              </rendercondition>
+                              <rendercondition type="multiple" operator="in" fieldmodel="NotesPretrial" sourcetype="userinfo" sourceuserinfotype="userroleid" value="" enclosevalueinquotes="true">
+                                 <values>
+                                    <value>00E35000000HTP1EAO</value>
+                                    <value>00Et0000000HTWUEA4</value>
+                                 </values>
+                              </rendercondition>
+                           </renderconditions>
+                           <popup width="80%" title="Edit Case Note">
+                              <components>
+                                 <pagetitle model="NotesPretrial">
+                                    <actions>
+                                       <action type="multi" label="Save and Close" icon="sk-icon-save">
+                                          <actions>
+                                             <action type="save">
+                                                <models>
+                                                   <model>NotesPretrial</model>
+                                                </models>
+                                             </action>
+                                             <action type="requeryModel" model="SealedNotesPretrial" behavior="standard"/>
+                                             <action type="closeTopmostPopup"/>
+                                          </actions>
+                                       </action>
+                                       <action type="multi" label="Cancel and Close" icon="sk-icon-cancel">
+                                          <actions>
+                                             <action type="cancel">
+                                                <models>
+                                                   <model>NotesPretrial</model>
+                                                </models>
+                                             </action>
+                                             <action type="closeTopmostPopup"/>
+                                          </actions>
+                                       </action>
+                                    </actions>
+                                    <conditions>
+                                       <condition type="contextrow" field="Id" mergefield="Id" autocreated="true"/>
+                                    </conditions>
+                                 </pagetitle>
+                                 <basicfieldeditor showheader="true" showsavecancel="false" mode="edit" model="NotesPretrial" buttonposition="" layout="">
+                                    <conditions>
+                                       <condition type="contextrow" field="Id" mergefield="Id" autocreated="true"/>
+                                    </conditions>
+                                    <columns>
+                                       <column width="100%">
+                                          <sections>
+                                             <section title="" collapsible="no" showheader="false">
+                                                <fields>
+                                                   <field id="Program__c" valuehalign="" type="" required="false"/>
+                                                   <field id="Note_Type__c" valuehalign="" type="" required="false"/>
+                                                   <field id="Alert__c" valuehalign="" type=""/>
+                                                   <field id="Case_Note_Date__c" valuehalign="" type=""/>
+                                                   <field id="Is_Case_Note_Sealed__c" valuehalign="" type="">
+                                                      <label>Seal Case Note?</label>
+                                                   </field>
+                                                   <field id="Comments__c" valuehalign="" type="">
+                                                      <label>Case Note</label>
+                                                   </field>
+                                                   <field id="Reason_for_Edit__c" valuehalign="" type="" required="true"/>
+                                                </fields>
+                                             </section>
+                                          </sections>
+                                       </column>
+                                    </columns>
+                                 </basicfieldeditor>
+                              </components>
+                           </popup>
+                        </action>
+                        <action type="drawer" label="View Case Note" icon="sk-icon-feed">
+                           <drawer title="Drawer Area" width="800" closehandle="true">
+                              <components>
+                                 <basicfieldeditor showheader="true" showsavecancel="false" model="NotesPretrial" buttonposition="" mode="readonly" layout="">
+                                    <columns>
+                                       <column width="100%">
+                                          <sections>
+                                             <section title="View Case Note" collapsible="no">
+                                                <fields>
+                                                   <field id="Program__c" valuehalign="" type=""/>
+                                                   <field id="Alert__c" valuehalign="" type=""/>
+                                                   <field id="Is_Case_Note_Sealed__c" valuehalign="" type="">
+                                                      <label>Seal Case Note?</label>
+                                                   </field>
+                                                   <field id="Comments__c" valuehalign="" type="" snippet="TextExpander" maxdisplaycharacters="">
+                                                      <label>Case Note</label>
+                                                      <renderconditions logictype="and"/>
+                                                   </field>
+                                                   <field id="Reason_for_Edit__c" valuehalign="" type="" required="false">
+                                                      <renderconditions logictype="and">
+                                                         <rendercondition fieldmodel="NotesPretrial" sourcetype="rowproperty" sourceproperty="isSaved" enclosevalueinquotes="false"/>
+                                                      </renderconditions>
+                                                   </field>
+                                                   <field id="LastModifiedDate" valuehalign="" type=""/>
+                                                </fields>
+                                             </section>
+                                          </sections>
+                                       </column>
+                                    </columns>
+                                    <conditions>
+                                       <condition type="contextrow" field="Id" mergefield="Id"/>
+                                    </conditions>
+                                 </basicfieldeditor>
+                              </components>
+                              <beforeload/>
+                           </drawer>
+                           <renderconditions logictype="and"/>
+                        </action>
+                     </rowactions>
+                     <massactions usefirstitemasdefault="true"/>
+                     <views>
+                        <view type="standard"/>
+                     </views>
+                     <searchfields>
+                        <searchfield return="false" field="Note_Type__c" operator="includes"/>
+                        <searchfield return="false" field="Program__c" operator="contains"/>
+                        <searchfield return="false" field="Comments__c" operator="contains"/>
+                     </searchfields>
+                     <renderconditions logictype="and"/>
+                     <filters>
+                        <filter type="toggle" filteroffoptionlabel="New Filter" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="manual" labelmode="no" label="Show Seal Case Notes">
+                           <effects>
+                              <effect action="activate" value="true" condition="Is_Case_Note_Sealed__c"/>
+                           </effects>
+                        </filter>
+                        <filter type="select" filteroffoptionlabel="All Programs" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="auto" conditionfield="Program__c"/>
+                        <filter type="daterange" filteroffoptionlabel="New Filter" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="manual" conditionfield="Case_Note_Date__c" label="Date"/>
+                        <filter type="multiselect" filteroffoptionlabel="All Note Types" createfilteroffoption="true" affectcookies="false" autocompthreshold="50" condition="Note_Type__c" conditionsource="auto" labelmode="auto" conditionfield="Note_Type__c" conditionoperator="includes"/>
+                     </filters>
+                     <actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true">
+                        <action type="multi" label="Add New Case Note" icon="sk-icon-add">
+                           <actions>
+                              <action type="createRow" model="NewNotesPretrial" appendorprepend="prepend" defaultmodefornewitems="edit"/>
+                              <action type="showPopup">
+                                 <popup title="Add New Case Note" width="90%">
+                                    <components>
+                                       <pagetitle model="NewNotesPretrial">
+                                          <actions>
+                                             <action type="multi" label="Save and Close" icon="sk-icon-save">
+                                                <actions>
+                                                   <action type="save">
+                                                      <models>
+                                                         <model>NewNotesPretrial</model>
+                                                      </models>
+                                                   </action>
+                                                   <action type="requeryModels" behavior="standard">
+                                                      <models>
+                                                         <model>NotesPretrial</model>
+                                                         <model>SealedNotesPretrial</model>
+                                                      </models>
+                                                   </action>
+                                                   <action type="closeTopmostPopup"/>
+                                                </actions>
+                                             </action>
+                                             <action type="multi" label="Cancel and Close" icon="sk-icon-cancel">
+                                                <actions>
+                                                   <action type="cancel">
+                                                      <models>
+                                                         <model>NewNotesPretrial</model>
+                                                      </models>
+                                                   </action>
+                                                   <action type="closeTopmostPopup"/>
+                                                </actions>
+                                             </action>
+                                          </actions>
+                                          <conditions>
+                                             <condition type="contextrow" field="Id" mergefield="Id"/>
+                                          </conditions>
+                                       </pagetitle>
+                                       <basicfieldeditor showheader="true" showsavecancel="false" model="NewNotesPretrial" buttonposition="" mode="edit" layout="">
+                                          <columns>
+                                             <column width="100%">
+                                                <sections>
+                                                   <section title="" collapsible="no">
+                                                      <fields>
+                                                         <field id="Program__c" valuehalign="" type="" required="true"/>
+                                                         <field id="Note_Type__c" valuehalign="" type="" required="true"/>
+                                                         <field id="Alert__c" valuehalign="" type=""/>
+                                                         <field id="Case_Note_Date__c"/>
+                                                         <field id="Is_Case_Note_Sealed__c" valuehalign="" type="">
+                                                            <label>Seal Case Note?</label>
+                                                         </field>
+                                                         <field id="Comments__c" valuehalign="" type="">
+                                                            <label>Case Note</label>
+                                                         </field>
+                                                      </fields>
+                                                   </section>
+                                                </sections>
+                                             </column>
+                                          </columns>
+                                          <conditions>
+                                             <condition type="contextrow" field="Id" mergefield="Id"/>
+                                          </conditions>
+                                       </basicfieldeditor>
+                                    </components>
+                                 </popup>
+                              </action>
+                           </actions>
+                        </action>
+                     </actions>
+                     <exportproperties usetablecolumns="true" appendrowidcolumn="false"/>
+                  </skootable>
+                  <panelset type="vertical">
+                     <panels>
+                        <panel width="225">
+                           <components>
+                              <template multiple="true" model="NotesPretrial" allowhtml="true" cssclass="sealedCaseNote">
+                                 <contents>Upon receiving an inquiry of a sealed record, except otherwise provided by statute, CJSD staff shall reply that a CJSD record does not exist with respect to this individual.
+</contents>
+                                 <renderconditions logictype="or"/>
+                              </template>
+                           </components>
+                        </panel>
+                     </panels>
+                     <renderconditions logictype="or">
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SealedNotesPretrial" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                     </renderconditions>
+                  </panelset>
+               </components>
+            </tab>
+            <tab name="{{$Param.program}} Secure Notes " loadlazypanels="true">
+               <components>
+                  <pagetitle model="NotesPretrial">
+                     <actions/>
+                  </pagetitle>
+                  <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="false" showexportbuttons="true" pagesize="10" createrecords="false" model="NotesTreatment" buttonposition="" mode="readonly">
+                     <fields>
+                        <field id="Alert__c" type="CUSTOM" valuehalign="" snippet="AlertRenderer"/>
+                        <field id="Case_Note_Date__c" valuehalign="" type="CUSTOM" snippet="HighlightRow" columnwidth="10%">
+                           <label>Date</label>
+                        </field>
+                        <field id="Program__c" valuehalign="" type="" required="false"/>
+                        <field id="Note_Type__c" valuehalign="" type="" required="false">
+                           <label>Type</label>
+                        </field>
+                        <field id="Is_Secured_Note__c" type="" valuehalign="">
+                           <label>Secure?</label>
+                        </field>
+                        <field id="Secured_Case_Note__c" valuehalign="" type="" snippet="" maxdisplaycharacters="100"/>
+                        <field id="Staff_To_Display__c" valuehalign="" type="">
+                           <label>Created By</label>
+                        </field>
+                        <field id="CreatedDate" valuehalign="" type="" columnwidth="10%"/>
+                     </fields>
+                     <rowactions>
+                        <action type="popup" icon="sk-icon-edit" label="Edit Secure Case Note">
+                           <drawer title="Drawer Area" width="800" closehandle="true">
+                              <components/>
+                           </drawer>
+                           <renderconditions logictype="or">
+                              <rendercondition type="userinfo" operator="=" fieldmodel="NotesTreatment" sourcetype="fieldvalue" field="CreatedById" value="" enclosevalueinquotes="true" userinfotype="userid"/>
+                              <rendercondition type="multiple" operator="in" fieldmodel="NotesTreatment" sourcetype="userinfo" sourceuserinfotype="profileid" value="" enclosevalueinquotes="true">
+                                 <values>
+                                    <value>00et0000000U7w6AAC</value>
+                                    <value>00et0000000LqcmAAC</value>
+                                 </values>
+                              </rendercondition>
+                              <rendercondition type="multiple" operator="in" fieldmodel="NotesTreatment" sourcetype="userinfo" sourceuserinfotype="userroleid" value="" enclosevalueinquotes="true">
+                                 <values>
+                                    <value>00E35000000HTP1EAO</value>
+                                    <value>00Et0000000HTWUEA4</value>
+                                 </values>
+                              </rendercondition>
+                           </renderconditions>
+                           <popup width="80%" title="Edit Secured Case Note">
+                              <components>
+                                 <pagetitle model="NotesTreatment">
+                                    <actions>
+                                       <action type="multi" label="Save and Close" icon="sk-icon-save">
+                                          <actions>
+                                             <action type="save">
+                                                <models>
+                                                   <model>NotesTreatment</model>
+                                                </models>
+                                             </action>
+                                             <action type="requeryModel" model="SealedNotesTreatment" behavior="standard"/>
+                                             <action type="closeTopmostPopup"/>
+                                          </actions>
+                                       </action>
+                                       <action type="multi" label="Cancel and Close" icon="sk-icon-cancel">
+                                          <actions>
+                                             <action type="cancel">
+                                                <models>
+                                                   <model>NotesTreatment</model>
+                                                </models>
+                                             </action>
+                                             <action type="closeTopmostPopup"/>
+                                          </actions>
+                                       </action>
+                                    </actions>
+                                    <conditions>
+                                       <condition type="contextrow" field="Id" mergefield="Id" autocreated="true"/>
+                                    </conditions>
+                                 </pagetitle>
+                                 <basicfieldeditor showheader="true" showsavecancel="false" mode="edit" model="NotesTreatment" buttonposition="" layout="">
+                                    <conditions>
+                                       <condition type="contextrow" field="Id" mergefield="Id" autocreated="true"/>
+                                    </conditions>
+                                    <columns>
+                                       <column width="100%">
+                                          <sections>
+                                             <section title="Section A" collapsible="no" showheader="false">
+                                                <fields>
+                                                   <field id="Program__c" valuehalign="" type="" required="true"/>
+                                                   <field id="Note_Type__c" valuehalign="" type="" required="true"/>
+                                                   <field id="Alert__c"/>
+                                                   <field id="Case_Note_Date__c" valuehalign="" type=""/>
+                                                   <field id="Is_Case_Note_Sealed__c" valuehalign="" type="">
+                                                      <label>Seal Case Note?</label>
+                                                   </field>
+                                                   <field id="Is_Secured_Note__c" valuehalign="" type="">
+                                                      <label>Secure Case Note?</label>
+                                                   </field>
+                                                   <field id="Secured_Case_Note__c" valuehalign="" type="">
+                                                      <label>Secured Case Note</label>
+                                                   </field>
+                                                   <field id="Reason_for_Edit__c" valuehalign="" type="" required="true"/>
+                                                </fields>
+                                             </section>
+                                          </sections>
+                                       </column>
+                                    </columns>
+                                 </basicfieldeditor>
+                              </components>
+                           </popup>
+                        </action>
+                        <action type="drawer" label="View Secure Case Note" icon="sk-icon-feed">
+                           <drawer title="Drawer Area" width="800" closehandle="true">
+                              <components>
+                                 <basicfieldeditor showheader="true" showsavecancel="false" model="NotesTreatment" buttonposition="" mode="readonly" layout="">
+                                    <columns>
+                                       <column width="100%">
+                                          <sections>
+                                             <section title="View Secure Case Note" collapsible="no">
+                                                <fields>
+                                                   <field id="Is_Case_Note_Sealed__c" valuehalign="" type="">
+                                                      <label>Seal Case Note</label>
+                                                   </field>
+                                                   <field id="Secured_Case_Note__c" valuehalign="" type="" maxdisplaycharacters="">
+                                                      <label>Secured Case Note</label>
+                                                   </field>
+                                                   <field id="Reason_for_Edit__c" valuehalign="" type=""/>
+                                                   <field id="LastModifiedDate" valuehalign="" type=""/>
+                                                </fields>
+                                             </section>
+                                          </sections>
+                                       </column>
+                                    </columns>
+                                    <conditions>
+                                       <condition type="contextrow" field="Id" mergefield="Id"/>
+                                    </conditions>
+                                 </basicfieldeditor>
+                              </components>
+                           </drawer>
+                        </action>
+                     </rowactions>
+                     <massactions usefirstitemasdefault="true"/>
+                     <views>
+                        <view type="standard"/>
+                     </views>
+                     <filters>
+                        <filter type="toggle" filteroffoptionlabel="New Filter" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="manual" labelmode="auto" label="Show Seal Case Notes">
+                           <effects>
+                              <effect action="activate" value="" condition="Is_Case_Note_Sealed__c"/>
+                           </effects>
+                        </filter>
+                        <filter type="select" filteroffoptionlabel="All Programs" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="auto" conditionfield="Program__c"/>
+                        <filter type="daterange" filteroffoptionlabel="New Filter" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="manual" label="Date Range" conditionfield="Case_Note_Date__c"/>
+                        <filter type="multiselect" filteroffoptionlabel="All Note Types" createfilteroffoption="true" affectcookies="false" autocompthreshold="50" condition="Note_Type__c" conditionsource="auto" labelmode="auto" conditionfield="Note_Type__c" conditionoperator="includes"/>
+                     </filters>
+                     <searchfields/>
+                     <actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true">
+                        <action type="multi" label="Add New Secured Note" icon="sk-icon-add">
+                           <actions>
+                              <action type="createRow" model="NewNotesTreatment" appendorprepend="prepend" defaultmodefornewitems="edit"/>
+                              <action type="showPopup">
+                                 <popup title="Add New Secured Note" width="90%">
+                                    <components>
+                                       <pagetitle model="NewNotesTreatment">
+                                          <actions>
+                                             <action type="multi" label="Save and Close" icon="sk-icon-save">
+                                                <actions>
+                                                   <action type="save">
+                                                      <models>
+                                                         <model>NewNotesTreatment</model>
+                                                      </models>
+                                                   </action>
+                                                   <action type="requeryModels" behavior="standard">
+                                                      <models>
+                                                         <model>NotesTreatment</model>
+                                                         <model>SealedNotesTreatment</model>
+                                                      </models>
+                                                   </action>
+                                                   <action type="closeTopmostPopup"/>
+                                                </actions>
+                                             </action>
+                                             <action type="multi" label="Cancel and Close" icon="sk-icon-cancel">
+                                                <actions>
+                                                   <action type="cancel">
+                                                      <models>
+                                                         <model>NewNotesTreatment</model>
+                                                      </models>
+                                                   </action>
+                                                   <action type="closeTopmostPopup"/>
+                                                </actions>
+                                             </action>
+                                          </actions>
+                                          <conditions>
+                                             <condition type="contextrow" field="Id" mergefield="Id"/>
+                                          </conditions>
+                                       </pagetitle>
+                                       <basicfieldeditor showheader="true" showsavecancel="false" model="NewNotesTreatment" buttonposition="" mode="edit" layout="">
+                                          <columns>
+                                             <column width="100%">
+                                                <sections>
+                                                   <section title="Add New Secured Note" collapsible="no" showheader="false">
+                                                      <fields>
+                                                         <field id="Program__c" valuehalign="" type="" required="true"/>
+                                                         <field id="Note_Type__c" valuehalign="" type="" required="true"/>
+                                                         <field id="Alert__c" valuehalign="" type=""/>
+                                                         <field id="Case_Note_Date__c" valuehalign="" type=""/>
+                                                         <field id="Is_Case_Note_Sealed__c" valuehalign="" type="">
+                                                            <label>Seal Case Note?</label>
+                                                         </field>
+                                                         <field id="Is_Secured_Note__c" valuehalign="" type="">
+                                                            <label>Secure Case Note?</label>
+                                                         </field>
+                                                         <field id="Secured_Case_Note__c" valuehalign="" type=""/>
+                                                      </fields>
+                                                   </section>
+                                                </sections>
+                                             </column>
+                                          </columns>
+                                          <conditions>
+                                             <condition type="contextrow" field="Id" mergefield="Id"/>
+                                          </conditions>
+                                       </basicfieldeditor>
+                                    </components>
+                                 </popup>
+                              </action>
+                           </actions>
+                        </action>
+                     </actions>
+                     <exportproperties usetablecolumns="true" appendrowidcolumn="false"/>
+                  </skootable>
+                  <panelset type="vertical">
+                     <panels>
+                        <panel width="225">
+                           <components>
+                              <template multiple="true" model="NotesPretrial" allowhtml="true" cssclass="sealedCaseNote">
+                                 <contents>Upon receiving an inquiry of a sealed record, except otherwise provided by statute, CJSD staff shall reply that a CJSD record does not exist with respect to this individual.
+</contents>
+                                 <renderconditions logictype="or"/>
+                              </template>
+                           </components>
+                        </panel>
+                     </panels>
+                     <renderconditions logictype="or">
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SealedNotesTreatment" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                     </renderconditions>
+                  </panelset>
+               </components>
+               <renderconditions logictype="and">
+                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NotesPretrial" sourcetype="userinfo" nosourcerowbehavior="deactivate" sourceuserinfotype="profileid" value="1"/>
+               </renderconditions>
+            </tab>
+            <tab name="All Case Notes" loadlazypanels="true">
+               <components>
+                  <pagetitle model="NotesPretrial">
+                     <actions/>
+                  </pagetitle>
+                  <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="true" showexportbuttons="true" pagesize="10" createrecords="false" model="NotesAll" buttonposition="" mode="readonly">
+                     <fields>
+                        <field id="Alert__c" type="CUSTOM" valuehalign="" columnwidth="10%" snippet="AlertRenderer"/>
+                        <field id="Case_Note_Date__c" valuehalign="" type="CUSTOM" allowordering="true" snippet="HighlightRow" columnwidth="10%">
+                           <label>Date</label>
+                        </field>
+                        <field id="Program__c" valuehalign="" type="" columnwidth="15%"/>
+                        <field id="Note_Type__c" valuehalign="" type="" required="false" columnwidth="15%">
+                           <label>Type</label>
+                        </field>
+                        <field id="Comments__c" valuehalign="" type="" columnwidth="35%" maxdisplaycharacters="100">
+                           <label>Case Note</label>
+                        </field>
+                        <field id="Staff_To_Display__c" valuehalign="" type="">
+                           <label>Created By</label>
+                        </field>
+                     </fields>
+                     <rowactions>
+                        <action type="drawer" label="View Case Note" icon="sk-icon-feed">
+                           <drawer title="Drawer Area" width="800" closehandle="true">
+                              <components>
+                                 <basicfieldeditor showheader="true" showsavecancel="false" model="NotesAll" buttonposition="" mode="readonly" layout="">
+                                    <columns>
+                                       <column width="100%">
+                                          <sections>
+                                             <section title="View Case Note" collapsible="no">
+                                                <fields>
+                                                   <field id="Program__c" valuehalign="" type=""/>
+                                                   <field id="Alert__c" valuehalign="" type=""/>
+                                                   <field id="Is_Case_Note_Sealed__c" valuehalign="" type="">
+                                                      <label>Seal Case Note</label>
+                                                   </field>
+                                                   <field id="Comments__c" valuehalign="" type="" snippet="TextExpander" maxdisplaycharacters="">
+                                                      <label>Case Note</label>
+                                                   </field>
+                                                   <field id="Secured_Case_Note__c" valuehalign="" type="" snippet="TextExpander">
+                                                      <label> Secured Note</label>
+                                                   </field>
+                                                   <field id="Reason_for_Edit__c"/>
+                                                   <field id="LastModifiedDate" valuehalign="" type=""/>
+                                                </fields>
+                                             </section>
+                                          </sections>
+                                       </column>
+                                    </columns>
+                                    <conditions>
+                                       <condition type="contextrow" field="Id" mergefield="Id"/>
+                                    </conditions>
+                                 </basicfieldeditor>
+                              </components>
+                              <beforeload/>
+                           </drawer>
+                        </action>
+                     </rowactions>
+                     <massactions usefirstitemasdefault="true"/>
+                     <views>
+                        <view type="standard"/>
+                     </views>
+                     <filters>
+                        <filter type="toggle" filteroffoptionlabel="New Filter" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="manual" labelmode="auto" label="Show Seal Case Notes">
+                           <effects>
+                              <effect action="activate" value="" condition="Is_Case_Note_Sealed__c"/>
+                           </effects>
+                        </filter>
+                        <filter type="select" filteroffoptionlabel="All Programs" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="auto" conditionfield="Program__c"/>
+                        <filter type="daterange" filteroffoptionlabel="New Filter" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="manual" label="Date Range" conditionfield="Case_Note_Date__c"/>
+                        <filter type="multiselect" filteroffoptionlabel="All Note Types" createfilteroffoption="true" affectcookies="false" autocompthreshold="50" condition="Note_Type__c" conditionsource="auto" labelmode="auto" conditionfield="Note_Type__c" conditionoperator="includes"/>
+                     </filters>
+                     <actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true">
+                        <action type="multi" label="Add New Case Note" icon="sk-icon-add">
+                           <actions>
+                              <action type="createRow" model="NewNotesAll" appendorprepend="prepend" defaultmodefornewitems="edit"/>
+                              <action type="showPopup">
+                                 <popup title="Add New Case Note" width="90%">
+                                    <components>
+                                       <pagetitle model="NewNotesAll">
+                                          <actions>
+                                             <action type="multi" label="Save and Close" icon="sk-icon-save">
+                                                <actions>
+                                                   <action type="save">
+                                                      <models>
+                                                         <model>NewNotesAll</model>
+                                                      </models>
+                                                   </action>
+                                                   <action type="requeryModels" behavior="standard">
+                                                      <models>
+                                                         <model>NotesAll</model>
+                                                         <model>SealedNotesAll</model>
+                                                      </models>
+                                                   </action>
+                                                   <action type="closeTopmostPopup"/>
+                                                </actions>
+                                             </action>
+                                             <action type="multi" label="Cancel and Close" icon="sk-icon-cancel">
+                                                <actions>
+                                                   <action type="cancel">
+                                                      <models>
+                                                         <model>NewNotesAll</model>
+                                                      </models>
+                                                   </action>
+                                                   <action type="closeTopmostPopup"/>
+                                                </actions>
+                                             </action>
+                                          </actions>
+                                          <conditions>
+                                             <condition type="contextrow" field="Id" mergefield="Id"/>
+                                          </conditions>
+                                       </pagetitle>
+                                       <basicfieldeditor showheader="true" showsavecancel="false" model="NewNotesAll" buttonposition="" mode="edit" layout="">
+                                          <columns>
+                                             <column width="100%">
+                                                <sections>
+                                                   <section title="Add New Case Note" collapsible="no" showheader="false">
+                                                      <fields>
+                                                         <field id="Program__c" valuehalign="" type="" required="true"/>
+                                                         <field id="Note_Type__c" valuehalign="" type="" required="true"/>
+                                                         <field id="Alert__c"/>
+                                                         <field id="Case_Note_Date__c" valuehalign="" type=""/>
+                                                         <field id="Is_Case_Note_Sealed__c" valuehalign="" type="">
+                                                            <label>Seal Case Note</label>
+                                                         </field>
+                                                         <field id="Comments__c" valuehalign="" type="">
+                                                            <label>Case Note</label>
+                                                         </field>
+                                                      </fields>
+                                                   </section>
+                                                </sections>
+                                             </column>
+                                          </columns>
+                                          <conditions>
+                                             <condition type="contextrow" field="Id" mergefield="Id"/>
+                                          </conditions>
+                                       </basicfieldeditor>
+                                    </components>
+                                 </popup>
+                              </action>
+                           </actions>
+                        </action>
+                     </actions>
+                     <exportproperties usetablecolumns="true" appendrowidcolumn="false"/>
+                  </skootable>
+                  <panelset type="vertical">
+                     <panels>
+                        <panel width="225">
+                           <components>
+                              <template multiple="true" model="NotesPretrial" allowhtml="true" cssclass="sealedCaseNote">
+                                 <contents>Upon receiving an inquiry of a sealed record, except otherwise provided by statute, CJSD staff shall reply that a CJSD record does not exist with respect to this individual.
+</contents>
+                                 <renderconditions logictype="or"/>
+                              </template>
+                           </components>
+                        </panel>
+                     </panels>
+                     <renderconditions logictype="or">
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SealedNotesAll" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                     </renderconditions>
+                  </panelset>
+               </components>
+            </tab>
+         </tabs>
+         <renderconditions logictype="and"/>
+      </tabset>
+   </components>
+   <resources>
+      <labels/>
+      <javascript>
+         <jsitem location="inlinesnippet" name="HighlightRow" cachelocation="false">var field = arguments[0]; 
+ $ = skuid.$;
+ value = skuid.utils.decodeHTML(arguments[1]); 
+skuid.ui.fieldRenderers[field.metadata.displaytype][field.mode](field,value); 
+var tempModel = field.model;
+var row = field.item.row;
+var CASE_SEALED = "Is_Case_Note_Sealed__c";
+var flag = tempModel.getFieldValue(row,CASE_SEALED);
+if (flag === true){
+    field.item.element.addClass("sealed-case");
+    } else { 
+     field.item.element.addClass("unsealed-case");
+}
+
+
+</jsitem>
+         <jsitem location="inlinesnippet" name="AlertRenderer" cachelocation="false">var $ = skuid.$;
+var field = arguments[0];
+var value = arguments[1];
+
+switch( field.mode ){
+    case 'edit':
+        skuid.ui.fieldRenderers[field.metadata.displaytype].edit( field, value );
+        break;
+
+    case 'read':
+    case 'readonly':
+        var cellElem = field.element;
+        var iconElem =
+            $( '&lt;div&gt;' )
+                .addClass('ui-silk')
+                .appendTo( cellElem );
+         
+        if( value === true)
+        {
+            iconElem.addClass('ui-silk-flag-red');
+        } else {
+            iconElem.addClass('ui-silk-flag-blue');
+        }
+        break;
+}
+</jsitem>
+      </javascript>
+      <css>
+         <cssitem location="inline" name="Alerts" cachelocation="false">.alerts {
+    font-size:15px;
+    color: red;
+    text-decoration: underline;
+    position:relative;left:10px;
+  }</cssitem>
+         <cssitem location="inline" name="MHLongLabels" cachelocation="false">div.MHLongLabels:first-child{
+     width:750px;
+   }
+div.MHLongLabels:last-child{
+    align:right;
+ float:right;
+   width:10px;
+  
+  
+}</cssitem>
+         <cssitem location="inline" name="HighlightRow" cachelocation="false">.sealedCaseNote{
+    margin-left:10px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    background-color: #EBF5FF; 
+    color: #FF5050;
+    border: #B0C4DE;
+	border-style: solid;
+    font: italic bold 6px/16px Georgia, serif;
+}
+
+table.nx-skootable-data tbody tr.sealed-case td {    
+   background-color: #EBF5FF; 
+   color:  #FF5050 ;
+
+}
+
+table.nx-skootable-data tbody tr.unsealed-case td {    
+   background-color: white;
+ }
+
+</cssitem>
+         <cssitem location="inline" name="hideCheckBox" cachelocation="false">.nx-skootable-data tr .checkcolumn input[type=checkbox]{
+    display: none !important;
+}
+
+.nx-skootable-data tr td .nx-skootable-rowselect{
+    display: none !important;
+}</cssitem>
+      </css>
+   </resources>
+</skuidpage>

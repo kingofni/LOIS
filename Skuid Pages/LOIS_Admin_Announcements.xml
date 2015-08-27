@@ -1,0 +1,109 @@
+<skuidpage unsavedchangeswarning="yes" showsidebar="true" showheader="true">
+   <models>
+      <model id="Blog" limit="" query="true" createrowifnonefound="false" sobject="LOIS_BLOG__c" doclone="" type="" orderby="AlertUntil__c desc">
+         <fields>
+            <field id="AlertUntil__c"/>
+            <field id="Alerts__c"/>
+            <field id="Name"/>
+            <field id="DisplayOnTop__c"/>
+            <field id="Location__c"/>
+            <field id="Note__c"/>
+            <field id="Note_Type__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="ADMIN" enclosevalueinquotes="true" field="Location__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="BlogMaintenance" limit="50" query="true" createrowifnonefound="false" sobject="LOIS_BLOG__c" doclone="" type="" orderby="">
+         <fields>
+            <field id="AlertUntil__c"/>
+            <field id="Alerts__c"/>
+            <field id="Name"/>
+            <field id="DisplayOnTop__c"/>
+            <field id="Location__c"/>
+            <field id="Note__c"/>
+            <field id="Note_Type__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" field="Location__c" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Location__c" state="filterableoff" value=""/>
+            <condition type="fieldvalue" field="CreatedById" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__CreatedById" state="filterableoff" value=""/>
+         </conditions>
+         <actions/>
+      </model>
+   </models>
+   <components>
+      <tabset rememberlastusertab="false" defertabrendering="true" renderas="">
+         <tabs>
+            <tab name="New Tab" icon="Announcements">
+               <components>
+                  <pagetitle model="BlogMaintenance">
+                     <maintitle>System Wide Announcements</maintitle>
+                     <actions/>
+                  </pagetitle>
+                  <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="true" model="Blog" buttonposition="" mode="read">
+                     <fields>
+                        <field id="Note__c"/>
+                        <field id="DisplayOnTop__c" type="" valuehalign=""/>
+                        <field id="AlertUntil__c"/>
+                     </fields>
+                     <rowactions>
+                        <action type="edit"/>
+                        <action type="delete"/>
+                     </rowactions>
+                     <massactions usefirstitemasdefault="true">
+                        <action type="massupdate"/>
+                        <action type="massdelete"/>
+                     </massactions>
+                     <views>
+                        <view type="standard"/>
+                     </views>
+                  </skootable>
+               </components>
+            </tab>
+            <tab name="Blog Management" loadlazypanels="true" icon="sk-icon-feed">
+               <components>
+                  <pagetitle model="BlogMaintenance">
+                     <maintitle>All Blog Entries For Management</maintitle>
+                     <subtitle>
+                        <template>{{Model.label}}</template>
+                     </subtitle>
+                     <actions/>
+                  </pagetitle>
+                  <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="true" model="BlogMaintenance" buttonposition="" mode="read">
+                     <fields>
+                        <field id="Alerts__c"/>
+                        <field id="Location__c"/>
+                        <field id="Note_Type__c"/>
+                        <field id="Note__c"/>
+                        <field id="CreatedById" valuehalign="" type=""/>
+                     </fields>
+                     <rowactions>
+                        <action type="edit"/>
+                        <action type="delete"/>
+                     </rowactions>
+                     <massactions usefirstitemasdefault="true">
+                        <action type="massupdate"/>
+                        <action type="massdelete"/>
+                     </massactions>
+                     <views>
+                        <view type="standard"/>
+                     </views>
+                     <filters>
+                        <filter type="select" filteroffoptionlabel="All Locations" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="auto" conditionfield="Location__c"/>
+                        <filter type="select" filteroffoptionlabel="Created By" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="auto" conditionfield="CreatedById"/>
+                     </filters>
+                  </skootable>
+               </components>
+            </tab>
+         </tabs>
+      </tabset>
+   </components>
+   <resources>
+      <labels/>
+      <javascript/>
+      <css/>
+   </resources>
+</skuidpage>

@@ -1,0 +1,1650 @@
+<skuidpage unsavedchangeswarning="yes" showsidebar="false" showheader="false" tabtooverride="LOIS_Offender__c">
+   <models>
+      <model id="ASD_Program_ActiveCases" limit="20" query="true" createrowifnonefound="false" sobject="ASD_Program__c" doclone="" type="">
+         <fields>
+            <field id="Name"/>
+            <field id="Contact_Date__c"/>
+            <field id="Closure_Notes__c"/>
+            <field id="CreatedDate"/>
+            <field id="MITT_Sent_Date__c"/>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Outcome__c"/>
+            <field id="Outcome_Detail__c"/>
+            <field id="Program__c"/>
+            <field id="Program_Detail_Notes__c"/>
+            <field id="Program_End_Date__c"/>
+            <field id="Program_Ended_By__c"/>
+            <field id="Program_Start_Date__c"/>
+            <field id="Status__c"/>
+            <field id="Status_Hold_Type__c"/>
+            <field id="ASD_Case_Manager__c"/>
+            <field id="ASD_Case_Manager__r.Name"/>
+            <field id="Specialty_Court__c"/>
+            <field id="Status_FTA_End_Date__c"/>
+            <field id="Status_FTA_Start_Date__c"/>
+            <field id="Status_Waitlist_End_Date__c"/>
+            <field id="Status_Waitlist_Start_Date__c"/>
+            <field id="Status_Hold_Start_Date__c"/>
+            <field id="Status_Hold_End_Date__c"/>
+            <field id="Furlough_Return_Start_Date__c"/>
+            <field id="Status_Active_Start_Date__c"/>
+            <field id="Status_Active_End_Date__c"/>
+            <field id="Id"/>
+            <field id="Days_Sentenced__c"/>
+         </fields>
+         <conditions>
+            <condition type="param" value="offenderid" field="Offender__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="blank" value="null" field="Program_End_Date__c" operator="=" enclosevalueinquotes="false"/>
+            <condition type="fieldvalue" field="Program__c" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Program__c" state="filterableoff" value=""/>
+            <condition type="fieldvalue" field="Status__c" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Status__c" state="filterableoff" value=""/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModels" model="ASD_Program_AllCases" behavior="standard">
+                     <models>
+                        <model>ASD_Program_ActiveCases</model>
+                        <model>ASD_Program_AllCases</model>
+                     </models>
+                  </action>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="Program_Case" limit="20" query="false" createrowifnonefound="false" sobject="ASD_Program_Case__c" doclone="" type="">
+         <fields>
+            <field id="ASD_Program__c"/>
+            <field id="ASD_Program__r.Name"/>
+            <field id="Criminal_History__c"/>
+            <field id="Criminal_History__r.Name"/>
+            <field id="Criminal_History__r.CaseNumber__c"/>
+            <field id="Criminal_History__r.CaseNumber__r.Name"/>
+            <field id="Criminal_History__r.CaseNumber__r.CaseNumberLong__c"/>
+            <field id="Criminal_History__r.Date_of_Original_Sentence__c"/>
+            <field id="Criminal_History__r.Date_of_Recent_Action_N_Notes__c"/>
+            <field id="Criminal_History__r.Offense_Date__c"/>
+            <field id="Criminal_History__r.CreatedById"/>
+            <field id="Criminal_History__r.CreatedBy.Name"/>
+            <field id="Criminal_History__r.County__c"/>
+            <field id="Criminal_History__r.CaseNumber__r.Location_Code__c"/>
+            <field id="Id"/>
+            <field id="ASD_Courtroom__c"/>
+            <field id="ASD_Judge__c"/>
+            <field id="ASD_Notes__c"/>
+            <field id="Name"/>
+            <field id="ASD_Status__c"/>
+            <field id="ASD_Three_Plus_DUIs__c"/>
+            <field id="ASD_Probation_Type__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="ASD_Program__c" state="filterableoff" inactive="true" name="ASD_Program__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="ASD_Sentences_ActiveCases" limit="20" query="false" createrowifnonefound="false" sobject="ASD_Sentence__c" doclone="" type="" orderby="CreatedDate ASC" queryallrows="false">
+         <fields>
+            <field id="Name"/>
+            <field id="CreatedDate"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="Id"/>
+            <field id="Sentence_Comments__c"/>
+            <field id="Sentence_Measure__c"/>
+            <field id="Sentence_Start_Date__c"/>
+            <field id="Relation_to_Other_Case__c"/>
+            <field id="Days_Adjusted__c"/>
+            <field id="Hours_Adjusted__c"/>
+            <field id="Nights_Adjusted__c"/>
+            <field id="Remaining_Days_After_Adjustment__c"/>
+            <field id="Remaining_Nights_After_Adjustment__c"/>
+            <field id="Remaining_Hours_After_Adjustment__c"/>
+            <field id="Time_Remaining__c"/>
+            <field id="Days_Served_Till_Date__c"/>
+            <field id="Nights_Served_Till_date__c"/>
+            <field id="Remaining_Days_Before_Adjustment__c"/>
+            <field id="Remaining_Nights_Before_Adjustment__c"/>
+            <field id="Sentence_End_Date__c"/>
+            <field id="Sentence_Quantity__c"/>
+            <field id="Projected_Sentence_End_Date__c"/>
+            <field id="ASD_Program_Case__c"/>
+            <field id="ASD_Program_Case__r.Name"/>
+            <field id="Row_Marked_for_Deletion__c"/>
+            <field id="Actual_Sentence_End_Date__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="ASD_Program_Case__c" state="filterableoff" inactive="true" name="ASD_Program_Case__c"/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModel" model="ASD_Sentences_ActiveCases" behavior="standard"/>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="Crim_Charges_ActiveCases" limit="10" query="false" createrowifnonefound="false" sobject="Criminal_History_Charge__c" doclone="" type="">
+         <fields>
+            <field id="Charge__c"/>
+            <field id="Charge__r.Name"/>
+            <field id="Charge_Disposition__c"/>
+            <field id="Charge_Status__c"/>
+            <field id="Class_Level__c"/>
+            <field id="Criminal_History__c"/>
+            <field id="Criminal_History__r.Name"/>
+            <field id="Charge__r.CRS__c"/>
+            <field id="Charge__r.CRS_SearchField__c"/>
+            <field id="Charge__r.Comment__c"/>
+            <field id="Charge__r.Active__c"/>
+            <field id="Charge__r.Literal__c"/>
+            <field id="ASD_Comments__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Criminal_History__c" state="filterableoff" inactive="true" name="Criminal_History__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="ASD_Adjustments_ActiveCases" limit="20" query="false" createrowifnonefound="false" sobject="ASD_Sentence_Adjustment__c" doclone="" type="" orderby="CreatedDate ASC">
+         <fields>
+            <field id="ASD_Sentence__c"/>
+            <field id="ASD_Sentence__r.Name"/>
+            <field id="Adjustment_Comments__c"/>
+            <field id="Adjustment_Measure__c"/>
+            <field id="Adjustment_Quantity__c"/>
+            <field id="Reason_for_Adjustment__c"/>
+            <field id="Type_of_Adjustment__c"/>
+            <field id="Final_Adjustment_Quantity__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="CreatedDate"/>
+            <field id="ASD_Sentence__r.Sentence_Measure__c"/>
+            <field id="ASD_Sentence__r.Id"/>
+            <field id="ASD_Sentence__r.Sentence_End_Date__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="ASD_Sentence__c" state="filterableoff" inactive="true" name="ASD_Sentence__c"/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModel" model="ASD_Sentences_ActiveCases" behavior="standard"/>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="New_Sentence" limit="1" query="false" createrowifnonefound="false" sobject="ASD_Sentence__c" doclone="" type="">
+         <fields>
+            <field id="Name"/>
+            <field id="CreatedDate"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="Id"/>
+            <field id="Sentence_Comments__c"/>
+            <field id="Sentence_Measure__c"/>
+            <field id="Sentence_Start_Date__c"/>
+            <field id="Relation_to_Other_Case__c"/>
+            <field id="Days_Adjusted__c"/>
+            <field id="Hours_Adjusted__c"/>
+            <field id="Nights_Adjusted__c"/>
+            <field id="Sentence_Quantity__c"/>
+            <field id="ASD_Program_Case__c"/>
+            <field id="ASD_Program_Case__r.Name"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="ASD_Program_Case__c" state="filterableoff" inactive="true" name="Criminal_History_Case__c" operator="="/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="CaseNumber" limit="" query="true" createrowifnonefound="false" sobject="CaseNumber__c" doclone="" type="" orderby="CaseNumberLong__c">
+         <fields>
+            <field id="CaseFormat__c"/>
+            <field id="CaseNumber__c"/>
+            <field id="CaseType__c"/>
+            <field id="Location_Code__c"/>
+            <field id="Sequence_Number__c"/>
+            <field id="Year__c"/>
+            <field id="CaseNumberLong__c"/>
+            <field id="Offender_Search__c"/>
+            <field id="Offender_Search__r.Name"/>
+            <field id="CaseNumberShort__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="CreatedDate"/>
+            <field id="Program__c"/>
+            <field id="Current__c"/>
+            <field id="Id"/>
+         </fields>
+         <conditions>
+            <condition type="param" value="offenderid" field="Offender_Search__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="CaseNumberNew" limit="" query="false" createrowifnonefound="false" sobject="CaseNumber__c" doclone="" type="">
+         <fields>
+            <field id="CaseFormat__c"/>
+            <field id="CaseNumber__c"/>
+            <field id="CaseType__c"/>
+            <field id="Location_Code__c"/>
+            <field id="Sequence_Number__c"/>
+            <field id="Year__c"/>
+            <field id="CaseNumberLong__c"/>
+            <field id="Offender_Search__c"/>
+            <field id="Offender_Search__r.Name"/>
+            <field id="CaseNumberShort__c"/>
+            <field id="Current__c"/>
+            <field id="Program__c"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="CreatedDate"/>
+         </fields>
+         <conditions>
+            <condition type="param" value="OffenderId" field="Offender_Search__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="save"/>
+               </actions>
+               <events/>
+            </action>
+         </actions>
+      </model>
+      <model id="ASD_Program_Change_History" limit="" query="true" createrowifnonefound="false" sobject="ASD_Program__History" doclone="" type="" orderby="CreatedDate desc">
+         <fields>
+            <field id="NewValue"/>
+            <field id="Field"/>
+            <field id="OldValue"/>
+            <field id="ParentId"/>
+            <field id="Parent.Name"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="CreatedDate"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="ParentId" state="filterableoff" inactive="true" name="ParentId"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="ASD_Program_AllCases" limit="20" query="true" createrowifnonefound="false" sobject="ASD_Program__c" doclone="" type="">
+         <fields>
+            <field id="Name"/>
+            <field id="Contact_Date__c"/>
+            <field id="Closure_Notes__c"/>
+            <field id="CreatedDate"/>
+            <field id="MITT_Sent_Date__c"/>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Outcome__c"/>
+            <field id="Outcome_Detail__c"/>
+            <field id="Program__c"/>
+            <field id="Program_Detail_Notes__c"/>
+            <field id="Program_End_Date__c"/>
+            <field id="Program_Ended_By__c"/>
+            <field id="Program_Start_Date__c"/>
+            <field id="Status__c"/>
+            <field id="Status_Hold_Type__c"/>
+            <field id="ASD_Case_Manager__c"/>
+            <field id="ASD_Case_Manager__r.Name"/>
+            <field id="Specialty_Court__c"/>
+            <field id="Status_FTA_End_Date__c"/>
+            <field id="Status_FTA_Start_Date__c"/>
+            <field id="Status_Waitlist_End_Date__c"/>
+            <field id="Status_Waitlist_Start_Date__c"/>
+            <field id="Furlough_Return_Start_Date__c"/>
+            <field id="Status_Active_Start_Date__c"/>
+            <field id="Status_Active_End_Date__c"/>
+            <field id="Status_Hold_End_Date__c"/>
+            <field id="Status_Hold_Start_Date__c"/>
+            <field id="Id"/>
+            <field id="Days_Sentenced__c"/>
+         </fields>
+         <conditions>
+            <condition type="param" value="offenderid" field="Offender__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="fieldvalue" field="Program__c" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Program__c" state="filterableoff" value=""/>
+            <condition type="fieldvalue" field="Status__c" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Status__c" state="filterableoff" value=""/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModels" model="ASD_Program_ActiveCases" behavior="standard">
+                     <models>
+                        <model>ASD_Program_ActiveCases</model>
+                        <model>ASD_Program_AllCases</model>
+                     </models>
+                  </action>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="OffenderDocs" limit="20" query="false" createrowifnonefound="false" sobject="Offender_Docs__c" doclone="" type="" orderby="CreatedDate desc">
+         <fields>
+            <field id="Document__c"/>
+            <field id="Document__r.Name"/>
+            <field id="Document__r.skuid__AttachmentId__c"/>
+            <field id="Document_Name__c"/>
+            <field id="Document_Type__c"/>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Program__c"/>
+            <field id="Id"/>
+            <field id="Name"/>
+            <field id="CreatedById"/>
+            <field id="CreatedBy.Name"/>
+            <field id="CreatedDate"/>
+            <field id="Case_Number__c"/>
+            <field id="Case_Number__r.Name"/>
+            <field id="Case_Number__r.CaseNumberLong__c"/>
+            <field id="Case_Number__r.CaseNumber__c"/>
+         </fields>
+         <conditions>
+            <condition type="param" value="offenderid" field="Offender__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+            <condition type="multiple" value="" field="Program__c" operator="in" novaluebehavior="" enclosevalueinquotes="true">
+               <values>
+                  <value>EHD</value>
+                  <value>WKE</value>
+                  <value>WR</value>
+                  <value>MID</value>
+                  <value>UPS</value>
+               </values>
+            </condition>
+            <condition type="fieldvalue" value="MITTS" enclosevalueinquotes="true" field="Document_Type__c"/>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Case_Number__c" state="filterableoff" inactive="true" name="Case_Number__c"/>
+         </conditions>
+         <actions/>
+      </model>
+   </models>
+   <components>
+      <tabset rememberlastusertab="true" defertabrendering="true" renderas="">
+         <tabs>
+            <tab name="Offender Program / Case / Sentence">
+               <components>
+                  <pagetitle model="ASD_Program_ActiveCases">
+                     <actions>
+                        <action type="custom" label="Manage Case Numbers" icon="ui-silk-images" window="self" url="/apex/skuid__ui?page=LOIS_Offender_Template_PTS&amp;id={{$Model.Supervision_ActiveCases.data.0.Offender__c}}#MNGCASE" snippet="ManageCaseNum">
+                           <actions>
+                              <action type="redirect" window="blank" url="/apex/skuid__ui?page=LOIS_Offender_Template_PTS&amp;id={{$Model.Supervision_ActiveCases.data.0.Offender__c}}#MNGCASE "/>
+                           </actions>
+                           <popup title="New Popup" width="90%">
+                              <components/>
+                           </popup>
+                        </action>
+                        <action type="multi" label="Add Case" icon="ui-silk-briefcase">
+                           <actions>
+                              <action type="cancel">
+                                 <models>
+                                    <model>CaseNumberNew</model>
+                                 </models>
+                              </action>
+                              <action type="emptyModelData">
+                                 <models>
+                                    <model>CaseNumberNew</model>
+                                 </models>
+                              </action>
+                              <action type="createRow" model="CaseNumberNew" appendorprepend="prepend" defaultmodefornewitems="edit"/>
+                              <action type="showPopup">
+                                 <popup title="Add Case" width="90%">
+                                    <components>
+                                       <pagetitle model="CaseNumberNew">
+                                          <actions>
+                                             <action type="multi" label="Save &amp; Close">
+                                                <actions>
+                                                   <action type="blockUI" message="Adding Case Number" timeout="500"/>
+                                                   <action type="save" rollbackonanyerror="true">
+                                                      <models>
+                                                         <model>CaseNumberNew</model>
+                                                      </models>
+                                                   </action>
+                                                   <action type="requeryModel" model="CaseNumber" behavior="standard"/>
+                                                   <action type="save" rollbackonanyerror="false">
+                                                      <models>
+                                                         <model>Supervision_ActiveCases</model>
+                                                      </models>
+                                                   </action>
+                                                   <action type="requeryModel" model="Supervision_ActiveCases" behavior="standard"/>
+                                                   <action type="unblockUI"/>
+                                                   <action type="closeTopmostPopup"/>
+                                                </actions>
+                                             </action>
+                                             <action type="multi" label="Cancel Changes">
+                                                <actions>
+                                                   <action type="cancel">
+                                                      <models>
+                                                         <model>CaseNumberNew</model>
+                                                      </models>
+                                                   </action>
+                                                   <action type="emptyModelData">
+                                                      <models>
+                                                         <model>CaseNumberNew</model>
+                                                      </models>
+                                                   </action>
+                                                   <action type="closeTopmostPopup"/>
+                                                </actions>
+                                             </action>
+                                          </actions>
+                                       </pagetitle>
+                                       <basicfieldeditor showheader="true" showsavecancel="false" model="CaseNumberNew" buttonposition="" mode="edit" layout="">
+                                          <columns>
+                                             <column width="100%">
+                                                <sections>
+                                                   <section title="" collapsible="no">
+                                                      <fields>
+                                                         <field id="CaseFormat__c" valuehalign="" type="">
+                                                            <label>Case Format</label>
+                                                         </field>
+                                                         <field id="Location_Code__c" valuehalign="" type="" cssclass="longPickList">
+                                                            <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                         </field>
+                                                         <field id="Year__c" valuehalign="" type="">
+                                                            <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                               <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CaseNumberNew" sourcetype="fieldvalue" field="CaseFormat__c" value="Conforming"/>
+                                                            </renderconditions>
+                                                         </field>
+                                                         <field id="CaseType__c" valuehalign="" type="">
+                                                            <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                               <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CaseNumberNew" sourcetype="fieldvalue" field="CaseFormat__c" value="Conforming"/>
+                                                            </renderconditions>
+                                                            <label>Case Type</label>
+                                                         </field>
+                                                         <field id="Sequence_Number__c" valuehalign="" type="">
+                                                            <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                               <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CaseNumberNew" sourcetype="fieldvalue" field="CaseFormat__c" value="Conforming"/>
+                                                            </renderconditions>
+                                                         </field>
+                                                         <field id="CaseNumber__c" valuehalign="" type="">
+                                                            <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                               <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CaseNumberNew" sourcetype="fieldvalue" field="CaseFormat__c" value="Non-Conforming"/>
+                                                            </renderconditions>
+                                                            <label>Case Number</label>
+                                                         </field>
+                                                      </fields>
+                                                   </section>
+                                                </sections>
+                                             </column>
+                                          </columns>
+                                       </basicfieldeditor>
+                                    </components>
+                                 </popup>
+                              </action>
+                           </actions>
+                        </action>
+                        <action type="redirect" label="Help" window="blank" icon="sk-icon-help" url="https://sites.google.com/a/co.larimer.co.us/lois-help/"/>
+                     </actions>
+                  </pagetitle>
+                  <tabset rememberlastusertab="false" defertabrendering="true" renderas="">
+                     <tabs>
+                        <tab name="Active Cases">
+                           <components>
+                              <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="true" model="ASD_Program_ActiveCases" buttonposition="" mode="read">
+                                 <fields>
+                                    <field id="Program__c" valuehalign="" type="">
+                                       <label>Program Name</label>
+                                    </field>
+                                    <field id="Status__c" valuehalign="" type="">
+                                       <label>Program Status</label>
+                                    </field>
+                                    <field id="ASD_Case_Manager__c" valuehalign="" type="CUSTOM" optionsource="" snippet="removeHyperlink">
+                                       <searchfields/>
+                                       <filters>
+                                          <filter type="fieldvalue" operator="=" enclosevalueinquotes="true" field="Department" value="ASD"/>
+                                          <filter type="fieldvalue" operator="=" enclosevalueinquotes="false" field="IsActive" value="true"/>
+                                       </filters>
+                                    </field>
+                                    <field id="Program_Start_Date__c"/>
+                                    <field id="Program_End_Date__c"/>
+                                 </fields>
+                                 <rowactions>
+                                    <action type="delete"/>
+                                    <action type="multi" label="Status Change History" icon="ui-silk-text-signature">
+                                       <actions>
+                                          <action type="blockUI" message="Loading Data..." timeout="500"/>
+                                          <action type="setCondition" model="ASD_Program_Change_History" condition="ParentId" value="{{Id}}"/>
+                                          <action type="requeryModel" model="ASD_Program_Change_History" behavior="standard"/>
+                                          <action type="showPopup">
+                                             <popup title="Status Change History" width="90%">
+                                                <components>
+                                                   <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" createrecords="false" model="ASD_Program_Change_History" buttonposition="" mode="readonly" emptysearchbehavior="query">
+                                                      <fields>
+                                                         <field id="Field" valuehalign="" type=""/>
+                                                         <field id="OldValue" valuehalign="" type=""/>
+                                                         <field id="NewValue"/>
+                                                         <field id="CreatedDate" valuehalign="" type="">
+                                                            <label>Modified Date Time</label>
+                                                         </field>
+                                                         <field id="CreatedBy.Name" valuehalign="" type="">
+                                                            <label>Modified By</label>
+                                                         </field>
+                                                      </fields>
+                                                      <rowactions/>
+                                                      <massactions usefirstitemasdefault="true"/>
+                                                      <views>
+                                                         <view type="standard"/>
+                                                      </views>
+                                                      <conditions>
+                                                         <condition type="contextrow" field="ParentId" mergefield="Id"/>
+                                                      </conditions>
+                                                      <searchfields/>
+                                                      <renderconditions logictype="and"/>
+                                                   </skootable>
+                                                </components>
+                                             </popup>
+                                          </action>
+                                          <action type="unblockUI"/>
+                                       </actions>
+                                    </action>
+                                    <action type="multi" label="Program Details / Cases" icon="ui-silk-arrow-down">
+                                       <actions>
+                                          <action type="drawer" openicon="ui-silk-arrow-up">
+                                             <drawer title="Drawer Area" width="90%" closehandle="true">
+                                                <components>
+                                                   <basicfieldeditor showheader="true" showsavecancel="false" model="ASD_Program_ActiveCases" buttonposition="" mode="edit" layout="">
+                                                      <columns>
+                                                         <column width="50%">
+                                                            <sections>
+                                                               <section title="Program Details" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="Program__c"/>
+                                                                     <field id="Specialty_Court__c" valuehalign="" type=""/>
+                                                                     <field id="ASD_Case_Manager__c" valuehalign="" type="REFPICK" optionsource="" displaytemplate="{{Name}}" searchtemplate="{{Name}}">
+                                                                        <label>ASD Case Manager</label>
+                                                                        <searchfields/>
+                                                                        <filters>
+                                                                           <filter type="fieldvalue" operator="=" enclosevalueinquotes="true" field="Department" value="ASD"/>
+                                                                           <filter type="fieldvalue" operator="=" enclosevalueinquotes="false" field="IsActive" value="true"/>
+                                                                        </filters>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="Program_Start_Date__c" valuehalign="" type=""/>
+                                                                     <field id="Program_End_Date__c" valuehalign="" type=""/>
+                                                                  </fields>
+                                                               </section>
+                                                               <section title="New Section" collapsible="no" showheader="false">
+                                                                  <fields>
+                                                                     <field id="Days_Sentenced__c" decimalplaces="" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                                           <rendercondition type="fieldvalue" operator="gte" enclosevalueinquotes="false" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Days_Sentenced__c" value="0.0"/>
+                                                                        </renderconditions>
+                                                                        <label>Total Days for Stay</label>
+                                                                     </field>
+                                                                     <field id="Outcome__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="Outcome_Detail__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="Closure_Notes__c" valuehalign="" type=""/>
+                                                                     <field id="Program_Ended_By__c" valuehalign="" type="" readonly="true">
+                                                                        <label>Staff</label>
+                                                                     </field>
+                                                                  </fields>
+                                                                  <renderconditions logictype="and">
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Program_End_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                  </renderconditions>
+                                                               </section>
+                                                               <section title="New Section" collapsible="no" showheader="false">
+                                                                  <fields>
+                                                                     <field id="Program_Detail_Notes__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                  </fields>
+                                                               </section>
+                                                            </sections>
+                                                         </column>
+                                                         <column width="50%">
+                                                            <sections>
+                                                               <section title="Additional Program Details" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="Status__c" valuehalign="" type=""/>
+                                                                  </fields>
+                                                               </section>
+                                                               <section title="Pending" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="MITT_Sent_Date__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                        <label>MITT Entry Date</label>
+                                                                     </field>
+                                                                     <field id="Contact_Date__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                        <label>Contact By Date</label>
+                                                                     </field>
+                                                                  </fields>
+                                                                  <renderconditions logictype="or">
+                                                                     <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Status__c" value="Pending Contact"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="MITT_Sent_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Contact_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                  </renderconditions>
+                                                               </section>
+                                                               <section title="Waitlist" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="Status_Waitlist_Start_Date__c" valuehalign="" type="">
+                                                                        <label>Start Date</label>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="Status_Waitlist_End_Date__c" valuehalign="" type="">
+                                                                        <label>End Date</label>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                  </fields>
+                                                                  <renderconditions logictype="or">
+                                                                     <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Status__c" value="Waitlist"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Status_Waitlist_Start_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Status_Waitlist_End_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                  </renderconditions>
+                                                               </section>
+                                                               <section title="Active" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="Status_Active_Start_Date__c" valuehalign="" type="">
+                                                                        <label>Start Date</label>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="Status_Active_End_Date__c" valuehalign="" type="">
+                                                                        <label>End Date</label>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                  </fields>
+                                                                  <renderconditions logictype="or">
+                                                                     <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Status__c" value="Active"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Status_Active_Start_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Status_Active_End_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                  </renderconditions>
+                                                               </section>
+                                                               <section title="FTA" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="Status_FTA_Start_Date__c" valuehalign="" type="">
+                                                                        <label>Start Date</label>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="Status_FTA_End_Date__c" valuehalign="" type="">
+                                                                        <label>End Date</label>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                  </fields>
+                                                                  <renderconditions logictype="or">
+                                                                     <rendercondition type="fieldvalue" operator="=" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Status__c" value="FTA" enclosevalueinquotes="true"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Status_FTA_Start_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Status_FTA_End_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                  </renderconditions>
+                                                               </section>
+                                                               <section title="Hold" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="Status_Hold_Type__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="Status_Hold_Start_Date__c" valuehalign="" type="">
+                                                                        <label>Start Date</label>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="Status_Hold_End_Date__c" valuehalign="" type="">
+                                                                        <label>End Date</label>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="Furlough_Return_Start_Date__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="or" onhidedatabehavior="keep">
+                                                                           <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Status_Hold_Type__c" value="Furlough"/>
+                                                                           <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Furlough_Return_Start_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                        </renderconditions>
+                                                                        <label>Furlough Return Date</label>
+                                                                     </field>
+                                                                  </fields>
+                                                                  <renderconditions logictype="or">
+                                                                     <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Status__c" value="Hold"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Status_Hold_Start_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Status_Hold_End_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_ActiveCases" sourcetype="fieldvalue" field="Status_Hold_Type__c" value="null" enclosevalueinquotes="false"/>
+                                                                  </renderconditions>
+                                                               </section>
+                                                            </sections>
+                                                         </column>
+                                                      </columns>
+                                                   </basicfieldeditor>
+                                                   <pagetitle model="Program_Case">
+                                                      <maintitle>Cases</maintitle>
+                                                      <actions/>
+                                                   </pagetitle>
+                                                   <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" createrecords="false" model="Program_Case" buttonposition="" mode="read" instantfilters="true" emptysearchbehavior="query">
+                                                      <fields>
+                                                         <field id="Criminal_History__c" valuehalign="" type="" optionsource="" displaytemplate="{{CaseNumber__r.CaseNumberLong__c}}" searchtemplate="{{CaseNumber__r.CaseNumberLong__c}}">
+                                                            <searchfields>
+                                                               <searchfield query="true" return="true" show="true" field="CaseNumber__r.CaseNumberLong__c" operator="contains"/>
+                                                               <searchfield query="true" return="true" show="true" field="CaseNumber__r.Location_Code__c" operator="contains"/>
+                                                               <searchfield query="true" return="true" show="true" field="CaseNumber__r.Year__c" operator="contains"/>
+                                                               <searchfield query="true" return="true" show="true" field="CaseNumber__r.Sequence_Number__c" operator="contains"/>
+                                                            </searchfields>
+                                                            <label>Case Number</label>
+                                                            <filters>
+                                                               <filter type="modelmerge" operator="=" field="Offender__c" value="" novaluebehavior="deactivate" model="ASD_Program_ActiveCases" enclosevalueinquotes="true" mergefield="Offender__c"/>
+                                                            </filters>
+                                                         </field>
+                                                         <field id="Criminal_History__r.CaseNumber__r.Location_Code__c" valuehalign="" type="">
+                                                            <label>County</label>
+                                                         </field>
+                                                         <field id="Criminal_History__r.Offense_Date__c" valuehalign="" type=""/>
+                                                         <field id="Criminal_History__r.Date_of_Original_Sentence__c" valuehalign="" type="">
+                                                            <label>Original Sentence Date</label>
+                                                         </field>
+                                                         <field id="ASD_Status__c" valuehalign="" type=""/>
+                                                      </fields>
+                                                      <rowactions>
+                                                         <action type="edit"/>
+                                                         <action type="multi" label="Delete Record" icon="sk-icon-delete">
+                                                            <actions>
+                                                               <action type="save">
+                                                                  <models>
+                                                                     <model>Program_Case</model>
+                                                                  </models>
+                                                               </action>
+                                                               <action type="markRowsForDeletion" model="Program_Case"/>
+                                                            </actions>
+                                                         </action>
+                                                         <action type="multi" label="Upload MITTS" icon="sk-icon-attachments">
+                                                            <actions>
+                                                               <action type="blockUI" message="Loading MITTS" timeout="500"/>
+                                                               <action type="setCondition" model="OffenderDocs" condition="Case_Number__c" value="{{Criminal_History__r.CaseNumber__c}}"/>
+                                                               <action type="requeryModel" model="OffenderDocs" behavior="standard"/>
+                                                               <action type="showPopup">
+                                                                  <popup title="Upload MITTS" width="90%">
+                                                                     <components>
+                                                                        <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="true" model="OffenderDocs" buttonposition="" mode="read">
+                                                                           <fields>
+                                                                              <field id="Case_Number__c" valuehalign="" type="CUSTOM" optionsource="model" optionmodel="CaseNumber" displaytemplate="{{CaseNumberLong__c}}" searchtemplate="{{CaseNumberLong__c}}" snippet="removeHyperlink" required="true">
+                                                                                 <searchfields/>
+                                                                                 <filters/>
+                                                                                 <label>Case Number</label>
+                                                                              </field>
+                                                                              <field id="Program__c" valuehalign="" type=""/>
+                                                                              <field id="Document_Type__c"/>
+                                                                              <field id="Document_Name__c" valuehalign="" type=""/>
+                                                                              <field id="CreatedBy.Name" valuehalign="" type="">
+                                                                                 <label>Created By</label>
+                                                                              </field>
+                                                                              <field id="CreatedDate" valuehalign="" type=""/>
+                                                                              <field id="Document__c" valuehalign="" type="" optionsource="">
+                                                                                 <searchfields/>
+                                                                                 <filters/>
+                                                                              </field>
+                                                                           </fields>
+                                                                           <rowactions>
+                                                                              <action type="edit"/>
+                                                                           </rowactions>
+                                                                           <massactions usefirstitemasdefault="true"/>
+                                                                           <views>
+                                                                              <view type="standard"/>
+                                                                           </views>
+                                                                           <conditions>
+                                                                              <condition type="contextrow" field="Case_Number__c" mergefield="Criminal_History__r.CaseNumber__c"/>
+                                                                           </conditions>
+                                                                        </skootable>
+                                                                     </components>
+                                                                  </popup>
+                                                               </action>
+                                                               <action type="unblockUI"/>
+                                                            </actions>
+                                                         </action>
+                                                         <action type="multi" label="Case Details / Sentences/ Charges" icon="ui-silk-arrow-down">
+                                                            <actions>
+                                                               <action type="setCondition" model="Crim_Charges_ActiveCases" condition="Criminal_History__c" value="{{Criminal_History__c}}"/>
+                                                               <action type="requeryModel" model="Crim_Charges_ActiveCases" behavior="loadmore"/>
+                                                               <action type="setCondition" model="ASD_Sentences_ActiveCases" condition="ASD_Program_Case__c" value="{{Id}}"/>
+                                                               <action type="requeryModel" model="ASD_Sentences_ActiveCases" behavior="loadmore"/>
+                                                               <action type="drawer" openicon="ui-silk-arrow-up">
+                                                                  <drawer title="Drawer Area" width="90%" closehandle="true">
+                                                                     <components>
+                                                                        <basicfieldeditor showheader="true" showsavecancel="false" model="Program_Case" buttonposition="" mode="edit" layout="">
+                                                                           <columns>
+                                                                              <column width="50%">
+                                                                                 <sections>
+                                                                                    <section title="Case Details" collapsible="no">
+                                                                                       <fields>
+                                                                                          <field id="ASD_Judge__c" valuehalign="" type="">
+                                                                                             <label>Judge</label>
+                                                                                          </field>
+                                                                                          <field id="ASD_Courtroom__c" valuehalign="" type="">
+                                                                                             <label>Courtroom</label>
+                                                                                          </field>
+                                                                                          <field id="ASD_Three_Plus_DUIs__c" valuehalign="" type="">
+                                                                                             <label>3+ DUIs</label>
+                                                                                          </field>
+                                                                                       </fields>
+                                                                                    </section>
+                                                                                 </sections>
+                                                                              </column>
+                                                                              <column width="50%">
+                                                                                 <sections>
+                                                                                    <section title="Additional Case Details" collapsible="no">
+                                                                                       <fields>
+                                                                                          <field id="ASD_Probation_Type__c" valuehalign="" type="">
+                                                                                             <label>Probation Type</label>
+                                                                                          </field>
+                                                                                          <field id="ASD_Notes__c" valuehalign="" type="">
+                                                                                             <label>Notes</label>
+                                                                                          </field>
+                                                                                       </fields>
+                                                                                    </section>
+                                                                                 </sections>
+                                                                              </column>
+                                                                           </columns>
+                                                                           <conditions>
+                                                                              <condition type="contextrow" field="Id" mergefield="Id"/>
+                                                                           </conditions>
+                                                                        </basicfieldeditor>
+                                                                        <custom name="FixCaseChargeLabel" uniqueid="FixCaseChargeLabel"/>
+                                                                        <pagetitle model="Crim_Charges_ActiveCases">
+                                                                           <maintitle>Charges</maintitle>
+                                                                           <actions/>
+                                                                        </pagetitle>
+                                                                        <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" createrecords="true" model="Crim_Charges_ActiveCases" buttonposition="" mode="read" emptysearchbehavior="query" searchplaceholdertext="">
+                                                                           <fields>
+                                                                              <field id="Charge__c" valuehalign="" type="CUSTOM" optionsource="" displaytemplate="{{CRS__c}} : {{Literal__c}}" columnwidth="35%" snippet="removeChargeHyperlink">
+                                                                                 <searchfields>
+                                                                                    <searchfield query="true" return="true" show="true" field="CRS__c" operator="contains">
+                                                                                       <label>CRS</label>
+                                                                                    </searchfield>
+                                                                                    <searchfield query="true" return="true" show="true" field="Literal__c" operator="contains">
+                                                                                       <label>Literal</label>
+                                                                                    </searchfield>
+                                                                                 </searchfields>
+                                                                                 <filters/>
+                                                                              </field>
+                                                                              <field id="Class_Level__c" valuehalign="" type="" columnwidth="15%"/>
+                                                                              <field id="Charge_Disposition__c" valuehalign="" type="CUSTOM" columnwidth="15%" snippet="Default_Charge_Disposition" required="true"/>
+                                                                              <field id="ASD_Comments__c" valuehalign="" type="" columnwidth="35%">
+                                                                                 <label>ASD Comments</label>
+                                                                              </field>
+                                                                           </fields>
+                                                                           <rowactions>
+                                                                              <action type="edit"/>
+                                                                              <action type="delete"/>
+                                                                           </rowactions>
+                                                                           <massactions usefirstitemasdefault="true"/>
+                                                                           <views>
+                                                                              <view type="standard"/>
+                                                                           </views>
+                                                                           <searchfields/>
+                                                                           <conditions>
+                                                                              <condition type="contextrow" field="Criminal_History__c" mergefield="Criminal_History__c"/>
+                                                                           </conditions>
+                                                                        </skootable>
+                                                                        <pagetitle model="ASD_Sentences_ActiveCases">
+                                                                           <actions>
+                                                                              <action type="savecancel"/>
+                                                                           </actions>
+                                                                           <conditions/>
+                                                                           <maintitle>Sentences</maintitle>
+                                                                        </pagetitle>
+                                                                        <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" createrecords="false" model="ASD_Sentences_ActiveCases" buttonposition="" mode="readonly" emptysearchbehavior="query">
+                                                                           <fields>
+                                                                              <field id="Sentence_Start_Date__c" valuehalign="" type="CUSTOM" required="true" snippet="HighlightSentence" columnwidth=""/>
+                                                                              <field id="Sentence_Quantity__c" decimalplaces="" valuehalign="" type="">
+                                                                                 <label>Original Sentence Length</label>
+                                                                              </field>
+                                                                              <field id="Time_Remaining__c" decimalplaces="" valuehalign="" type="">
+                                                                                 <label>Remaining Sentence Length (Post Adjustment)</label>
+                                                                              </field>
+                                                                              <field id="Sentence_Measure__c" valuehalign="" type=""/>
+                                                                              <field id="Projected_Sentence_End_Date__c" valuehalign="" type="">
+                                                                                 <label>Projected End Date (Post Adjustment)</label>
+                                                                              </field>
+                                                                              <field id="Sentence_End_Date__c" valuehalign="" type=""/>
+                                                                              <field id="Actual_Sentence_End_Date__c"/>
+                                                                           </fields>
+                                                                           <rowactions>
+                                                                              <action type="multi" label="Delete" icon="sk-icon-delete">
+                                                                                 <actions>
+                                                                                    <action type="markRowsForDeletion" model="ASD_Sentences_ActiveCases"/>
+                                                                                    <action type="updateRow" fieldmodel="ASD_Sentences_ActiveCases" field="Row_Marked_for_Deletion__c" enclosevalueinquotes="false" value="true"/>
+                                                                                    <action type="blockUI" message="Record flagged for Deletion.. Confirm Delete" timeout="2000"/>
+                                                                                 </actions>
+                                                                                 <renderconditions logictype="and">
+                                                                                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ASD_Sentences_ActiveCases" sourcetype="fieldvalue" field="Row_Marked_for_Deletion__c" value="false"/>
+                                                                                 </renderconditions>
+                                                                              </action>
+                                                                              <action type="multi" label="Sentence Details / Adjustments" icon="ui-silk-arrow-down">
+                                                                                 <actions>
+                                                                                    <action type="setCondition" model="ASD_Adjustments_ActiveCases" condition="ASD_Sentence__c" value="{{Id}}"/>
+                                                                                    <action type="requeryModel" model="ASD_Adjustments_ActiveCases" behavior="loadmore"/>
+                                                                                    <action type="drawer" openicon="ui-silk-arrow-up">
+                                                                                       <drawer title="Drawer Area" width="90%" closehandle="true">
+                                                                                          <components>
+                                                                                             <basicfieldeditor showheader="true" showsavecancel="false" model="ASD_Sentences_ActiveCases" buttonposition="" mode="readonly" layout="">
+                                                                                                <columns>
+                                                                                                   <column width="50%">
+                                                                                                      <sections>
+                                                                                                         <section title="Sentence Details" collapsible="no">
+                                                                                                            <fields>
+                                                                                                               <field id="Sentence_Quantity__c" decimalplaces="" valuehalign="" type="" readonly="true"/>
+                                                                                                               <field id="Sentence_Measure__c" valuehalign="" type="" readonly="true"/>
+                                                                                                               <field id="Sentence_Start_Date__c" valuehalign="" type="" readonly="true"/>
+                                                                                                            </fields>
+                                                                                                         </section>
+                                                                                                      </sections>
+                                                                                                   </column>
+                                                                                                   <column width="50%">
+                                                                                                      <sections>
+                                                                                                         <section title="Additional Sentence Details" collapsible="no">
+                                                                                                            <fields>
+                                                                                                               <field id="Relation_to_Other_Case__c" valuehalign="" type="" readonly="true">
+                                                                                                                  <label>Sentence Type</label>
+                                                                                                               </field>
+                                                                                                               <field id="Sentence_Comments__c" valuehalign="" type="" readonly="true"/>
+                                                                                                               <field id="Sentence_End_Date__c" valuehalign="" type="" readonly="true"/>
+                                                                                                            </fields>
+                                                                                                         </section>
+                                                                                                      </sections>
+                                                                                                   </column>
+                                                                                                </columns>
+                                                                                                <conditions>
+                                                                                                   <condition type="contextrow" field="Id" mergefield="Id"/>
+                                                                                                </conditions>
+                                                                                                <renderconditions logictype="and">
+                                                                                                   <rendercondition type="blank" operator="!=" fieldmodel="ASD_Sentences_ActiveCases" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Sentence_End_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                                                </renderconditions>
+                                                                                             </basicfieldeditor>
+                                                                                             <basicfieldeditor showheader="true" showsavecancel="false" model="ASD_Sentences_ActiveCases" buttonposition="" mode="edit" layout="">
+                                                                                                <columns>
+                                                                                                   <column width="50%">
+                                                                                                      <sections>
+                                                                                                         <section title="Sentence Details" collapsible="no">
+                                                                                                            <fields>
+                                                                                                               <field id="Sentence_Quantity__c" decimalplaces="" valuehalign="" type="" required="true">
+                                                                                                                  <label>Sentence Length</label>
+                                                                                                               </field>
+                                                                                                               <field id="Sentence_Measure__c" valuehalign="" type="" readonly="true" required="true"/>
+                                                                                                               <field id="Sentence_Start_Date__c" valuehalign="" type="" required="true"/>
+                                                                                                            </fields>
+                                                                                                         </section>
+                                                                                                      </sections>
+                                                                                                   </column>
+                                                                                                   <column width="50%">
+                                                                                                      <sections>
+                                                                                                         <section title="Additional Sentence Details" collapsible="no">
+                                                                                                            <fields>
+                                                                                                               <field id="Relation_to_Other_Case__c" valuehalign="" type="">
+                                                                                                                  <label>Sentence Type</label>
+                                                                                                               </field>
+                                                                                                               <field id="Sentence_Comments__c"/>
+                                                                                                               <field id="Sentence_End_Date__c"/>
+                                                                                                            </fields>
+                                                                                                         </section>
+                                                                                                      </sections>
+                                                                                                   </column>
+                                                                                                </columns>
+                                                                                                <conditions>
+                                                                                                   <condition type="contextrow" field="Id" mergefield="Id"/>
+                                                                                                </conditions>
+                                                                                                <renderconditions logictype="and">
+                                                                                                   <rendercondition type="blank" operator="=" fieldmodel="ASD_Sentences_ActiveCases" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Sentence_End_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                                                </renderconditions>
+                                                                                             </basicfieldeditor>
+                                                                                             <panelset type="vertical" cssclass="">
+                                                                                                <panels>
+                                                                                                   <panel>
+                                                                                                      <components>
+                                                                                                         <pagetitle model="ASD_Adjustments_ActiveCases">
+                                                                                                            <maintitle>Adjustments</maintitle>
+                                                                                                            <actions/>
+                                                                                                         </pagetitle>
+                                                                                                         <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" createrecords="true" model="ASD_Adjustments_ActiveCases" buttonposition="" mode="read" emptysearchbehavior="query">
+                                                                                                            <fields>
+                                                                                                               <field id="Type_of_Adjustment__c" valuehalign="" type="" columnwidth="10%" required="true" addnoneoption="false">
+                                                                                                                  <label>Type</label>
+                                                                                                               </field>
+                                                                                                               <field id="Adjustment_Quantity__c" decimalplaces="" valuehalign="" type="" columnwidth="10%" required="true">
+                                                                                                                  <label>Length</label>
+                                                                                                               </field>
+                                                                                                               <field id="Adjustment_Measure__c" valuehalign="" type="CUSTOM" columnwidth="9%" snippet="Deafult_to_Sentence_Measure" required="true">
+                                                                                                                  <label>Measure</label>
+                                                                                                               </field>
+                                                                                                               <field id="Reason_for_Adjustment__c" valuehalign="" type="" columnwidth="25%">
+                                                                                                                  <label>Reason</label>
+                                                                                                               </field>
+                                                                                                               <field id="Adjustment_Comments__c" valuehalign="" type="" columnwidth="25%">
+                                                                                                                  <label>Notes</label>
+                                                                                                               </field>
+                                                                                                               <field id="CreatedDate" valuehalign="" type="" readonly="true" columnwidth="10%">
+                                                                                                                  <label>Date</label>
+                                                                                                               </field>
+                                                                                                               <field id="CreatedBy.Name" valuehalign="" type="" columnwidth="10%">
+                                                                                                                  <label>Staff</label>
+                                                                                                               </field>
+                                                                                                            </fields>
+                                                                                                            <rowactions>
+                                                                                                               <action type="edit">
+                                                                                                                  <renderconditions logictype="and">
+                                                                                                                     <rendercondition type="blank" operator="=" fieldmodel="ASD_Adjustments_ActiveCases" sourcetype="fieldvalue" field="ASD_Sentence__r.Sentence_End_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                                                                  </renderconditions>
+                                                                                                               </action>
+                                                                                                               <action type="delete">
+                                                                                                                  <renderconditions logictype="and">
+                                                                                                                     <rendercondition type="blank" operator="=" fieldmodel="ASD_Adjustments_ActiveCases" sourcetype="fieldvalue" field="ASD_Sentence__r.Sentence_End_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                                                                  </renderconditions>
+                                                                                                               </action>
+                                                                                                            </rowactions>
+                                                                                                            <massactions usefirstitemasdefault="true"/>
+                                                                                                            <views>
+                                                                                                               <view type="standard"/>
+                                                                                                            </views>
+                                                                                                            <searchfields/>
+                                                                                                            <conditions>
+                                                                                                               <condition type="contextrow" field="ASD_Sentence__c" mergefield="Id"/>
+                                                                                                            </conditions>
+                                                                                                            <actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true"/>
+                                                                                                         </skootable>
+                                                                                                      </components>
+                                                                                                   </panel>
+                                                                                                </panels>
+                                                                                             </panelset>
+                                                                                          </components>
+                                                                                       </drawer>
+                                                                                    </action>
+                                                                                 </actions>
+                                                                                 <renderconditions logictype="and">
+                                                                                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ASD_Sentences_ActiveCases" sourcetype="fieldvalue" field="Row_Marked_for_Deletion__c" value="false"/>
+                                                                                 </renderconditions>
+                                                                              </action>
+                                                                              <action type="multi" label="Cancel Delete" icon="sk-icon-close">
+                                                                                 <actions>
+                                                                                    <action type="cancel">
+                                                                                       <models>
+                                                                                          <model>ASD_Sentences_ActiveCases</model>
+                                                                                       </models>
+                                                                                    </action>
+                                                                                    <action type="updateRow" fieldmodel="ASD_Sentences_ActiveCases" field="Row_Marked_for_Deletion__c" enclosevalueinquotes="false" value="false"/>
+                                                                                 </actions>
+                                                                                 <renderconditions logictype="and">
+                                                                                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ASD_Sentences_ActiveCases" sourcetype="fieldvalue" field="Row_Marked_for_Deletion__c" value="true"/>
+                                                                                 </renderconditions>
+                                                                              </action>
+                                                                              <action type="multi" label="Confirm Delete" icon="sk-icon-case-close">
+                                                                                 <actions>
+                                                                                    <action type="save">
+                                                                                       <models>
+                                                                                          <model>ASD_Sentences_ActiveCases</model>
+                                                                                       </models>
+                                                                                    </action>
+                                                                                    <action type="requeryModel" model="ASD_Sentences_ActiveCases" behavior="loadmore"/>
+                                                                                 </actions>
+                                                                                 <renderconditions logictype="and">
+                                                                                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ASD_Sentences_ActiveCases" sourcetype="fieldvalue" field="Row_Marked_for_Deletion__c" value="true"/>
+                                                                                 </renderconditions>
+                                                                              </action>
+                                                                           </rowactions>
+                                                                           <massactions usefirstitemasdefault="true"/>
+                                                                           <views>
+                                                                              <view type="standard"/>
+                                                                           </views>
+                                                                           <actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true">
+                                                                              <action type="multi" label="Add New Sentence" icon="sk-icon-add">
+                                                                                 <actions>
+                                                                                    <action type="cancel">
+                                                                                       <models>
+                                                                                          <model>New_Sentence</model>
+                                                                                       </models>
+                                                                                    </action>
+                                                                                    <action type="emptyModelData">
+                                                                                       <models>
+                                                                                          <model>New_Sentence</model>
+                                                                                       </models>
+                                                                                    </action>
+                                                                                    <action type="createRow" model="New_Sentence" appendorprepend="prepend" defaultmodefornewitems="edit">
+                                                                                       <defaults>
+                                                                                          <default type="fieldvalue" field="ASD_Program_Case__c" enclosevalueinquotes="true" value="{{Id}}"/>
+                                                                                       </defaults>
+                                                                                    </action>
+                                                                                    <action type="showPopup">
+                                                                                       <popup title="Add New Sentence" width="90%">
+                                                                                          <components>
+                                                                                             <pagetitle model="New_Sentence">
+                                                                                                <actions>
+                                                                                                   <action type="multi" label="Save and Close" icon="sk-icon-save">
+                                                                                                      <actions>
+                                                                                                         <action type="save">
+                                                                                                            <models>
+                                                                                                               <model>New_Sentence</model>
+                                                                                                            </models>
+                                                                                                         </action>
+                                                                                                         <action type="requeryModel" model="ASD_Sentences_ActiveCases" behavior="loadmore"/>
+                                                                                                         <action type="closeTopmostPopup"/>
+                                                                                                      </actions>
+                                                                                                   </action>
+                                                                                                   <action type="multi" label="Cancel and Close" icon="sk-icon-cancel">
+                                                                                                      <actions>
+                                                                                                         <action type="cancel">
+                                                                                                            <models>
+                                                                                                               <model>New_Sentence</model>
+                                                                                                            </models>
+                                                                                                         </action>
+                                                                                                         <action type="emptyModelData">
+                                                                                                            <models>
+                                                                                                               <model>New_Sentence</model>
+                                                                                                            </models>
+                                                                                                         </action>
+                                                                                                         <action type="closeTopmostPopup"/>
+                                                                                                      </actions>
+                                                                                                   </action>
+                                                                                                </actions>
+                                                                                                <conditions>
+                                                                                                   <condition type="contextrow" field="Id" mergefield="Id"/>
+                                                                                                </conditions>
+                                                                                             </pagetitle>
+                                                                                             <basicfieldeditor showheader="true" showsavecancel="false" model="New_Sentence" buttonposition="" mode="edit" layout="">
+                                                                                                <columns>
+                                                                                                   <column width="50%">
+                                                                                                      <sections>
+                                                                                                         <section title="Sentence Details" collapsible="no">
+                                                                                                            <fields>
+                                                                                                               <field id="Sentence_Quantity__c" decimalplaces="" valuehalign="" type="" required="true">
+                                                                                                                  <label>Sentence Length</label>
+                                                                                                               </field>
+                                                                                                               <field id="Sentence_Measure__c" valuehalign="" type="" required="true" addnoneoption="true"/>
+                                                                                                               <field id="Sentence_Start_Date__c" valuehalign="" type="" required="true"/>
+                                                                                                            </fields>
+                                                                                                         </section>
+                                                                                                      </sections>
+                                                                                                   </column>
+                                                                                                   <column width="50%">
+                                                                                                      <sections>
+                                                                                                         <section title="Additional Sentence Details" collapsible="no">
+                                                                                                            <fields>
+                                                                                                               <field id="Relation_to_Other_Case__c" valuehalign="" type="">
+                                                                                                                  <label>Sentence Type</label>
+                                                                                                               </field>
+                                                                                                               <field id="Sentence_Comments__c" valuehalign="" type=""/>
+                                                                                                            </fields>
+                                                                                                         </section>
+                                                                                                      </sections>
+                                                                                                   </column>
+                                                                                                </columns>
+                                                                                                <conditions>
+                                                                                                   <condition type="contextrow" field="Id" mergefield="Id"/>
+                                                                                                </conditions>
+                                                                                             </basicfieldeditor>
+                                                                                          </components>
+                                                                                       </popup>
+                                                                                    </action>
+                                                                                 </actions>
+                                                                              </action>
+                                                                           </actions>
+                                                                           <conditions>
+                                                                              <condition type="contextrow" field="ASD_Program_Case__c" mergefield="Id"/>
+                                                                           </conditions>
+                                                                           <searchfields/>
+                                                                           <renderconditions logictype="and"/>
+                                                                           <filters/>
+                                                                        </skootable>
+                                                                        <panelset type="custom" scroll="" uniqueid="" cssclass="">
+                                                                           <panels>
+                                                                              <panel width="33.3%" cssclass="TemplatePanel">
+                                                                                 <components>
+                                                                                    <template multiple="true" model="ASD_Sentences_ActiveCases" allowhtml="true" uniqueid="unserved-sentence-template">
+                                                                                       <contents>Unserved Sentences</contents>
+                                                                                    </template>
+                                                                                 </components>
+                                                                              </panel>
+                                                                              <panel width="33.3%" cssclass="TemplatePanel">
+                                                                                 <components>
+                                                                                    <template multiple="true" model="ASD_Sentences_ActiveCases" allowhtml="true" cssclass="" uniqueid="finished-sentence-template">
+                                                                                       <contents>Finished Sentences</contents>
+                                                                                       <renderconditions logictype="and"/>
+                                                                                    </template>
+                                                                                 </components>
+                                                                              </panel>
+                                                                              <panel width="33.3%" cssclass="TemplatePanel">
+                                                                                 <components>
+                                                                                    <template multiple="true" model="ASD_Sentences_ActiveCases" allowhtml="true" uniqueid="unfinished-sentence-template">
+                                                                                       <contents>Unfinished Sentences</contents>
+                                                                                    </template>
+                                                                                 </components>
+                                                                              </panel>
+                                                                           </panels>
+                                                                        </panelset>
+                                                                     </components>
+                                                                     <beforeload/>
+                                                                  </drawer>
+                                                               </action>
+                                                            </actions>
+                                                         </action>
+                                                      </rowactions>
+                                                      <massactions usefirstitemasdefault="true"/>
+                                                      <views>
+                                                         <view type="standard"/>
+                                                      </views>
+                                                      <conditions>
+                                                         <condition type="contextrow" field="ASD_Program__c" mergefield="Id"/>
+                                                      </conditions>
+                                                      <actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true">
+                                                         <action type="createrow" appendorprepend="prepend" label="Add New Case"/>
+                                                      </actions>
+                                                      <searchfields/>
+                                                   </skootable>
+                                                </components>
+                                                <beforeload>
+                                                   <action type="setCondition" model="Program_Case" condition="ASD_Program__c" value="{{Id}}"/>
+                                                   <action type="requeryModel" model="Program_Case" behavior="loadmore"/>
+                                                </beforeload>
+                                             </drawer>
+                                          </action>
+                                       </actions>
+                                    </action>
+                                 </rowactions>
+                                 <massactions usefirstitemasdefault="true"/>
+                                 <views>
+                                    <view type="standard"/>
+                                 </views>
+                                 <actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true"/>
+                                 <filters>
+                                    <filter type="select" filteroffoptionlabel="All Programs" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="auto" conditionfield="Program__c"/>
+                                    <filter type="select" filteroffoptionlabel="All Statuses" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="auto" conditionfield="Status__c"/>
+                                 </filters>
+                              </skootable>
+                           </components>
+                        </tab>
+                        <tab name="All Cases" loadlazypanels="true">
+                           <components>
+                              <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="true" model="ASD_Program_AllCases" buttonposition="" mode="read">
+                                 <fields>
+                                    <field id="Program__c" valuehalign="" type="">
+                                       <label>Program Name</label>
+                                    </field>
+                                    <field id="ASD_Case_Manager__c" valuehalign="" type="CUSTOM" optionsource="" snippet="removeHyperlink">
+                                       <searchfields/>
+                                       <filters>
+                                          <filter type="fieldvalue" operator="=" enclosevalueinquotes="true" field="Department" value="ASD"/>
+                                          <filter type="fieldvalue" operator="=" enclosevalueinquotes="false" field="IsActive" value="true"/>
+                                       </filters>
+                                    </field>
+                                    <field id="Status__c" valuehalign="" type="">
+                                       <label>Program Status</label>
+                                    </field>
+                                    <field id="Program_Start_Date__c"/>
+                                    <field id="Program_End_Date__c"/>
+                                 </fields>
+                                 <rowactions>
+                                    <action type="multi" label="Program Details" icon="ui-silk-arrow-down">
+                                       <actions>
+                                          <action type="drawer" openicon="ui-silk-arrow-up">
+                                             <drawer title="Drawer Area" width="90%" closehandle="true">
+                                                <components>
+                                                   <basicfieldeditor showheader="true" showsavecancel="false" model="ASD_Program_AllCases" buttonposition="" mode="edit" layout="">
+                                                      <columns>
+                                                         <column width="50%">
+                                                            <sections>
+                                                               <section title="Program Details" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="Program__c"/>
+                                                                     <field id="Specialty_Court__c"/>
+                                                                     <field id="ASD_Case_Manager__c" valuehalign="" type="REFPICK" optionsource="">
+                                                                        <label>ASD Case Manager</label>
+                                                                        <searchfields/>
+                                                                        <filters>
+                                                                           <filter type="fieldvalue" operator="=" enclosevalueinquotes="true" field="Department" value="ASD"/>
+                                                                           <filter type="fieldvalue" operator="=" enclosevalueinquotes="false" field="IsActive" value="true"/>
+                                                                        </filters>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="Program_Start_Date__c"/>
+                                                                     <field id="Program_End_Date__c" valuehalign="" type=""/>
+                                                                  </fields>
+                                                               </section>
+                                                               <section title="New Section" collapsible="no" showheader="false">
+                                                                  <fields>
+                                                                     <field id="Days_Sentenced__c" decimalplaces="" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                                           <rendercondition type="fieldvalue" operator="gte" enclosevalueinquotes="false" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Days_Sentenced__c" value="0.0"/>
+                                                                        </renderconditions>
+                                                                        <label>Total Days for Stay</label>
+                                                                     </field>
+                                                                     <field id="Outcome__c" valuehalign="" type=""/>
+                                                                     <field id="Outcome_Detail__c" valuehalign="" type=""/>
+                                                                     <field id="Program_Ended_By__c" valuehalign="" type="" readonly="true">
+                                                                        <label>Staff</label>
+                                                                     </field>
+                                                                     <field id="Closure_Notes__c" valuehalign="" type=""/>
+                                                                  </fields>
+                                                                  <renderconditions logictype="and">
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Program_End_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                  </renderconditions>
+                                                               </section>
+                                                               <section title="New Section" collapsible="no" showheader="false">
+                                                                  <fields>
+                                                                     <field id="Program_Detail_Notes__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                  </fields>
+                                                               </section>
+                                                            </sections>
+                                                         </column>
+                                                         <column width="50%">
+                                                            <sections>
+                                                               <section title="Status Details" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="Status__c" valuehalign="" type=""/>
+                                                                  </fields>
+                                                               </section>
+                                                               <section title="Pending" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="MITT_Sent_Date__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                        <label>Sent Date</label>
+                                                                     </field>
+                                                                     <field id="Contact_Date__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                  </fields>
+                                                                  <renderconditions logictype="or">
+                                                                     <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Status__c" value="Pending Contact"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="MITT_Sent_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Contact_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                  </renderconditions>
+                                                               </section>
+                                                               <section title="Waitlist" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="Status_Waitlist_Start_Date__c" valuehalign="" type="">
+                                                                        <label>Start Date</label>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="Status_Waitlist_End_Date__c" valuehalign="" type="">
+                                                                        <label>End Date</label>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                  </fields>
+                                                                  <renderconditions logictype="or">
+                                                                     <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Status__c" value="Waitlist"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Status_Waitlist_Start_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Status_Waitlist_End_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                  </renderconditions>
+                                                               </section>
+                                                               <section title="Active" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="Status_Active_Start_Date__c" valuehalign="" type="">
+                                                                        <label>Start Date</label>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="Status_Active_End_Date__c" valuehalign="" type="">
+                                                                        <label>End Date</label>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                  </fields>
+                                                                  <renderconditions logictype="or">
+                                                                     <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Status__c" value="Active"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Status_Active_Start_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Status_Active_End_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                  </renderconditions>
+                                                               </section>
+                                                               <section title="FTA" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="Status_FTA_Start_Date__c" valuehalign="" type="">
+                                                                        <label>Start Date</label>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="Status_FTA_End_Date__c" valuehalign="" type="">
+                                                                        <label>End Date</label>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                  </fields>
+                                                                  <renderconditions logictype="or">
+                                                                     <rendercondition type="fieldvalue" operator="=" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Status__c" value="FTA" enclosevalueinquotes="true"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Status_FTA_Start_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Status_FTA_End_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                  </renderconditions>
+                                                               </section>
+                                                               <section title="Hold" collapsible="no">
+                                                                  <fields>
+                                                                     <field id="Status_Hold_Type__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="Status_Hold_Start_Date__c" valuehalign="" type="">
+                                                                        <label>Start Date</label>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="Status_Hold_End_Date__c" valuehalign="" type="">
+                                                                        <label>End Date</label>
+                                                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                                     </field>
+                                                                     <field id="Furlough_Return_Start_Date__c" valuehalign="" type="">
+                                                                        <renderconditions logictype="or" onhidedatabehavior="keep">
+                                                                           <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Status_Hold_Type__c" value="Furlough"/>
+                                                                           <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Furlough_Return_Start_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                        </renderconditions>
+                                                                        <label>Furlough Return Date</label>
+                                                                     </field>
+                                                                  </fields>
+                                                                  <renderconditions logictype="or">
+                                                                     <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Status__c" value="Hold"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Status_Hold_Start_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Status_Hold_End_Date__c" value="null" enclosevalueinquotes="false"/>
+                                                                     <rendercondition type="blank" operator="!=" fieldmodel="ASD_Program_AllCases" sourcetype="fieldvalue" field="Status_Hold_Type__c" value="null" enclosevalueinquotes="false"/>
+                                                                  </renderconditions>
+                                                               </section>
+                                                            </sections>
+                                                         </column>
+                                                      </columns>
+                                                   </basicfieldeditor>
+                                                </components>
+                                             </drawer>
+                                          </action>
+                                       </actions>
+                                    </action>
+                                    <action type="delete"/>
+                                 </rowactions>
+                                 <massactions usefirstitemasdefault="true"/>
+                                 <views>
+                                    <view type="standard"/>
+                                 </views>
+                                 <actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true"/>
+                                 <filters>
+                                    <filter type="select" filteroffoptionlabel="All Programs" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="auto" conditionfield="Program__c"/>
+                                    <filter type="select" filteroffoptionlabel="All Statuses" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="auto" conditionfield="Status__c"/>
+                                 </filters>
+                              </skootable>
+                           </components>
+                        </tab>
+                     </tabs>
+                  </tabset>
+               </components>
+            </tab>
+         </tabs>
+      </tabset>
+   </components>
+   <resources>
+      <labels/>
+      <javascript>
+         <jsitem location="inlinesnippet" name="ManageCaseNum" cachelocation="false" url="">var id = window.location.search.split('id=')[1];
+window.location.reload();
+window.open("/apex/Offender_Template?id=" + id + "#MNGCASE" ,"_self");
+
+
+
+
+
+</jsitem>
+         <jsitem location="inlinesnippet" name="removeHyperlink" cachelocation="false">var field = arguments[0],
+value = arguments[1],
+$ = skuid.$;	
+    
+//Check if the table is in edit mode, if so, render a picklist    
+
+if(field.mode === 'edit') {
+        field.options.type = 'REFPICK';
+        skuid.ui.fieldRenderers[field.metadata.displaytype][field.mode](field, value);
+        // return to custom options, to prevent duplication of a selection
+        field.options.type = 'CUSTOM';
+    }
+
+// We are in read-only mode
+if (field.mode !== 'edit') 
+{
+   skuid.ui.fieldRenderers[field.metadata.displaytype][field.mode](field, value);
+        var linkTag = $('a', field.element);
+        if(linkTag.length){
+            var output = $('&lt;div&gt;');
+            output.append(linkTag.html());
+        }   
+    linkTag.replaceWith(output);
+} </jsitem>
+         <jsitem location="inlinecomponent" name="FixCaseChargeLabel" cachelocation="false" url="">var element = arguments[0],
+	$ = skuid.$;
+
+var Crim_Charges_ActiveCases = skuid.model.getModel('Crim_Charges_ActiveCases');
+Crim_Charges_ActiveCases.label = 'Charge';
+Crim_Charges_ActiveCases.labelPlural = 'Charges';
+</jsitem>
+         <jsitem location="inlinesnippet" name="removeChargeHyperlink" cachelocation="false">var field = arguments[0],
+value = arguments[1],
+$ = skuid.$;	
+    
+//Check if the table is in edit mode, if so, render a picklist    
+
+if(field.mode === 'edit') {
+        skuid.ui.fieldRenderers[field.metadata.displaytype][field.mode](field, value);
+        // return to custom options, to prevent duplication of a selection
+        field.options.type = 'CUSTOM';
+    }
+
+// We are in read-only mode
+if (field.mode !== 'edit') 
+{
+   skuid.ui.fieldRenderers[field.metadata.displaytype][field.mode](field, value);
+        var linkTag = $('a', field.element);
+        if(linkTag.length){
+            var output = $('&lt;div&gt;');
+            output.append(linkTag.html());
+        }   
+    linkTag.replaceWith(output);
+} </jsitem>
+         <jsitem location="inlinesnippet" name="Deafult_to_Sentence_Measure" cachelocation="false">var field = arguments[0];
+value = skuid.utils.decodeHTML(arguments[1]);
+$ = skuid.$;
+
+var tempModel = field.model;
+var row = field.item.row;
+var parentMeasure = row.ASD_Sentence__r.Sentence_Measure__c;
+console.log("Parent Measure is " + parentMeasure);
+var picklistEntries = field.metadata.picklistEntries;
+
+picklistEntries.pop();
+picklistEntries.pop();
+picklistEntries.pop();
+picklistEntries.pop();
+
+picklistEntries.push(
+{ value: parentMeasure, label: parentMeasure, defaultValue: false, active: true  }
+);
+
+skuid.ui.fieldRenderers[field.metadata.displaytype][field.mode](field,value);
+</jsitem>
+         <jsitem location="inlinesnippet" name="HighlightSentence" cachelocation="false">var field = arguments[0]; 
+ $ = skuid.$;
+ value = skuid.utils.decodeHTML(arguments[1]); 
+ 
+skuid.ui.fieldRenderers[field.metadata.displaytype][field.mode](field,value); 
+
+var SentenceModel = field.model;
+var row = field.item.row;
+
+var RemainingTime = SentenceModel.getFieldValue(row, 'Time_Remaining__c');
+var SentenceEndDate = SentenceModel.getFieldValue(row, 'Sentence_End_Date__c');
+// var ProjectedEndDate = SentenceModel.getFieldValue(row, 'Projected_Sentence_End_Date__c');
+//console.log("Remaining Time: " + remainingTime + " Sentence End Date: " + SentenceEndDate);
+
+if(SentenceEndDate !== null){
+    field.item.element.addClass("unfinished-sentence");
+} else if (RemainingTime &lt;= 0 &amp;&amp; SentenceEndDate === null){
+    field.item.element.addClass("finished-sentence");   
+} else 
+    field.item.element.addClass("unserved-sentence");    
+
+
+
+</jsitem>
+         <jsitem location="inlinesnippet" name="Default_Charge_Disposition" cachelocation="false">var field = arguments[0];
+value = skuid.utils.decodeHTML(arguments[1]);
+$ = skuid.$;
+
+var picklistEntries = field.metadata.picklistEntries;
+
+//console.log("Picklist Length is " + picklistEntries.length);
+
+for(var i=0; i &lt; 11; i++){
+    picklistEntries.pop();    
+}
+
+picklistEntries.push(
+{ value: 'Convicted', label: 'Convicted', defaultValue: true, active: true  }
+);
+
+skuid.ui.fieldRenderers[field.metadata.displaytype][field.mode](field,value);
+//console.log("Picklist Length is " + picklistEntries.length);
+</jsitem>
+      </javascript>
+      <css>
+         <cssitem location="inline" name="HighlightSentence" cachelocation="false">table.nx-skootable-data tbody .finished-sentence td {    
+   background-color: #B9F3AD  !important; 
+}
+
+table.nx-skootable-data tbody .unserved-sentence td {    
+   background-color:  white  !important;
+ }
+ 
+ 
+table.nx-skootable-data tbody .unfinished-sentence td {    
+   background-color:  #FFFF99  !important;
+ }
+
+
+#finished-sentence-template{
+    margin: 0 0 5px 5px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-align: center;
+    background-color: #B9F3AD; 
+    color: black;
+    border: 1px solid #C0C0C0;
+	font: bold 9pt arial;
+}
+
+
+#unserved-sentence-template{
+    margin: 0 0 5px 5px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-align: center;
+    background-color: white; 
+    color: black;
+    border: 1px solid #C0C0C0;
+	font: bold 9pt arial;
+}
+
+
+#unfinished-sentence-template{
+    margin: 0 0 5px 5px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-align: center;
+    background-color: #FFFF99; 
+    color: black;
+    border: 1px solid #C0C0C0;
+	font: bold 9pt arial;
+}
+
+.TemplatePanel{
+    min-height: 25px !important;
+}
+
+
+
+
+</cssitem>
+      </css>
+   </resources>
+</skuidpage>

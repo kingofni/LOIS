@@ -1,0 +1,448 @@
+<skuidpage unsavedchangeswarning="yes" showsidebar="false" showheader="false">
+   <models>
+      <model id="Bond_Investigations" limit="20" query="true" createrowifnonefound="false" sobject="Bond_Investigation__c" doclone="" type="">
+         <fields>
+            <field id="Case_Number__c"/>
+            <field id="Offender__r.Full_Name__c"/>
+            <field id="Offense_Date__c"/>
+            <field id="Is_Case_Sealed__c"/>
+            <field id="Case_Sealed_By__c"/>
+            <field id="Case_Sealed_Date__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Case_Number__c" state="filterableoff" inactive="true" name="Case_Number__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="Criminal_History" limit="20" query="true" createrowifnonefound="false" sobject="Criminal_History__c" doclone="" type="">
+         <fields>
+            <field id="Case_Number__c"/>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Offender__r.Active_In_Pretrial__c"/>
+            <field id="Case_Status__c"/>
+            <field id="County__c"/>
+            <field id="Offender__r.Full_Name__c"/>
+            <field id="Offense_Date__c"/>
+            <field id="Case_Type__c"/>
+            <field id="Offender__r.Bond_Investigation__r.Active_In_Pretrial__c"/>
+            <field id="Offender__r.Bond_Investigation__r.Program_Name__c"/>
+            <field id="Offender__r.Bond_Investigation__r.PTS_Case_Manager__r.Name"/>
+            <field id="Is_Case_Sealed__c"/>
+            <field id="Case_Sealed_Date__c"/>
+            <field id="Case_Sealed_By__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Case_Number__c" state="filterableoff" inactive="true" name="Case_Number__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="searchCaseNumber" limit="1" query="false" createrowifnonefound="true" sobject="searchCaseNumber__c" doclone="" type="">
+         <fields>
+            <field id="Case_Number__c"/>
+         </fields>
+         <conditions/>
+         <actions/>
+      </model>
+      <model id="Sealed_Bond_Investigations" limit="20" query="true" createrowifnonefound="false" sobject="Bond_Investigation__c" doclone="" type="">
+         <fields>
+            <field id="Case_Number__c"/>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Offender__r.Date_of_Birth__c"/>
+            <field id="Offender__r.Full_Name__c"/>
+            <field id="Arrest_Date__c"/>
+            <field id="Offense_Date__c"/>
+            <field id="CreatedDate"/>
+            <field id="Active_In_Pretrial__c"/>
+            <field id="Program_Name__c"/>
+            <field id="PTS_Case_Manager__c"/>
+            <field id="PTS_Case_Manager__r.Name"/>
+            <field id="Is_Case_Sealed__c"/>
+         </fields>
+         <conditions logic="1 AND 2">
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Case_Number__c" state="filterableoff" inactive="true" name="Case_Number__c"/>
+            <condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="Is_Case_Sealed__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="Sealed_Criminal_History" limit="20" query="true" createrowifnonefound="false" sobject="Criminal_History__c" doclone="" type="">
+         <fields>
+            <field id="Case_Number__c"/>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Offender__r.Active_In_Pretrial__c"/>
+            <field id="Case_Status__c"/>
+            <field id="County__c"/>
+            <field id="Offender__r.Full_Name__c"/>
+            <field id="Offense_Date__c"/>
+            <field id="Case_Type__c"/>
+            <field id="Offender__r.Bond_Investigation__r.Active_In_Pretrial__c"/>
+            <field id="Offender__r.Bond_Investigation__r.Program_Name__c"/>
+            <field id="Offender__r.Bond_Investigation__r.PTS_Case_Manager__r.Name"/>
+            <field id="Is_Case_Sealed__c"/>
+         </fields>
+         <conditions logic="1 AND 2">
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Case_Number__c" state="filterableoff" inactive="true" name="Case_Number__c"/>
+            <condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="Is_Case_Sealed__c"/>
+         </conditions>
+         <actions/>
+      </model>
+   </models>
+   <components>
+      <wizard deferstepcontentsrendering="true" uniqueid="wizardPage">
+         <steps>
+            <step stepid="step1" steplabel="">
+               <components>
+                  <pagetitle model="Bond_Investigations" cssclass="wizardTitle">
+                     <maintitle>Seal Cases</maintitle>
+                     <actions/>
+                  </pagetitle>
+                  <basicfieldeditor showheader="true" showsavecancel="false" model="searchCaseNumber" buttonposition="" mode="edit" layout="" cssclass="wizardBox">
+                     <columns>
+                        <column width="100%">
+                           <sections>
+                              <section title="" collapsible="no">
+                                 <fields>
+                                    <field id="Case_Number__c" valuehalign="" type="" required="true">
+                                       <label>Case Number - Long</label>
+                                    </field>
+                                 </fields>
+                              </section>
+                           </sections>
+                        </column>
+                     </columns>
+                  </basicfieldeditor>
+                  <template multiple="true" model="Bond_Investigations">
+                     <contents>&lt;h4 style="color:red;text-align:center;"&gt;Case number MUST be in long format.&lt;/h4&gt;</contents>
+                  </template>
+               </components>
+               <actions>
+                  <action type="multi" label="Start Over" stepid="step1" window="self" icon="ui-silk-control-repeat-blue">
+                     <actions>
+                        <action type="cancel">
+                           <models>
+                              <model>searchCaseNumber</model>
+                           </models>
+                        </action>
+                        <action type="redirect" window="self" url="apex/skuid__ui?page=Seal_Cases_Wizard"/>
+                     </actions>
+                  </action>
+                  <action type="multi" stepid="step2" label="Search For Cases To Seal" icon="sk-icon-search" window="self">
+                     <actions>
+                        <action type="custom" snippet="validateReqdFields"/>
+                        <action type="save">
+                           <models>
+                              <model>searchCaseNumber</model>
+                           </models>
+                        </action>
+                        <action type="setCondition" model="Bond_Investigations" condition="Case_Number__c" value="{{$Model.searchCaseNumber.data.0.Case_Number__c}}"/>
+                        <action type="setCondition" model="Sealed_Bond_Investigations" condition="Case_Number__c" value="{{$Model.searchCaseNumber.data.0.Case_Number__c}}"/>
+                        <action type="requeryModels" behavior="standard" model="Bond_Investigations">
+                           <models>
+                              <model>Bond_Investigations</model>
+                              <model>Sealed_Bond_Investigations</model>
+                           </models>
+                        </action>
+                        <action type="setCondition" model="Criminal_History" condition="Case_Number__c" value="{{$Model.searchCaseNumber.data.0.Case_Number__c}}"/>
+                        <action type="setCondition" model="Sealed_Criminal_History" condition="Case_Number__c" value="{{$Model.searchCaseNumber.data.0.Case_Number__c}}"/>
+                        <action type="requeryModels" model="Criminal_History" behavior="standard">
+                           <models>
+                              <model>Criminal_History</model>
+                              <model>Sealed_Criminal_History</model>
+                           </models>
+                        </action>
+                        <action type="navigateToStep" model="Criminal_History" condition="Case_Number__c" value="{{$Model.searchCaseNumber.data.0.Case_Number__c}}" stepid="step2"/>
+                     </actions>
+                  </action>
+               </actions>
+            </step>
+            <step stepid="step2" steplabel="">
+               <components>
+                  <pagetitle model="searchCaseNumber" cssclass="wizardTitle">
+                     <maintitle>Records found for case number - {{Case_Number__c}}</maintitle>
+                     <actions/>
+                     <renderconditions logictype="or">
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Bond_Investigations" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Criminal_History" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                     </renderconditions>
+                  </pagetitle>
+                  <panelset type="standard" scroll="" cssclass="wizardBox">
+                     <panels>
+                        <panel>
+                           <components>
+                              <pagetitle model="searchCaseNumber" cssclass="wizardTitle">
+                                 <actions/>
+                                 <maintitle>No records found for case number - {{Case_Number__c}}</maintitle>
+                                 <renderconditions logictype="and">
+                                    <rendercondition fieldmodel="Bond_Investigations" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasNoRows"/>
+                                    <rendercondition fieldmodel="Criminal_History" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasNoRows"/>
+                                 </renderconditions>
+                              </pagetitle>
+                              <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" createrecords="false" model="Bond_Investigations" buttonposition="" mode="edit" instantfilters="false" emptysearchbehavior="query">
+                                 <fields>
+                                    <field id="Is_Case_Sealed__c" type="CUSTOM" valuehalign="" snippet="HighlightRow" allowordering="true">
+                                       <label>Seal Case</label>
+                                    </field>
+                                    <field id="Case_Number__c" valuehalign="" type="" readonly="true">
+                                       <label>Case Number</label>
+                                    </field>
+                                    <field id="Offender__r.Full_Name__c" valuehalign="" type="">
+                                       <label>Offender Name</label>
+                                    </field>
+                                    <field id="Offense_Date__c" valuehalign="" type="" readonly="true">
+                                       <label>Offense Date</label>
+                                    </field>
+                                    <field id="Case_Sealed_By__c" valuehalign="" type="" readonly="true">
+                                       <label>Sealed By</label>
+                                    </field>
+                                    <field id="Case_Sealed_Date__c" valuehalign="" type="" readonly="true">
+                                       <label>Sealed On</label>
+                                    </field>
+                                 </fields>
+                                 <rowactions/>
+                                 <massactions usefirstitemasdefault="true"/>
+                                 <views/>
+                                 <searchfields/>
+                                 <renderconditions logictype="and">
+                                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Bond_Investigations" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                                 </renderconditions>
+                              </skootable>
+                              <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" createrecords="false" model="Criminal_History" buttonposition="" mode="edit" emptysearchbehavior="query">
+                                 <fields>
+                                    <field id="Is_Case_Sealed__c" type="CUSTOM" valuehalign="" allowordering="true" snippet="HighlightRow">
+                                       <label>Seal Case</label>
+                                    </field>
+                                    <field id="Case_Number__c" valuehalign="" type="" readonly="true">
+                                       <label>Case Number</label>
+                                    </field>
+                                    <field id="Offender__r.Full_Name__c" valuehalign="" type="">
+                                       <label>Offender Name</label>
+                                    </field>
+                                    <field id="Offense_Date__c" valuehalign="" type="" readonly="true">
+                                       <label>Offense Date</label>
+                                    </field>
+                                    <field id="Case_Sealed_By__c" valuehalign="" type="" readonly="true">
+                                       <label>Sealed By</label>
+                                    </field>
+                                    <field id="Case_Sealed_Date__c" valuehalign="" type="" readonly="true">
+                                       <label>Sealed On</label>
+                                    </field>
+                                 </fields>
+                                 <rowactions/>
+                                 <massactions usefirstitemasdefault="true"/>
+                                 <views/>
+                                 <searchfields/>
+                                 <renderconditions logictype="and">
+                                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Criminal_History" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                                 </renderconditions>
+                              </skootable>
+                           </components>
+                        </panel>
+                     </panels>
+                  </panelset>
+                  <panelset type="vertical">
+                     <panels>
+                        <panel width="225">
+                           <components>
+                              <template multiple="true" model="Bond_Investigations" allowhtml="true" cssclass="sealedCaseNote">
+                                 <contents>Upon receiving an inquiry of a sealed record, except otherwise provided by statute, CJSD staff shall reply that a CJSD record does not exist with respect to this individual.
+</contents>
+                                 <renderconditions logictype="or"/>
+                              </template>
+                           </components>
+                        </panel>
+                     </panels>
+                     <renderconditions logictype="or">
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Sealed_Bond_Investigations" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Sealed_Criminal_History" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                     </renderconditions>
+                  </panelset>
+               </components>
+               <actions>
+                  <action type="multi" label="Go Back" stepid="step1" window="self" icon="ui-silk-resultset-previous">
+                     <actions>
+                        <action type="cancel">
+                           <models>
+                              <model>Bond_Investigations</model>
+                              <model>Criminal_History</model>
+                           </models>
+                        </action>
+                        <action type="navigateToStep" stepid="step1"/>
+                     </actions>
+                  </action>
+                  <action type="multi" label="Save" stepid="" window="self" icon="sk-icon-save">
+                     <models>
+                        <model>Bond_Investigations</model>
+                        <model>Criminal_History</model>
+                     </models>
+                     <actions>
+                        <action type="blockUI" message="Saving..." timeout="500"/>
+                        <action type="save">
+                           <models>
+                              <model>Bond_Investigations</model>
+                              <model>Criminal_History</model>
+                              <model>Sealed_Bond_Investigations</model>
+                              <model>Sealed_Criminal_History</model>
+                           </models>
+                        </action>
+                        <action type="requeryModels" behavior="standard">
+                           <models>
+                              <model>Bond_Investigations</model>
+                              <model>Criminal_History</model>
+                              <model>Sealed_Bond_Investigations</model>
+                              <model>Sealed_Criminal_History</model>
+                           </models>
+                        </action>
+                        <action type="markRowsForDeletion" model="searchCaseNumber"/>
+                        <action type="save">
+                           <models>
+                              <model>searchCaseNumber</model>
+                           </models>
+                        </action>
+                     </actions>
+                     <renderconditions logictype="and"/>
+                  </action>
+                  <action type="multi" label="Save and Close" stepid="step1" window="self" icon="sk-icon-close">
+                     <actions>
+                        <action type="save">
+                           <models>
+                              <model>Bond_Investigations</model>
+                              <model>Criminal_History</model>
+                           </models>
+                        </action>
+                        <action type="markRowsForDeletion" model="searchCaseNumber"/>
+                        <action type="save">
+                           <models>
+                              <model>searchCaseNumber</model>
+                           </models>
+                        </action>
+                        <action type="custom" snippet="closeWindow"/>
+                     </actions>
+                  </action>
+                  <action type="multi" label="Cancel and Close" stepid="step1" window="self" icon="sk-icon-cancel">
+                     <models>
+                        <model>Bond_Investigations</model>
+                        <model>Criminal_History</model>
+                     </models>
+                     <actions>
+                        <action type="cancel">
+                           <models>
+                              <model>Bond_Investigations</model>
+                              <model>Criminal_History</model>
+                           </models>
+                        </action>
+                        <action type="markRowsForDeletion" model="searchCaseNumber"/>
+                        <action type="save">
+                           <models>
+                              <model>searchCaseNumber</model>
+                           </models>
+                        </action>
+                        <action type="custom" snippet="closeWindow"/>
+                     </actions>
+                  </action>
+               </actions>
+            </step>
+         </steps>
+         <renderconditions logictype="and"/>
+      </wizard>
+   </components>
+   <resources>
+      <labels/>
+      <javascript>
+         <jsitem location="inlinesnippet" name="validateReqdFields" cachelocation="false">var params = arguments[0],
+    step = params.step,
+    stepEditor = step.editor,
+    $ = skuid.$;
+// Clear our list of messages
+stepEditor.clearMessages();
+var models = [
+    skuid.model.getModel("searchCaseNumber"),
+];
+var messages = [];
+$.each(models,function(i,model){
+    $.each(model.registeredLists,function(j,list){
+       var listMessages = list.validateRequiredFields();
+        if(listMessages &amp;&amp; listMessages.length) {
+           $.each(listMessages,function(){
+              messages.push(this); 
+           });
+       }
+   });
+});
+// If we have warning messages, do NOT proceed
+if (messages.length) {
+    // Have our step's editor handle the messages
+    stepEditor.handleMessages(messages);
+    return false;
+}
+// Otherwise proceed!
+</jsitem>
+         <jsitem location="inlinesnippet" name="closeWindow" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+window.close();</jsitem>
+         <jsitem location="inlinesnippet" name="HighlightRow" cachelocation="false">var field = arguments[0], 
+value = skuid.utils.decodeHTML(arguments[1]); 
+skuid.ui.fieldRenderers[field.metadata.displaytype][field.mode](field,value); 
+if (value === true) 
+    { 
+        field.item.element.addClass("sealed-case");
+
+    }
+    else { 
+        field.item.element.addClass("unsealed-case");
+
+    }</jsitem>
+      </javascript>
+      <css>
+         <cssitem location="inline" name="wizardPage" cachelocation="false">#wizardPage {
+    margin: 25px auto 25px auto;
+    width:80%;
+    font-size: 80%;
+
+}
+
+.wizardTitle {
+    margin: 5px auto 5px auto;
+}
+
+
+.wizardBox {
+    margin: 10px auto 15px auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+   	border: #B0C4DE;
+	border-style: groove;
+	-moz-border-radius: 15px 20px 20px 20px / 20px 20px 20px 20px;
+	border-radius: 15px 20px 20px 20px / 20px 20px 20px 20px;
+	-webkit-box-shadow: 10px 10px 5px #888;
+	-moz-box-shadow: 10px 10px 5px #888;
+    box-shadow: 10px 10px 5px #888; /*shadow for CSS3 capable browsers.*/
+}
+
+.sealedCaseNote{
+    margin-left:10px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    background-color: #EBF5FF; 
+    color: #FF5050;
+    border: #B0C4DE;
+	border-style: solid;
+    font: italic bold 6px/16px Georgia, serif;
+}
+
+.nx-skootable-data tbody .sealed-case td {    
+   background-color: #EBF5FF !important; 
+   color: #FF5050 !important;
+
+}
+
+.nx-skootable-data tbody .unsealed-case td {    
+   background-color: white !important;
+   color: black !important;
+ }
+
+</cssitem>
+      </css>
+   </resources>
+</skuidpage>

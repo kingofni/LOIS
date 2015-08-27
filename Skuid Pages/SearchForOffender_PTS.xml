@@ -1,0 +1,338 @@
+<skuidpage showheader="true" showsidebar="false" unsavedchangeswarning="yes" tabtooverride="">
+   <models>
+      <model id="Offenders" doclone="no" orderby="Last_Name__c" sobject="LOIS_Offender__c" createrowifnonefound="false" query="true" limit="100" type="">
+         <fields>
+            <field id="First_Name__c"/>
+            <field id="Date_of_Birth__c"/>
+            <field id="Name"/>
+            <field id="Middle_Name__c"/>
+            <field id="Last_Name__c"/>
+            <field id="Full_Name__c"/>
+            <field id="Social_Security_Number__c"/>
+            <field id="Age__c"/>
+            <field id="LastNameGroup__c"/>
+            <field id="Alerts__c"/>
+            <field id="Gender__c"/>
+            <field id="Language__c"/>
+            <field id="Eye_Color__c"/>
+            <field id="Hair_Color__c"/>
+            <field id="DuplicateStore__c"/>
+            <field id="AlertHeader__c"/>
+            <field id="Active_In_Pretrial__c"/>
+            <field id="Id"/>
+            <field id="SearchField_FFLLLMMYYYY__c"/>
+            <field id="Alert_for_PTS_Inactivity__c"/>
+            <field id="Most_Recent_Case_Note__c"/>
+            <field id="Bona_Applications__r" type="childRelationship" limit="1" orderby="Arrest_Date__c desc">
+               <fields>
+                  <field id="PTS_Case_Manager__c"/>
+                  <field id="PTS_Case_Manager__r.LastName"/>
+                  <field id="Arrest_Date__c"/>
+                  <field id="PTS_Case_Manager__r.FirstName"/>
+               </fields>
+               <conditions>
+                  <condition enclosevalueinquotes="false" operator="=" type="fieldvalue" field="Active_In_Pretrial__c" value="true"/>
+               </conditions>
+            </field>
+            <field id="DOB_For_Search__c"/>
+            <field id="Alias__r" type="childRelationship" limit="10">
+               <fields>
+                  <field id="Last_Name__c"/>
+                  <field id="First_Name__c"/>
+               </fields>
+            </field>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" name="LastNameGroup__c" field="LastNameGroup__c" value="" enclosevalueinquotes="true" inactive="true" state="filterableoff" userinfotype="userid" operator="="/>
+            <condition type="fieldvalue" value="0.0" enclosevalueinquotes="false" field="Active_In_Pretrial__c" operator="gt" state="filterableoff" inactive="true" name="Active_In_Pretrial__c"/>
+            <condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="Alert_for_PTS_Inactivity__c" state="filterableoff" inactive="true" name="Alert_for_PTS_Inactivity__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="SelectedOffender" doclone="no" orderby="" sobject="LOIS_Offender__c" createrowifnonefound="false" query="false" limit="1" type="">
+         <fields>
+            <field id="First_Name__c"/>
+            <field id="Date_of_Birth__c"/>
+            <field id="Name"/>
+            <field id="Middle_Name__c"/>
+            <field id="Last_Name__c"/>
+            <field id="Full_Name__c"/>
+            <field id="Social_Security_Number__c"/>
+            <field id="Age__c"/>
+            <field id="LastNameGroup__c"/>
+            <field id="Alerts__c"/>
+            <field id="Gender__c"/>
+            <field id="Language__c"/>
+            <field id="Eye_Color__c"/>
+            <field id="Hair_Color__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" name="Id" field="Id" value="" enclosevalueinquotes="true" inactive="true" state="filterableoff" userinfotype="userid" operator="="/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="CaseNote" limit="20" query="false" createrowifnonefound="false" sobject="Case_Note__c" doclone="" type="">
+         <fields>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Program__c"/>
+            <field id="Note_Type__c"/>
+            <field id="Comments__c"/>
+            <field id="Case_Note_Date__c"/>
+            <field id="Alert__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Offender__c" state="filterableoff" inactive="true" name="Offender__c"/>
+         </conditions>
+         <actions/>
+      </model>
+      <model id="CurrentUser" limit="20" query="true" createrowifnonefound="false" sobject="User">
+         <fields>
+            <field id="Department"/>
+         </fields>
+         <conditions>
+            <condition type="userinfo" value="" field="Id" operator="=" enclosevalueinquotes="true" userinfotype="userid"/>
+         </conditions>
+         <actions/>
+      </model>
+   </models>
+   <components>
+      <pagetitle model="Offenders">
+         <actions>
+            <action type="redirect" label="Add Offender" window="blank" url="Add_Offender_Wizard?program=PTS" icon="sk-icon-contact"/>
+            <action type="redirect" label="Help" window="blank" icon="sk-icon-help" url="https://sites.google.com/a/co.larimer.co.us/lois-help/"/>
+         </actions>
+         <renderconditions/>
+         <subtitle>Offender Search</subtitle>
+      </pagetitle>
+      <skootable model="Offenders" tokenizesearch="true" mode="read" buttonposition="" createrecords="false" pagesize="25" showexportbuttons="false" searchbox="true" searchmethod="server" showsavecancel="true" showconditions="true" allowscrollbars="false" floatheader="true" tablescrollheight="800" emptysearchbehavior="query">
+         <fields>
+            <field type="COMBO" valuehalign="">
+               <label>LoisID</label>
+               <template>{{{Name}}}</template>
+            </field>
+            <field id="Last_Name__c" valuehalign="" type="" allowordering="true"/>
+            <field id="First_Name__c" valuehalign="" type=""/>
+            <field id="Middle_Name__c" valuehalign="" type=""/>
+            <field type="" id="Date_of_Birth__c" allowordering="true" required="true" valuehalign=""/>
+            <field id="Social_Security_Number__c" required="false" valuehalign="" type="CUSTOM" snippet="ssnMask"/>
+            <field id="Age__c" decimalplaces="" valuehalign="" type="CUSTOM" snippet="InactiveRow"/>
+            <field id="Alias__r" type="CHILDREL" limit="100" valuehalign="" delimiter="&lt;br/&gt;">
+               <label>Alias</label>
+               <template>{{Last_Name__c}}, {{First_Name__c}}</template>
+            </field>
+            <field id="Bona_Applications__r" type="CHILDREL" limit="100" valuehalign="" delimiter="&lt;br/&gt;">
+               <label>Active Case Manager</label>
+               <template>{{Arrest_Date__c}} - {{PTS_Case_Manager__r.LastName}}, {{PTS_Case_Manager__r.FirstName}}</template>
+            </field>
+            <field id="AlertHeader__c" valuehalign="" type=""/>
+         </fields>
+         <rowactions>
+            <action type="redirect" window="blank" icon="ui-silk-user" url="Offender_Template?id={{Id}}&amp;program=PTS" label="Edit Offender">
+               <drawer title="Drawer Area" width="800" closehandle="true">
+                  <components/>
+               </drawer>
+            </action>
+            <action type="drawer" label="Offender Details" icon="ui-silk-folder-database">
+               <drawer title="Drawer Area" width="800" closehandle="true">
+                  <components>
+                     <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="all" createrecords="false" model="Offenders" buttonposition="" mode="readonly">
+                        <fields>
+                           <field id="Eye_Color__c" valuehalign="" type=""/>
+                           <field id="Hair_Color__c"/>
+                           <field id="Language__c"/>
+                           <field id="Alerts__c"/>
+                        </fields>
+                        <rowactions/>
+                        <massactions usefirstitemasdefault="true"/>
+                        <views>
+                           <view type="standard"/>
+                        </views>
+                        <searchfields/>
+                        <conditions>
+                           <condition type="contextrow" field="Id" mergefield="Id"/>
+                        </conditions>
+                        <renderconditions logictype="and"/>
+                     </skootable>
+                  </components>
+                  <beforeload>
+                     <action type="setCondition" model="SelectedOffender" condition="Id" value="{{Id}}"/>
+                  </beforeload>
+               </drawer>
+               <renderconditions logictype="and"/>
+            </action>
+            <action type="multi" label="Log Phone Contact" icon="sk-icon-phone">
+               <drawer title="Drawer Area" width="800" closehandle="true">
+                  <components/>
+               </drawer>
+               <actions>
+                  <action type="setCondition" model="CaseNote" condition="Offender__c" value="{{Id}}"/>
+                  <action type="createRow" model="CaseNote" appendorprepend="prepend" defaultmodefornewitems="edit">
+                     <defaults>
+                        <default type="fieldvalue" field="Case_Note_Date__c" enclosevalueinquotes="true" value="TODAY"/>
+                        <default type="fieldvalue" field="Comments__c" enclosevalueinquotes="true" value="Phone Contact Logged"/>
+                        <default type="fieldvalue" field="Alert__c" enclosevalueinquotes="true" value="false"/>
+                        <default type="fieldvalue" field="Note_Type__c" enclosevalueinquotes="true" value="Phone contact"/>
+                        <default type="fieldvalue" field="Program__c" enclosevalueinquotes="true" value="PTS"/>
+                     </defaults>
+                  </action>
+                  <action type="save">
+                     <models>
+                        <model>CaseNote</model>
+                     </models>
+                  </action>
+                  <action type="blockUI" message="Your Phone Contact Has Been Logged" timeout="2000"/>
+               </actions>
+            </action>
+         </rowactions>
+         <massactions usefirstitemasdefault="false" defaulticon="sk-icon-history"/>
+         <views>
+            <view type="standard"/>
+         </views>
+         <searchfields>
+            <searchfield field="Last_Name__c"/>
+            <searchfield field="First_Name__c"/>
+            <searchfield field="Name"/>
+            <searchfield field="Middle_Name__c"/>
+            <searchfield field="Social_Security_Number__c"/>
+            <searchfield return="false" field="DOB_For_Search__c" operator="contains"/>
+         </searchfields>
+         <actions usefirstitemasdefault="true" defaulticon="sk-icon-magic" defaultlabel="Global Actions"/>
+         <renderconditions/>
+         <filters>
+            <filter type="toggle" filteroffoptionlabel="All Programs" createfilteroffoption="false" affectcookies="false" autocompthreshold="25" condition="Active_In_Pretrial__c" label="Active In Pretrial" conditionsource="manual">
+               <effects>
+                  <effect action="set" value="0" condition="Active_In_Pretrial__c"/>
+               </effects>
+            </filter>
+            <filter type="toggle" filteroffoptionlabel="New Filter" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="manual" labelmode="auto" label="Alert For Inactivity">
+               <effects>
+                  <effect action="set" value="true" condition="Alert_for_PTS_Inactivity__c"/>
+               </effects>
+            </filter>
+         </filters>
+      </skootable>
+   </components>
+   <resources>
+      <labels/>
+      <javascript>
+         <jsitem location="inline" name="PageTitle" cachelocation="false" url="">(function(skuid){
+	var $ = skuid.$;
+	$(function(){
+		var myModel = skuid.model.getModel('MyModelId');
+		var myComponent = skuid.component.getById('MyComponentUniqueId');
+		
+		document.title = "Search for Offender"
+		
+	});
+})(skuid);
+</jsitem>
+         <jsitem location="inlinesnippet" name="PhoneLog" cachelocation="false" url="">var params = arguments[0],
+   $ = skuid.$,
+   items = params.item ? [params.item] : params.list.getSelectedItems(),
+   NewTasksModel = skuid.model.getModel('CaseNote'),
+   ProtoModel = skuid.model.getModel('Offender'),
+   ProtoRow = ProtoModel.getFirstRow();
+ 
+var newRowIds = {};
+var protoConditions = [];
+var protoUpdates = {};
+ 
+$.each(ProtoModel.changes,function(rowId,changes){
+    $.each(changes,function(field,value){
+        var fieldMetadata = ProtoModel.getField(field);
+       if (fieldMetadata &amp;&amp; (typeof value !== 'undefined')) {
+           var c = {
+              field: field,
+              value: value
+           };
+           if (fieldMetadata.displaytype === 'REFERENCE'){
+               protoUpdates[fieldMetadata.rel]=ProtoRow[fieldMetadata.rel];
+           }
+           protoConditions.push(c);
+       } 
+    });
+})
+ 
+$.each(items,function(i,item){
+    var conditions = [];
+    $.each(protoConditions,function(){conditions.push(this);});
+    conditions.push({
+        field: 'WhoId',
+        value:item.row.Id
+    });
+    var row = NewTasksModel.createRow({
+        additionalConditions: conditions
+   });
+   var updates = {};
+   $.each(protoUpdates,function(field,value){
+       updates[field]=value;
+   });
+   updates['Who']=item.row;
+   NewTasksModel.updateRow(row,updates);
+   newRowIds[row.Id]=1;
+});
+ 
+// Refresh the fields in the NewTasks model
+// so that they will show the related field data
+$.each(NewTasksModel.registeredLists,function(i,list){
+   $.each(list.renderedItems,function(rowId,item){
+      if (rowId in newRowIds) {
+          item.refreshFields();
+      } 
+   });
+});
+ </jsitem>
+         <jsitem location="inlinesnippet" name="ssnMask" cachelocation="false">var field = arguments[0];
+var ssn = arguments[1];
+var firstthree;
+var midtwo;
+var lastfour;
+var text;
+
+if ((!ssn))
+{
+    skuid.ui.fieldRenderers.TEXT[field.mode](field, ssn);
+}
+else if (ssn.length==9)
+{
+
+    firstthree=ssn.substring(0,3);
+    midtwo=ssn.substring(3,5);
+    lastfour=ssn.substring(5,9);
+    text= firstthree + "-" + midtwo + "-" + lastfour;
+    skuid.ui.fieldRenderers.TEXT[field.mode](field, text);
+}
+else
+{
+    skuid.ui.fieldRenderers.TEXT[field.mode](field, ssn);
+}
+</jsitem>
+         <jsitem location="inlinesnippet" name="InactiveRow" cachelocation="false">var field = arguments[0]; 
+ $ = skuid.$;
+ value = skuid.utils.decodeHTML(arguments[1]); 
+skuid.ui.fieldRenderers[field.metadata.displaytype][field.mode](field,value); 
+var tempModel = field.model;
+var row = field.item.row;
+var inactivity = "Alert_for_PTS_Inactivity__c";
+var flag = tempModel.getFieldValue(row,inactivity);
+if (flag === true){
+    field.item.element.addClass("inactive-offender");
+    } else { 
+     field.item.element.addClass("active-offender");
+}
+</jsitem>
+      </javascript>
+      <css>
+         <cssitem location="inline" name="HighlightRow" cachelocation="false">table.nx-skootable-data tbody tr.inactive-offender td {    
+   background-color: #EBF5FF; 
+   color:  #FF5050 ;
+
+}
+
+table.nx-skootable-data tbody tr.active-offender td {    
+   background-color: white;
+ }</cssitem>
+      </css>
+   </resources>
+</skuidpage>

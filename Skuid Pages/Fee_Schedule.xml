@@ -1,0 +1,229 @@
+<skuidpage unsavedchangeswarning="yes" showsidebar="false" showheader="false">
+   <models>
+      <model id="FeeSchedule" limit="20" query="true" createrowifnonefound="false" sobject="Fee_Schedule__c">
+         <fields>
+            <field id="Fee_Type__c"/>
+            <field id="Program__c"/>
+            <field id="Agency__c"/>
+            <field id="Fee_Bucket__c"/>
+            <field id="CreatedBy.Name"/>
+            <field id="CreatedDate"/>
+            <field id="Is_Active_Fee__c"/>
+            <field id="Cost_Amount__c"/>
+            <field id="Amount__c"/>
+            <field id="Cost_Type__c"/>
+            <field id="Agency__r.Name"/>
+            <field id="Fee_Description__c"/>
+         </fields>
+         <conditions>
+            <condition type="fieldvalue" field="Program__c" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Program__c" state="filterableoff" value=""/>
+            <condition type="fieldvalue" field="Fee_Type__c" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Fee_Type__c" state="filterableoff" value=""/>
+            <condition type="fieldvalue" field="Fee_Bucket__c" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Fee_Bucket__c" state="filterableoff" value=""/>
+            <condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="Is_Active_Fee__c" state="filterableoff" inactive="true" name="Is_Active_Fee__c" operator="="/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModel" model="FeeSchedule" behavior="standard"/>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="NewFeeSchedule" limit="1" query="false" createrowifnonefound="false" sobject="Fee_Schedule__c" doclone="" type="">
+         <fields>
+            <field id="Program__c"/>
+            <field id="Agency__c"/>
+            <field id="Fee_Bucket__c"/>
+            <field id="Fee_Type__c"/>
+            <field id="Is_Active_Fee__c"/>
+            <field id="Cost_Amount__c"/>
+            <field id="Cost_Type__c"/>
+            <field id="Agency__r.Name"/>
+            <field id="Fee_Description__c"/>
+         </fields>
+         <conditions/>
+         <actions/>
+      </model>
+   </models>
+   <components>
+      <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="50" createrecords="false" model="FeeSchedule" buttonposition="" mode="readonly" instantfilters="true" emptysearchbehavior="query">
+         <fields>
+            <field id="Fee_Type__c" valuehalign="" type="" allowordering="true"/>
+            <field id="Fee_Description__c" valuehalign="" type=""/>
+            <field id="Program__c" valuehalign="" type="" allowordering="true"/>
+            <field id="Amount__c" valuehalign="" type="" allowordering="true">
+               <label>Cost Amount</label>
+            </field>
+            <field id="Is_Active_Fee__c" type="" valuehalign="">
+               <label>Active</label>
+            </field>
+            <field id="CreatedBy.Name" valuehalign="" type="">
+               <label>Created By</label>
+            </field>
+            <field id="CreatedDate" valuehalign="" type="" readonly="true"/>
+         </fields>
+         <rowactions>
+            <action type="drawer" openicon="ui-silk-arrow-up" label="Edit Fee Schedule" icon="ui-silk-pencil">
+               <drawer title="Drawer Area" width="90%" closehandle="true">
+                  <components>
+                     <basicfieldeditor showheader="true" showsavecancel="true" model="FeeSchedule" buttonposition="" mode="edit" layout="">
+                        <columns>
+                           <column width="50%">
+                              <sections>
+                                 <section title="" collapsible="no">
+                                    <fields>
+                                       <field id="Program__c"/>
+                                       <field id="Agency__c" valuehalign="" type="REFPICK" optionsource="" displaytemplate="{{Name}}" searchtemplate="{{Name}}">
+                                          <label>Agency</label>
+                                          <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                          <filters/>
+                                          <searchfields/>
+                                       </field>
+                                       <field id="Fee_Bucket__c"/>
+                                       <field id="Is_Active_Fee__c" valuehalign="" type="">
+                                          <label>Active</label>
+                                       </field>
+                                    </fields>
+                                 </section>
+                              </sections>
+                           </column>
+                           <column width="50%">
+                              <sections>
+                                 <section title="" collapsible="no">
+                                    <fields>
+                                       <field id="Fee_Type__c"/>
+                                       <field id="Fee_Description__c" valuehalign="" type=""/>
+                                       <field id="Cost_Type__c" valuehalign="" type="">
+                                          <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                       </field>
+                                       <field id="Cost_Amount__c" decimalplaces="" valuehalign="" type="">
+                                          <renderconditions logictype="and" onhidedatabehavior="keep">
+                                             <rendercondition type="multiple" operator="in" fieldmodel="FeeSchedule" sourcetype="fieldvalue" field="Cost_Type__c" value="" enclosevalueinquotes="true">
+                                                <values>
+                                                   <value>Fixed</value>
+                                                   <value>Percent of Income</value>
+                                                </values>
+                                             </rendercondition>
+                                          </renderconditions>
+                                       </field>
+                                    </fields>
+                                 </section>
+                              </sections>
+                           </column>
+                        </columns>
+                        <conditions>
+                           <condition type="contextrow" field="Id" mergefield="Id"/>
+                        </conditions>
+                        <renderconditions logictype="and"/>
+                     </basicfieldeditor>
+                  </components>
+                  <beforeload/>
+               </drawer>
+            </action>
+         </rowactions>
+         <massactions usefirstitemasdefault="true"/>
+         <views/>
+         <actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true">
+            <action type="multi" label="Add New Fee Schedule" icon="sk-icon-add">
+               <actions>
+                  <action type="emptyModelData">
+                     <models>
+                        <model>NewFeeSchedule</model>
+                     </models>
+                  </action>
+                  <action type="createRow" model="NewFeeSchedule" appendorprepend="prepend" defaultmodefornewitems="edit">
+                     <defaults/>
+                  </action>
+                  <action type="showPopup">
+                     <popup title="Add New Fee Schedule" width="90%">
+                        <components>
+                           <pagetitle model="NewFeeSchedule">
+                              <actions>
+                                 <action type="multi" label="Save and Close" icon="sk-icon-save">
+                                    <actions>
+                                       <action type="save">
+                                          <models>
+                                             <model>NewFeeSchedule</model>
+                                          </models>
+                                       </action>
+                                       <action type="requeryModel" model="FeeSchedule" behavior="standard"/>
+                                       <action type="closeTopmostPopup"/>
+                                    </actions>
+                                 </action>
+                                 <action type="multi" label="Cancel and Close" icon="sk-icon-cancel">
+                                    <actions>
+                                       <action type="cancel">
+                                          <models>
+                                             <model>NewFeeSchedule</model>
+                                          </models>
+                                       </action>
+                                       <action type="closeTopmostPopup"/>
+                                    </actions>
+                                 </action>
+                              </actions>
+                           </pagetitle>
+                           <basicfieldeditor showheader="true" showsavecancel="false" model="NewFeeSchedule" buttonposition="" mode="edit" layout="">
+                              <columns>
+                                 <column width="50%">
+                                    <sections>
+                                       <section title="" collapsible="no">
+                                          <fields>
+                                             <field id="Program__c"/>
+                                             <field id="Is_Active_Fee__c" valuehalign="" type="">
+                                                <label>Active</label>
+                                             </field>
+                                          </fields>
+                                       </section>
+                                    </sections>
+                                 </column>
+                                 <column width="50%">
+                                    <sections>
+                                       <section title="" collapsible="no">
+                                          <fields>
+                                             <field id="Fee_Type__c"/>
+                                             <field id="Fee_Description__c" valuehalign="" type=""/>
+                                             <field id="Cost_Type__c" valuehalign="" type=""/>
+                                             <field id="Cost_Amount__c" decimalplaces="" valuehalign="" type="">
+                                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                                   <rendercondition type="multiple" operator="in" fieldmodel="NewFeeSchedule" sourcetype="fieldvalue" field="Cost_Type__c" value="" enclosevalueinquotes="true">
+                                                      <values>
+                                                         <value>Fixed</value>
+                                                         <value>Percent of Income</value>
+                                                      </values>
+                                                   </rendercondition>
+                                                </renderconditions>
+                                             </field>
+                                          </fields>
+                                       </section>
+                                    </sections>
+                                 </column>
+                              </columns>
+                           </basicfieldeditor>
+                        </components>
+                     </popup>
+                  </action>
+               </actions>
+            </action>
+         </actions>
+         <searchfields/>
+         <filters>
+            <filter type="toggle" filteroffoptionlabel="New Filter" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="manual" labelmode="auto" label="Show Active Fee Schedules">
+               <effects>
+                  <effect action="activate" value="" condition="Is_Active_Fee__c"/>
+               </effects>
+            </filter>
+            <filter type="select" filteroffoptionlabel="All Programs" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="auto" conditionfield="Program__c"/>
+            <filter type="select" filteroffoptionlabel="All Fee Types" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="auto" conditionfield="Fee_Type__c"/>
+            <filter type="select" filteroffoptionlabel="All Fee Buckets" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="auto" conditionfield="Fee_Bucket__c"/>
+         </filters>
+      </skootable>
+   </components>
+   <resources>
+      <labels/>
+      <javascript/>
+      <css/>
+   </resources>
+</skuidpage>

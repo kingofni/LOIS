@@ -1,0 +1,377 @@
+<skuidpage unsavedchangeswarning="yes" showsidebar="false" showheader="true" tabtooverride="">
+   <models>
+      <model id="Offender" limit="1" query="true" createrowifnonefound="false" sobject="LOIS_Offender__c" doclone="" type="" forview="true">
+         <fields>
+            <field id="Id"/>
+            <field id="Active_In_Pretrial__c"/>
+            <field id="Full_Name__c"/>
+            <field id="Name"/>
+            <field id="Date_of_Birth__c"/>
+            <field id="Age__c"/>
+            <field id="AlertHeader__c"/>
+         </fields>
+         <conditions>
+            <condition type="param" value="id" enclosevalueinquotes="true" field="Id" operator="=" novaluebehavior="noquery" mergefield="Id"/>
+         </conditions>
+         <actions>
+            <action>
+               <actions>
+                  <action type="requeryModel" model="OffenderChangeHistory" behavior="standard"/>
+               </actions>
+               <events>
+                  <event>models.saved</event>
+               </events>
+            </action>
+         </actions>
+      </model>
+      <model id="Program" limit="20" query="true" createrowifnonefound="false" sobject="Programs__c">
+         <fields>
+            <field id="Program_Name__c"/>
+            <field id="Program__c"/>
+         </fields>
+         <conditions>
+            <condition type="param" value="program" field="Program__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+         </conditions>
+         <actions/>
+      </model>
+   </models>
+   <components>
+      <pagetitle model="Program" uniqueid="ProgramTitle" cssclass="ProgramTitle">
+         <subtitle>&lt;table&gt;&lt;tr&gt;&lt;td width="90%"&gt;&lt;font color="green"&gt;{{Program_Name__c}}&lt;/font&gt;&lt;/td&gt;&lt;td&gt;
+&lt;select id="ModuleSelector" style="font-size:80%"&gt;
+    &lt;option value="None" &gt;Select Module &lt;/option&gt;
+    &lt;option value="PTS"&gt; PTS &lt;/option&gt;
+    &lt;option value="DRC"&gt; DRC &lt;/option&gt;
+    &lt;option value="WKE"&gt; WKE &lt;/option&gt;    
+&lt;option value="MID"&gt; MID &lt;/option&gt;
+&lt;/select&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</subtitle>
+         <actions/>
+         <renderconditions logictype="and"/>
+      </pagetitle>
+      <pagetitle model="Offender">
+         <maintitle>{{Full_Name__c}} (ID: {{Name}}) - DOB: {{Date_of_Birth__c}}    ({{Age__c}} Yrs) {{AlertHeader__c}}</maintitle>
+         <actions/>
+         <renderconditions logictype="and"/>
+      </pagetitle>
+      <tabset rememberlastusertab="false" defertabrendering="true" renderas="lefttabs" sidebarwidth="226">
+         <tabs>
+            <tab name="Offender Profile" loadlazypanels="true" icon="ui-silk-user" uniqueid="PROFILE">
+               <components>
+                  <includepanel type="skuid" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}" pagename="Offender_Profile" module="LOIS" lazyload="true"/>
+               </components>
+               <renderconditions logictype="and"/>
+            </tab>
+            <tab name="Alias " loadlazypanels="true" icon="ui-silk-group-link" uniqueid="ALIAS">
+               <components>
+                  <includepanel type="skuid" pagename="Offender_Profile_Tab_Alias" module="LOIS" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}" lazyload="true"/>
+               </components>
+            </tab>
+            <tab name="Scars/Marks/Tattoos" loadlazypanels="true" icon="ui-silk-font" uniqueid="Marks">
+               <components>
+                  <includepanel type="skuid" pagename="Offender_Profile_Tab_Marks" module="LOIS" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}" lazyload="true"/>
+               </components>
+            </tab>
+            <tab name="Contacts/Family Status" loadlazypanels="true" uniqueid="Contacts" icon="ui-silk-user-green">
+               <components>
+                  <includepanel type="skuid" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}" pagename="Offender_Profile_Tab_Contacts" module="LOIS" lazyload="true">
+                     <renderconditions logictype="and"/>
+                  </includepanel>
+               </components>
+            </tab>
+            <tab name="Case Notes " loadlazypanels="true" icon="sk-icon-feed" uniqueid="CASENOTES">
+               <components>
+                  <includepanel type="skuid" pagename="Offender_Profile_Tab_CaseNotes" module="LOIS" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}" lazyload="true" uniqueid="CNotes"/>
+               </components>
+               <renderconditions logictype="and"/>
+            </tab>
+            <tab name="Investigations " loadlazypanels="true" icon="ui-silk-report" uniqueid="INVESTIGATION">
+               <components>
+                  <includepanel type="skuid" pagename="Offender_Profile_Tab_Investigations" module="LOIS" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}" lazyload="true"/>
+               </components>
+               <renderconditions logictype="and">
+                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Offender" sourcetype="param" nosourcerowbehavior="deactivate" sourceparam="program" value="PTS"/>
+               </renderconditions>
+            </tab>
+            <tab name="Criminal History " loadlazypanels="true" icon="ui-silk-key" uniqueid="CRIMINALHISTORY">
+               <components>
+                  <includepanel type="skuid" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}" lazyload="true" pagename="Offender_Profile_Tab_CriminalHistory" module="LOIS"/>
+               </components>
+            </tab>
+            <tab name="Supervision ({{$Model.Offender.data.0.Active_In_Pretrial__c}})" loadlazypanels="true" icon="ui-silk-briefcase" uniqueid="SUPERVISION">
+               <components>
+                  <includepanel type="skuid" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}" pagename="Offender_Profile_Tab_Supervision" module="LOIS" lazyload="true"/>
+               </components>
+               <renderconditions logictype="and">
+                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Offender" sourcetype="param" nosourcerowbehavior="deactivate" sourceparam="program" value="PTS"/>
+               </renderconditions>
+            </tab>
+            <tab name="Address/Phone/EMail" loadlazypanels="true" icon="ui-silk-book-addresses" uniqueid="ADDRESS">
+               <components>
+                  <includepanel type="skuid" pagename="Offender_Profile_Tab_Adr_Phone_EMail" module="LOIS" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}" lazyload="true"/>
+               </components>
+            </tab>
+            <tab name="Documents " loadlazypanels="true" icon="sk-icon-attachments" uniqueid="DOCUMENTS">
+               <components>
+                  <includepanel type="skuid" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}" pagename="Offender_Profile_Tab_Documents" module="" lazyload="true"/>
+               </components>
+            </tab>
+            <tab name="Referred Agencies" loadlazypanels="true" icon="ui-silk-book-open" uniqueid="RefAgencies">
+               <components>
+                  <includepanel type="skuid" pagename="DRC_Referrred_Agencies" module="LOIS" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}"/>
+               </components>
+               <renderconditions logictype="and">
+                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Offender" sourcetype="param" nosourcerowbehavior="deactivate" sourceparam="program" value="DRC"/>
+               </renderconditions>
+            </tab>
+            <tab name="Substance Test/Results" loadlazypanels="true" icon="ui-silk-shape-align-bottom" uniqueid="SUBSTANCES">
+               <components>
+                  <includepanel type="skuid" pagename="Offender_Profile_Tab_Substance_Tests" module="LOIS" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}" lazyload="true"/>
+               </components>
+            </tab>
+            <tab name="Manage Case Numbers" loadlazypanels="true" icon="ui-silk-images" uniqueid="MNGCASE">
+               <components>
+                  <includepanel type="skuid" pagename="Offender_Profile_Manage_Case_Numbers" module="LOIS" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}" lazyload="true"/>
+               </components>
+               <renderconditions logictype="and">
+                  <rendercondition type="multiple" operator="in" fieldmodel="Offender" sourcetype="param" nosourcerowbehavior="deactivate" sourceparam="program" value="" enclosevalueinquotes="true">
+                     <values>
+                        <value>PTS</value>
+                        <value>WKE</value>
+                        <value>MID</value>
+                        <value>EHD</value>
+                        <value>UPS</value>
+                        <value>WR</value>
+                     </values>
+                  </rendercondition>
+               </renderconditions>
+            </tab>
+            <tab name="Requests" loadlazypanels="true" icon="ui-silk-door" uniqueid="Requests">
+               <components>
+                  <includepanel type="skuid" pagename="Offender_Profile_Tab_Requests" module="" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}"/>
+               </components>
+               <renderconditions logictype="and">
+                  <rendercondition type="multiple" operator="in" fieldmodel="Offender" sourcetype="param" nosourcerowbehavior="deactivate" sourceparam="program" value="" enclosevalueinquotes="true">
+                     <values>
+                        <value>WKE</value>
+                        <value>MID</value>
+                     </values>
+                  </rendercondition>
+               </renderconditions>
+            </tab>
+            <tab name="Finances" loadlazypanels="true" icon="sk-icon-dollar" uniqueid="FIN">
+               <components>
+                  <includepanel type="skuid" pagename="Offender_Tab_Finances" module="LOIS" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}" lazyload="true"/>
+               </components>
+            </tab>
+            <tab name="Profile Change " loadlazypanels="true" icon="ui-silk-time-go" uniqueid="CHANGES">
+               <components>
+                  <includepanel type="skuid" pagename="Offender_Profile_Tab_ProfileChanges" module="LOIS" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}" lazyload="true"/>
+               </components>
+            </tab>
+            <tab name="Program / Case / Sentence" loadlazypanels="true" icon="ui-silk-book" uniqueid="PgmDetails">
+               <components>
+                  <includepanel type="skuid" pagename="Offender_Profile_Tab_Program_Case_Sentence" module="LOIS" querystring="offenderid={{$Model.Offender.data.0.Id}}&amp;program={{$Param.program}}" lazyload="true"/>
+               </components>
+               <renderconditions logictype="and">
+                  <rendercondition type="multiple" operator="in" fieldmodel="Offender" sourcetype="param" nosourcerowbehavior="deactivate" sourceparam="program" value="" enclosevalueinquotes="true">
+                     <values>
+                        <value>EHD</value>
+                        <value>MID</value>
+                        <value>UPS</value>
+                        <value>WKE</value>
+                        <value>WR</value>
+                     </values>
+                  </rendercondition>
+               </renderconditions>
+            </tab>
+         </tabs>
+         <renderconditions logictype="and"/>
+      </tabset>
+   </components>
+   <resources>
+      <labels/>
+      <javascript>
+         <jsitem location="inline" name="Page Title" cachelocation="false" url="">(function(skuid){
+	var $ = skuid.$;
+	$(function(){
+		var myModel = skuid.model.getModel('Offender');
+		var row = myModel.getFirstRow();
+		var dob = skuid.time.parseSFDate(row.Date_of_Birth__c)
+		var dobString = skuid.time.formatDate( 'mm/dd/yy', dob );
+		document.title = row.Full_Name__c + ' (' + dobString + ')';
+		
+	});
+})(skuid);</jsitem>
+         <jsitem location="inline" name="UpdateTabSet" cachelocation="false" url=""> 
+ (function(skuid){   
+   var $ = skuid.$;
+   $(function(){
+      $('body').on('tabshow',function(event){
+          var tabShown = $(event.target);
+          var tabId = tabShown.attr('id');
+          var id = window.location.search.split('id=')[1];
+  
+          
+            if(tabId.substring(0,5)=='skuid' || tabId=='subAllProgramsLab')
+            {
+              
+            }
+            else
+            {
+                window.history.replaceState(null, "Offender Profile", "Offender_Template?id=" + id + "#" +tabId )  
+                
+            }
+            
+            
+            
+        if (tabId == 'SUPERVISION')
+        {
+            
+            var activeCases=skuid.model.getModel("Supervision_ActiveCases");
+           var allCases=skuid.model.getModel("Supervision_AllCases");
+            
+            
+            activeCases.updateData();
+            allCases.updateData();
+            
+             
+        
+        }
+
+        if (tabId == 'INVESTIGATION')
+        {
+            
+            var investigations=skuid.model.getModel("BondInvestigations");
+            
+            investigations.updateData();
+            
+         
+        }
+
+
+        if (tabId == 'CASENOTES')
+        {
+           
+            var NotesPretrial=skuid.model.getModel("NotesPretrial");
+            var NotesAll=skuid.model.getModel("NotesAll");
+            var NotesTreatment=skuid.model.getModel("NotesTreatment");
+            var SNotesPretrial=skuid.model.getModel("NotesPretrial");
+            var SNotesAll=skuid.model.getModel("NotesAll");
+            var SNotesTreatment=skuid.model.getModel("NotesTreatment");
+            
+            NotesPretrial.updateData();
+            NotesAll.updateData();
+            NotesTreatment.updateData();
+            SNotesPretrial.updateData();
+            SNotesAll.updateData();
+            SNotesTreatment.updateData();
+            
+            
+              
+            
+        
+        }
+       
+
+        if (tabId == 'subAllProgramsLab')
+        {
+            
+            var AllPrograms=skuid.model.getModel("SubstanceTest");
+
+            AllPrograms.updateData();
+            
+    
+            
+        
+        }
+
+
+        if (tabId == 'FIN')
+        {
+            
+            var Bal=skuid.model.getModel("Balances");
+            var Pay=skuid.model.getModel("Payments");
+            var Fee=skuid.model.getModel("CurrentFees");
+
+            Bal.updateData();
+            Pay.updateData();
+            Fee.updateData();
+            
+        
+        }
+
+
+      });
+   });
+})(skuid);	
+
+</jsitem>
+         <jsitem location="inline" name="ModuleView" cachelocation="false" url="">(function(skuid){
+	var $ = skuid.$;
+	$(function(){
+	$('#ModuleSelector').on('change', function () {
+	    var query = window.location.search.split('id=')[1];
+	    query = query.split("&amp;", 2);
+	    
+	    var offenderId = query[0].trim();
+	    var currentProgram = (query[1].split("=", 2))[1].trim();
+	    
+	    // get selected program from picklist
+	    var selectedProgram = $( "#ModuleSelector option:selected" ).text().trim(); 
+	    if(currentProgram === selectedProgram || selectedProgram === "None"){
+	        // Do Nothing
+	    } else {
+	        if (selectedProgram.length &gt; 0) { 
+             // construct URL
+              var url = ("/apex/Offender_Template?id=" + offenderId + "&amp;program=" + selectedProgram);
+              // redirect
+              window.open(url, "_self");
+            } 
+	    }
+	  });
+	});
+})(skuid);
+
+</jsitem>
+      </javascript>
+      <css>
+         <cssitem location="inline" name="Alerts" cachelocation="false">.alerts {
+    font-size:15px;
+    color: red;
+    text-decoration: underline;
+    position:relative;left:10px;
+  }</cssitem>
+         <cssitem location="inline" name="MHLongLabels" cachelocation="false">div.MHLongLabels:first-child{
+     width:750px;
+   }
+div.MHLongLabels:last-child{
+    align:right;
+ float:right;
+   width:10px;
+  
+  
+}</cssitem>
+         <cssitem location="inline" name="ModuleSelector" cachelocation="false">#ModuleSelector{
+  float: right;
+  width: 180px;
+  border: 2px solid #0288d1;
+  border-radius: 3px;
+  background: #FFFFFF;
+  height: 25px;
+  font-weight: bold;
+  font-size: 1em;
+  color:#0288d1;
+  
+}
+
+#ModuleSelector option{
+  padding: 2px 2px 2px 2px;    
+  font-weight: bold;
+  font-size: 1em;
+  color: #0288d1;
+}
+
+</cssitem>
+      </css>
+   </resources>
+</skuidpage>

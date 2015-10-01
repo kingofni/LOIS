@@ -1,0 +1,78 @@
+<skuidpage unsavedchangeswarning="yes" showsidebar="true" showheader="true">
+   <models>
+      <model id="PreAdv" limit="20" query="true" createrowifnonefound="false" sobject="Bond_Investigation__c">
+         <fields>
+            <field id="Con_Pre_Advisement_Release__c"/>
+            <field id="CaseNumber__c"/>
+            <field id="CaseNumber__r.Name"/>
+            <field id="Arrest_Date__c"/>
+            <field id="Offender__c"/>
+            <field id="Offender__r.Name"/>
+            <field id="Offender__r.Full_Name__c"/>
+            <field id="CaseNumber__r.CaseNumberLong__c"/>
+            <field id="CaseNumber__r.CaseNumberShort__c"/>
+            <field id="Offender__r.Id"/>
+            <field id="Offense_Date__c"/>
+            <field id="PTS_Case_Manager__c"/>
+            <field id="PTS_Case_Manager__r.Name"/>
+         </fields>
+         <conditions>
+            <condition type="blank" value="null" field="CaseNumber__c" operator="=" enclosevalueinquotes="false"/>
+         </conditions>
+         <actions/>
+      </model>
+   </models>
+   <components>
+      <pagetitle model="PreAdv">
+         <maintitle>Investigations/Supervision Missing Case Numbers</maintitle>
+         <actions/>
+         <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PreAdv" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+         </renderconditions>
+      </pagetitle>
+      <pagetitle model="PreAdv">
+         <maintitle>No Records Found With An Error</maintitle>
+         <actions/>
+         <renderconditions logictype="and">
+            <rendercondition fieldmodel="PreAdv" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasNoRows"/>
+         </renderconditions>
+      </pagetitle>
+      <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="true" model="PreAdv" buttonposition="" mode="read">
+         <fields>
+            <field id="Offender__r.Full_Name__c" valuehalign="" type=""/>
+            <field id="Arrest_Date__c" valuehalign="" type=""/>
+            <field id="Offense_Date__c" valuehalign="" type=""/>
+            <field id="CaseNumber__c" valuehalign="" type="REFPICK" optionsource="" displaytemplate="{{CaseNumberShort__c}}" searchtemplate="{{CaseNumberShort__c}}">
+               <searchfields/>
+               <filters>
+                  <filter type="modelmerge" operator="=" field="Offender_Search__c" value="" model="PreAdv" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+               </filters>
+            </field>
+            <field id="Con_Pre_Advisement_Release__c" type="" valuehalign="">
+               <label>Pre Advisement Release</label>
+            </field>
+            <field id="PTS_Case_Manager__r.Name" valuehalign="" type="">
+               <label>PTS Case Manager</label>
+            </field>
+         </fields>
+         <rowactions>
+            <action type="redirect" icon="ui-silk-user" label="Offender Profile" window="blank" url="https://larimer.my.salesforce.com/apex/Offender_Template?id={{Offender__c}}&amp;program=PTS">
+               <popup width="80%" title="Viewing {{Offender__r.Id}}">
+                  <components>
+                     <includepanel type="skuid" pagename="Offender_Profile_Tab_Investigations" module="LOIS" querystring="offenderid={{Offender__r.Id}}"/>
+                  </components>
+               </popup>
+            </action>
+         </rowactions>
+         <massactions usefirstitemasdefault="true"/>
+         <views>
+            <view type="standard"/>
+         </views>
+      </skootable>
+   </components>
+   <resources>
+      <labels/>
+      <javascript/>
+      <css/>
+   </resources>
+</skuidpage>
